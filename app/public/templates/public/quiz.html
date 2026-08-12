@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}Eligibility Quiz - Immigration Portal{% endblock %}
+
+{% block content %}
+<div class="quiz-container">
+    <h2>Immigration Eligibility Checker</h2>
+    <p>Answer a few quick questions to find the right pathway for you.</p>
+
+    <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <!-- Step 1 -->
+    <div class="quiz-step active" id="step-1">
+        <h3>Step 1: What is your primary purpose for moving?</h3>
+        <button class="quiz-option" data-step="1" data-key="reason" data-value="work">Employment / Work</button>
+        <button class="quiz-option" data-step="1" data-key="reason" data-value="study">Higher Education / Study</button>
+        <button class="quiz-option" data-step="1" data-key="reason" data-value="family">Join Family Member</button>
+        <button class="quiz-option" data-step="1" data-key="reason" data-value="protection">Humanitarian Protection / Asylum</button>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="quiz-step" id="step-2">
+        <h3>Step 2: Do you currently have a official job offer or school acceptance?</h3>
+        <button class="quiz-option" data-step="2" data-key="hasOffer" data-value="yes">Yes, I have an official offer/enrollment</button>
+        <button class="quiz-option" data-step="2" data-key="hasOffer" data-value="no">No, not yet</button>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="quiz-step" id="step-3">
+        <h3>Step 3: What is your planned duration of stay?</h3>
+        <button class="quiz-option" data-step="3" data-key="duration" data-value="temporary">Short-term (Under 1 year)</button>
+        <button class="quiz-option" data-step="3" data-key="duration" data-value="permanent">Long-term / Permanent Residency</button>
+    </div>
+
+    <!-- Result Screen -->
+    <div class="quiz-step" id="quiz-result">
+        <h3>Recommended Pathway</h3>
+        <div class="quiz-result-card">
+            <h4 id="recommendedTitle">Processing...</h4>
+            <p id="recommendedDesc"></p>
+        </div>
+        <br>
+        <a id="applyBtn" href="#" style="display:inline-block; padding:10px 20px; background-color:#004b87; color:white; text-decoration:none; border-radius:4px;">
+            Apply Now with This Pathway
+        </a>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/quiz.js') }}"></script>
+{% endblock %}

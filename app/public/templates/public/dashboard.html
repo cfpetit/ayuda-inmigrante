@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}My Dashboard - Immigration Portal{% endblock %}
+
+{% block content %}
+    <h2>Welcome back, {{ user.email }}!</h2>
+    <p>This is your personal immigration portal where you can track active applications and upload documents.</p>
+    
+    <a href="{{ url_for('public.create_case') }}" style="display:inline-block; padding:10px 15px; background-color:#004b87; color:white; text-decoration:none; border-radius:4px;">+ Start New Application</a>
+
+    <hr>
+
+    <h3>My Active Applications</h3>
+    {% if user.cases %}
+        <ul>
+            {% for case in user.cases %}
+                <li>
+                    <strong><a href="{{ url_for('public.case_detail', case_id=case.id) }}">{{ case.case_type }}</a></strong> 
+                    - Status: <em>{{ case.status }}</em></li>
+                    ({{ case.documents|length }} files attached)
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>You have not submitted any immigration applications yet.</p>
+    {% endif %}
+{% endblock %}

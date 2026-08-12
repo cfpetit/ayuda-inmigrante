@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+    <h2>Dashboard</h2>
+    <p>Welcome back! Here is an overview of active immigration cases.</p>
+    
+    <ul>
+        <li><a href="{{ url_for('admin.manage_cases') }}">Manage User Cases</a></li>
+        <li>Review uploaded documents</li>
+        <li>Update immigration guidelines</li>
+    </ul>
+{% endblock %}

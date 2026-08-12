@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Start New Application{% endblock %}
+
+{% block content %}
+    <h2>Start an Immigration Application</h2>
+    <p>Select your visa/residency category and upload initial supporting documentation.</p>
+
+    <form action="{{ url_for('public.create_case') }}" method="POST" enctype="multipart/form-data">
+        <label for="case_type">Application Type:</label><br>
+        <select name="case_type" id="case_type" required>
+            <option value="">-- Select Type --</option>
+            <option value="Work Visa" {% if selected_type == "Work Visa" %} selected{% endif %}>Work Visa</option>
+            <option value="Student Residency" {% if selected_type == 'Student Residency' %}selected{% endif %}>Student Residency</option>
+            <option value="Family Reunification"{% if selected_type == 'Family Reunification' %}selected{% endif %}>Family Reunification</option>
+            <option value="Asylum / Protection"{% if selected_type == 'Asylum / Protection' %}selected{% endif %}>Asylum / Protection</option>
+        </select>
+        <br><br>
+
+        <label for="notes">Additional Information / Personal Details:</label><br>
+        <textarea name="notes" id="notes" rows="4" cols="50" placeholder="Provide any details relevant to your situation..."></textarea>
+        <br><br>
+
+        <label for="document">Upload Supporting Document (PDF, Image, or Word):</label><br>
+        <input type="file" name="document" id="document">
+        <br><br>
+
+        <button type="submit">Submit Application</button>
+    </form>
+{% endblock %}
