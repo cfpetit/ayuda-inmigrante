@@ -119,3 +119,48 @@ nav a {
     margin-top: 15px;
     border-radius: 4px;
 }
+
+.badge {
+    display: inline-block;
+    padding: 4px 8px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    border-radius: 4px;
+    color: #fff;
+}
+
+.badge-pending { background-color: #ffc107; color: #000; }
+.badge-review { background-color: #17a2b8; }
+.badge-approved { background-color: #28a745; }
+.badge-rejected { background-color: #dc3545; }
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.admin-table th, .admin-table td{
+    padding: 12px;
+    border: 1px solid: #dee2e6;
+    text-align: left;
+}
+
+.admin-table th {
+    background-color: #f1f3f5;
+}
+
+.stats-grid {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.stat-card {
+    flex: 1;
+    background: #fff;
+    padding: 15px;
+    border-radius: 6px;
+    border: 1 px solid: #e0e0e0;
+    text-align: center;
+}

@@ -24,7 +24,7 @@ def services():
 @public_bp.route('/dashboard')
 @login_required
 def dashboard():
-    return render_template('public/dasboard.html', user=current_user)
+    return render_template('public/dashboard.html', user=current_user)
 
 @public_bp.route('/quiz')
 def quiz():
@@ -82,26 +82,27 @@ def case_detail(case_id):
 
     if request.method == 'POST':
         file = request.files.get('document')
-        if file and file.filename != '' and allowed_file(file.filename):
-            orig_filename = secure_filename(file.filename)
-            unique_filename = f"{uuid.uuid4().hex}_{orig_filename}"
+        if file and file.filename != '':
+            if allowed_file(file.filename):
+                orig_filename = secure_filename(file.filename)
+                unique_filename = f"{uuid.uuid4().hex}_{orig_filename}"
 
-            upload_path = os.path.join(current_app.config['UPLOAD_FOLDER'], unique_filename)
-            file.save(upload_path)
+                upload_path = os.path.join(current_app.config['UPLOAD_FOLDER'], unique_filename)
+                file.save(upload_path)
 
             doc = Document(
                 stored_filename=unique_filename,
                 original_filename=orig_filename,
-                case_id=case.id,
-                user_id=current_user.id
+                case=case,
+                uploader=current_user
             )
             db.session.add(doc)
             db.session.commit()
             flash('Document uploaded successfully!', 'success')
-            return redirect(url_for('public.case_detail', case_id=case.id))
         else:
-            flash('Invalid file format. Allowed: PDF, PNG, JPG, DOC, DOCX.', 'error')
+            flah('File type not allowed. Supported: PDF, PNG, JPG, GIF, WEBP, DOC, DOCX.', 'warning')
 
+        return redirect(url_for('public.case_detail', case_id=case.id))
     return render_template('public/case_detail.html', case=case)
 
 

@@ -1,14 +1,66 @@
 {% extends "base.html" %}
 
-{% block title %}Admin Dashboard{% endblock %}
+{% block title %}Admin Dashboard - Immigration Portal{% endblock %}
 
 {% block content %}
-    <h2>Dashboard</h2>
-    <p>Welcome back! Here is an overview of active immigration cases.</p>
+    <h2>Admin Dashboard</h2>
+    <p>Manage and review all applicant submissions.</p>
     
-    <ul>
-        <li><a href="{{ url_for('admin.manage_cases') }}">Manage User Cases</a></li>
-        <li>Review uploaded documents</li>
-        <li>Update immigration guidelines</li>
-    </ul>
+    <div class="stats-grid">
+        <div class="stat-card">
+            <h3>{{ total_cases }}</h3>
+            <p>Total submissions</p>
+        </div>
+        <div class="stat-card">
+            <h3>{{ pending_cases }}</h3>
+            <p>Pending review</p>
+        </div>
+        <div class="stat-card">
+            <h3>{{ approved_cases }}</h3>
+            <p>Approved cases</p>
+        </div>
+    </div>
+
+    <hr>
+
+    <h3>All submitted applications</h3>
+    {% if cases %}
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Applicant email</th>
+                    <th>Category</th>
+                    <th>Status</th>
+                    <th>Date submitted</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for case in cases %}
+                <tr>
+                    <td>#{{ case.id }}</td>
+                    <td>{{ case.applicant.email }}</td>
+                    <td>{{ case.case_type }}</td>
+                    <td>
+                        
+                        <span class="badge
+                            {% if case.status == 'Pending Review' %}badge-pending
+                            {% elif case.status == 'Under Review' %}badge-review
+                            {% elif case.status == 'Approved' %}badge-approved
+                            {% elif case.status == 'Rejected' %}badge-rejected
+                            {% else %}badge-pending{% endif %}">
+                        </span>
+                    </td>
+                    <td>{{ case.created_at.strftime('%Y-%m-%d %H:%M') }}</td>
+                    <td>
+                        <a href="{{ url_for('admin.review_case', case_id=case.id) }}">Review case</a>
+                    </td>
+                </tr>
+               {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No applications submitted yet.</p>
+    {% endif %}       
 {% endblock %}

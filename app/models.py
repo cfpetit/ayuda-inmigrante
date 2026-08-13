@@ -25,12 +25,10 @@ class User(UserMixin, db.Model):
 class Case(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    case_type = db.Column(db.String(100), nullable=False) # e.g., 'Work Visa', 'Asylum'
+    case_type = db.Column(db.String(100), nullable=False)
     status = db.Column(db.String(50), default='Pending Review')
+    notes = db.Column(db.Text, nullable=True)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
-
-    case_id = db.Column(db.Integer, db.ForeignKey('case.id'), nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
 class Document(db.Model):
     id = db.Column(db.Integer, primary_key=True)
