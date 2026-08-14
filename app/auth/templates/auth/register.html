@@ -3,23 +3,37 @@
 {% block title %}Register - Immigration Portal{% endblock %}
 
 {% block content %}
-    <h2>Create an Account</h2>
-    <p>Sign up to track your immigration cases and upload documents.</p>
-    
-    <form action="{{ url_for('auth.register') }}" method="POST">
-        <label for="email">Email Address:</label><br>
-        <input type="email" id="email" name="email" required>
-        <br><br>
-        
-        <label for="password">Password:</label><br>
-        <div class="password-group">
-            <input type="password" id="password" name="password" required>
-            <button type="button" id="regToggleBtn" class="toggle-btn" onclick="togglePasswordVisibility('password', 'regToggleBtn')">Show</button>
+<div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+        <div class="text-center mb-4">
+            <h2 class="fw-bold">Create an Account</h2>
+            <p class="text-muted">Sign up to track your immigration cases and upload documents.</p>
         </div>
-        <br><br>
-        
-        <button type="submit">Register</button>
-    </form>
-    
-    <p>Already have an account? <a href="{{ url_for('auth.login') }}">Log in here</a>.</p>
+
+        <div class="card shadow-sm auth-card">
+            <div class="card-body p-4">
+                <form action="{{ url_for('auth.register') }}" method="POST">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+                    <div class="mb-3">
+                        <label for="email" class="form-label text-muted">Email Address</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="password" class="form-label text-muted">Password</label>
+                        <!-- Using Bootstrap Input Group instead of custom CSS -->
+                        <div class="input-group">
+                            <input type="password" class="form-control" id="password" name="password" required>
+                            <button class="btn btn-outline-secondary" type="button" id="regToggleBtn" onclick="togglePasswordVisibility('password', 'regToggleBtn')">Show</button>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary w-100 py-2">Register</button>
+                </form>
+            </div>
+        </div>
+        <p class="text-center mt-3 text-muted">Already have an account? <a href="{{ url_for('auth.login') }}" class="text-decoration-none">Log in here</a>.</p>
+    </div>
+</div>
 {% endblock %}

@@ -1,0 +1,10 @@
+/* Admin specific overrides */
+.stat-card-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.admin-table-container {
+    border-radius: 8px;
+    overflow: hidden;
+}

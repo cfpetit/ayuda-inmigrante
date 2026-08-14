@@ -45,9 +45,14 @@ def create_case():
         db.session.add(new_case)
         db.session.commit()
 
-        # Handle optional initial file upload
+        # --- DIAGNOSTIC DEBUGGING ---
         file = request.files.get('document')
-        if file and file.filename != '':
+        
+        if not file:
+            flash('Case created, but no file field named "document" was sent by form.', 'warning')
+        elif file.filename == '':
+            flash('Case created without an attached file.', 'info')
+        else:
             if allowed_file(file.filename):
                 orig_filename = secure_filename(file.filename)
                 unique_filename = f"{uuid.uuid4().hex}_{orig_filename}"
@@ -63,48 +68,53 @@ def create_case():
                 )
                 db.session.add(doc)
                 db.session.commit()
+                flash('Application and initial document created successfully!', 'success')
             else:
-                flash('Application created, but file extension is not allowed (PDF, PNG, JPG, DOC, DOCX only).', 'warning')
+                flash(f'File "{file.filename}" was rejected (invalid extension).', 'warning')
 
-        flash('Immigration case submitted successfully!', 'success')
         return redirect(url_for('public.case_detail', case_id=new_case.id))
+
     selected_type = request.args.get('type', '')
     return render_template('public/create_case.html', selected_type=selected_type)
+
 
 @public_bp.route('/cases/<int:case_id>', methods=['GET', 'POST'])
 @login_required
 def case_detail(case_id):
     case = Case.query.get_or_404(case_id)
 
-    # Ensure user owns this case (or is an admin)
     if case.user_id != current_user.id and not current_user.is_admin:
         abort(403)
 
     if request.method == 'POST':
         file = request.files.get('document')
-        if file and file.filename != '':
-            if allowed_file(file.filename):
-                orig_filename = secure_filename(file.filename)
-                unique_filename = f"{uuid.uuid4().hex}_{orig_filename}"
 
-                upload_path = os.path.join(current_app.config['UPLOAD_FOLDER'], unique_filename)
-                file.save(upload_path)
+        if not file or file.filename == '':
+            flash('No file selected for upload.', 'error')
+        elif allowed_file(file.filename):
+            orig_filename = secure_filename(file.filename)
+            unique_filename = f"{uuid.uuid4().hex}_{orig_filename}"
+
+            upload_path = os.path.join(current_app.config['UPLOAD_FOLDER'], unique_filename)
+            file.save(upload_path)
 
             doc = Document(
                 stored_filename=unique_filename,
                 original_filename=orig_filename,
-                case=case,
-                uploader=current_user
+                case_id=case.id,
+                user_id=current_user.id
             )
             db.session.add(doc)
             db.session.commit()
             flash('Document uploaded successfully!', 'success')
         else:
-            flah('File type not allowed. Supported: PDF, PNG, JPG, GIF, WEBP, DOC, DOCX.', 'warning')
+            flash(f'Extension not allowed for "{file.filename}".', 'warning')
 
         return redirect(url_for('public.case_detail', case_id=case.id))
-    return render_template('public/case_detail.html', case=case)
 
+
+    print(f"\n>>> DEBUG: Case #{case.id} has {len(case.documents)} document(s): {case.documents}\n")
+    return render_template('public/case_detail.html', case=case)
 
 @public_bp.route('/media/<filename>')
 @login_required

@@ -1,0 +1,10 @@
+/* Specific styling for login and register pages */
+.auth-card {
+    border: none;
+    border-radius: 10px;
+}
+
+.auth-card .card-header {
+    background-color: transparent;
+    border-bottom: 1px solid #f0f0f0;
+}

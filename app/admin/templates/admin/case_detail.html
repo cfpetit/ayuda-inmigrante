@@ -3,52 +3,86 @@
 {% block title %}Review Case #{{ case.id }}{% endblock %}
 
 {% block content %}
-    <h2>Review Case #{{ case.id }}</h2>
-    <p><strong>Applicant:</strong> {{ case.applicant.email }}</p>
-    <p><strong>Category:</strong> {{ case.case_type }}</p>
-    <p><strong>Submissoin Date:</strong> {{ case.created_at.strftime('%Y-%m-%d %G:%M') }}</p>
+<div class="row">
+    <div class="col-lg-8 mx-auto">
+        
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h2 class="mb-0 fw-bold">Review Case #{{ case.id }}</h2>
+            <a href="{{ url_for('admin.dashboard') }}" class="btn btn-outline-secondary btn-sm">&larr; Back to Dashboard</a>
+        </div>
 
-    <hr>
+        <div class="card shadow-sm border-0 mb-4">
+            <div class="card-body">
+                <div class="row mb-3">
+                    <div class="col-sm-4 text-muted">Applicant:</div>
+                    <div class="col-sm-8 fw-bold">{{ case.applicant.email }}</div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-sm-4 text-muted">Category:</div>
+                    <div class="col-sm-8">{{ case.case_type }}</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4 text-muted">Submission Date:</div>
+                    <div class="col-sm-8">{{ case.created_at.strftime('%Y-%m-%d %H:%M') }}</div>
+                </div>
+            </div>
+        </div>
 
-    <h3>Attached documentation</h3>
-    {% if case.documents %}
-        <ul>
-            {% for doc in case.documents %}
-                <li>
-                    <a href="{{ url_for('public.view_media', filename=doc.stored_filename) }}" target="_blank">
-                        📄 {{ doc.original_filename }}
-                    </a>
-                    <small>({{ doc.upload_date.strftime('%Y-%m-%d %H:%M') }})</small>
-                </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>No documents attached by applicant.</p>
-    {% endif %}
+        <div class="card shadow-sm border-0 mb-4">
+            <div class="card-header bg-body-tertiary">
+                <h5 class="mb-0 pt-1 pb-1">Attached Documentation</h5>
+            </div>
+            <div class="card-body p-0">
+                {% if case.documents %}
+                    <ul class="list-group list-group-flush">
+                        {% for doc in case.documents %}
+                            <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+                                <a href="{{ url_for('public.view_media', filename=doc.stored_filename) }}" target="_blank" class="text-decoration-none">
+                                    📄 {{ doc.original_filename }}
+                                </a>
+                                <span class="badge bg-light text-secondary rounded-pill">
+                                    {{ doc.upload_date.strftime('%Y-%m-%d %H:%M') }}
+                                </span>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <div class="p-4 text-muted text-center">No documents attached by applicant.</div>
+                {% endif %}
+            </div>
+        </div>
 
-    <hr>
+        <div class="card shadow-sm border-0">
+            <div class="card-header bg-body-tertiary">
+                <h5 class="mb-0 pt-1 pb-1">Update Application</h5>
+            </div>
+            <div class="card-body p-4">
+                <form action="{{ url_for('admin.review_case', case_id=case.id) }}" method="POST">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
 
-    <h3>Update Application Status</h3>
-    <form action="{{ url_for('admin.review_case', case_id=case.id) }}" method="POST">
-        <label for="status"><strong>Case Status:</strong></label><br>
-        <select name="status" id="status" required>
-            <option value="Pending Review" {% if case.status == 'Pending Review' %}selected{% endif %}>Pending Review</option>
-            <option value="Under Review" {% if case.status == 'Under Review' %}selected{% endif %}>Under Review</option>
-            <option value="Action Required" {% if case.status == 'Action Required' %}selected{% endif %}>Action Required</option>
-            <option value="Approved" {%if case.status == 'Approved' %}selected{% endif %}>Approved</option>
-            <option value="Rejected" {%if case.status == 'Rejected' %}selected{% endif %}>Rejected</option>
-        </select>
-        <br><br>
+                    <div class="mb-3">
+                        <label for="status" class="form-label fw-bold">Case Status</label>
+                        <select class="form-select" name="status" id="status" required>
+                            <option value="Pending Review" {% if case.status == 'Pending Review' %}selected{% endif %}>Pending Review</option>
+                            <option value="Under Review" {% if case.status == 'Under Review' %}selected{% endif %}>Under Review</option>
+                            <option value="Action Required" {% if case.status == 'Action Required' %}selected{% endif %}>Action Required</option>
+                            <option value="Approved" {%if case.status == 'Approved' %}selected{% endif %}>Approved</option>
+                            <option value="Rejected" {%if case.status == 'Rejected' %}selected{% endif %}>Rejected</option>
+                        </select>
+                    </div>
 
-        <label for="notes"><strong>Administrative / Public Notes:</strong></label><br>
-        <textarea name="notes" id="notes" rows="5" cols="60">{{ case.notes if case.notes else '' }}</textarea>
-        <br><br>
+                    <div class="mb-4">
+                        <label for="notes" class="form-label fw-bold">Administrative / Public Notes</label>
+                        <textarea class="form-control" name="notes" id="notes" rows="5" placeholder="Add notes for the applicant...">{{ case.notes if case.notes else '' }}</textarea>
+                    </div>
 
-        <button type="submit" style="padding: 10px 20px; background-color: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer;">
-            Save Status & Notes
-        </button>
-    </form>
+                    <button type="submit" class="btn btn-success px-4">
+                        Save Status & Notes
+                    </button>
+                </form>
+            </div>
+        </div>
 
-    <br>
-    <a href="{{ url_for('admin.dashboard') }}">&larr; Back to Admin Dashboard</a>
+    </div>
+</div>
 {% endblock %}

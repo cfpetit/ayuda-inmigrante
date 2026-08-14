@@ -3,39 +3,87 @@
 {% block title %}Case #{{ case.id }} Details{% endblock %}
 
 {% block content %}
-    <h2>Application #{{ case.id }} - {{ case.case_type }}</h2>
-    <p><strong>Status:</strong> <em>{{ case.status }}</em></p>
-    <p><strong>Submitted on:</strong> {{ case.created_at.strftime('%Y-%m-%d') }}</p>
+<div class="row">
+    <div class="col-lg-8 mx-auto">
+        
+        <div class="d-flex justify-content-between align-items-center mb-3 mt-2">
+            <h2 class="mb-0 fw-bold">Application #{{ case.id }}</h2>
+            <a href="{{ url_for('public.dashboard') }}" class="btn btn-outline-secondary btn-sm">&larr; Back to Dashboard</a>
+        </div>
 
-    {% if case.notes %}
-        <p><strong>Notes:</strong> {{ case.notes }}</p>
-    {% endif %}
+        <div class="card shadow-sm border-0 mb-4">
+            <div class="card-body">
+                <div class="row mb-2">
+                    <div class="col-sm-4 text-muted">Category:</div>
+                    <div class="col-sm-8 fw-bold">{{ case.case_type }}</div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-sm-4 text-muted">Status:</div>
+                    <div class="col-sm-8">
+                        <span class="badge 
+                            {% if case.status == 'Pending Review' %}bg-warning text-dark
+                            {% elif case.status == 'Under Review' %}bg-info text-dark
+                            {% elif case.status == 'Approved' %}bg-success
+                            {% elif case.status == 'Rejected' %}bg-danger
+                            {% else %}bg-secondary{% endif %}">
+                            {{ case.status }}
+                        </span>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-sm-4 text-muted">Submitted on:</div>
+                    <div class="col-sm-8">{{ case.created_at.strftime('%Y-%m-%d') }}</div>
+                </div>
+                {% if case.notes %}
+                <hr class="text-muted">
+                <div class="row">
+                    <div class="col-sm-4 text-muted">Admin Notes:</div>
+                    <div class="col-sm-8 text-dark bg-light p-3 rounded border">{{ case.notes }}</div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
 
-    <hr>
+        <div class="card shadow-sm border-0 mb-4">
+            <div class="card-header bg-body-tertiary">
+                <h5 class="mb-0 pt-1 pb-1">Uploaded Documents</h5>
+            </div>
+            <div class="card-body p-0">
+                {% if case.documents %}
+                    <ul class="list-group list-group-flush">
+                        {% for doc in case.documents %}
+                            <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+                                <a href="{{ url_for('public.view_media', filename=doc.stored_filename) }}" target="_blank" class="text-decoration-none">
+                                    📄 {{ doc.original_filename }}
+                                </a> 
+                                <span class="badge bg-light text-secondary rounded-pill">
+                                    {{ doc.upload_date.strftime('%Y-%m-%d %H:%M') }}
+                                </span>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <div class="p-4 text-center text-muted">No documents uploaded for this case yet.</div>
+                {% endif %}
+            </div>
+        </div>
 
-    <h3>Uploaded Documents</h3>
-    {% if case.documents %}
-        <ul>
-            {% for doc in case.documents %}
-                <li>
-                    <a href="{{ url_for('public.view_media', filename=doc.stored_filename) }}" target="_blank">
-                        {{ doc.original_filename }}
-                    </a> 
-                    <small>({{ doc.upload_date.strftime('%Y-%m-%d %H:%M') }})</small>
-                </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>No documents uploaded for this case yet.</p>
-    {% endif %}
+        <div class="card shadow-sm border-0">
+            <div class="card-header bg-body-tertiary">
+                <h5 class="mb-0 pt-1 pb-1">Upload Additional Document</h5>
+            </div>
+            <div class="card-body p-4">
+                <form action="{{ url_for('public.case_detail', case_id=case.id) }}" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                    
+                    <div class="input-group">
+                        <input type="file" class="form-control" name="document" required>
+                        <button class="btn btn-primary" type="submit">Upload File</button>
+                    </div>
+                </form>
+            </div>
+        </div>
 
-    <hr>
-
-    <h3>Upload Additional Document</h3>
-    <form action="{{ url_for('public.case_detail', case_id=case.id) }}" method="POST" enctype="multipart/form-data">
-        <input type="file" name="document" required>
-        <button type="submit">Upload File</button>
-    </form>
-    <br>
-    <a href="{{ url_for('public.dashboard') }}">&larr; Back to Dashboard</a>
+    </div>
+</div>
 {% endblock %}

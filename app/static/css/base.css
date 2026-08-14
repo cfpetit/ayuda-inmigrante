@@ -1,0 +1,25 @@
+/* Core overrides that apply site-wide */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: background-color 0.3s ease; /* Smooth transition if they toggle themes */
+}
+
+/* Light mode global background */
+@media (prefers-color-scheme: light) {
+    body {
+        background-color: #f4f7f6; 
+    }
+}
+
+/* Dark mode global background */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #121212; /* A deep, sleek dark background */
+        color: #e0e0e0; /* Ensures general text is light */
+    }
+}
+
+.main-container {
+    padding-top: 2rem;
+    padding-bottom: 4rem;
+}

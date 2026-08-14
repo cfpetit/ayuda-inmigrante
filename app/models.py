@@ -29,6 +29,7 @@ class Case(db.Model):
     status = db.Column(db.String(50), default='Pending Review')
     notes = db.Column(db.Text, nullable=True)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    documents = db.relationship('Document', backref='case', lazy=True, cascade="all, delete-orphan")
 
 class Document(db.Model):
     id = db.Column(db.Integer, primary_key=True)
