@@ -16,6 +16,12 @@ class Config:
     UPLOAD_FOLDER = os.path.join(basedir, 'media')
     MAX_CONTENT_LENGTH = 16 * 1024 * 1024  # 16 MB limit
 
+    MAIL_SERVER = os.environ.get('MAIL_SERVER')
+    MAIL_PORT = int(os.environ.get('MAIL_PORT') or 587)
+    MAIL_USE_TLS = os.environ.get('MAIL_USE_TLS', 'true').lower() in ['true', 'on', '1']
+    MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
+    MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
+
 class DevelopmentConfig(Config):
     DEBUG = True
 
