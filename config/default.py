@@ -1,14 +1,20 @@
 import os
 
 basedir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+
 class Config:
-    SECRET_KEY = os.environ.get('SECRET_KEY') or 'dev-key-fallback'
+    SECRET_KEY = os.environ.get('SECRET_KEY') or 'fallback-dev-key'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    # Base fallback in case DATABASE_URL is missing
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or 'sqlite:///app.db'
+
+    # Fetch DATABASE_URL with a safe fallback
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or f"sqlite:///{os.path.join(basedir, 'app.db')}"
+
+    # Patch older postgres:// URI schemes for SQLAlchemy compatibility
+    if SQLALCHEMY_DATABASE_URI and SQLALCHEMY_DATABASE_URI.startswith("postgres://"):
+        SQLALCHEMY_DATABASE_URI = SQLALCHEMY_DATABASE_URI.replace("postgres://", "postgresql://", 1)
 
     UPLOAD_FOLDER = os.path.join(basedir, 'media')
-    MAX_CONTENT_LENGTH = 16 * 1024 * 1024  # 16 MB upload limit
+    MAX_CONTENT_LENGTH = 16 * 1024 * 1024  # 16 MB limit
 
 class DevelopmentConfig(Config):
     DEBUG = True
