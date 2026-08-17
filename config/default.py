@@ -6,6 +6,9 @@ class Config:
     # Base fallback in case DATABASE_URL is missing
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or 'sqlite:///app.db'
 
+    UPLOAD_FOLDER = os.path.join(basedir, 'media')
+    MAX_CONTENT_LENGTH = 16 * 1024 * 1024  # 16 MB upload limit
+
 class DevelopmentConfig(Config):
     DEBUG = True
 
