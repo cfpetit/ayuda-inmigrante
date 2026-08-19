@@ -36,6 +36,7 @@ def create_app(config_name='development'):
     migrate.init_app(app, db)
     csrf.init_app(app)
     mail.init_app(app)
+    init_admin(app)
 
     with app.app_context():
         from app import models
@@ -90,3 +91,31 @@ def create_app(config_name='development'):
     app.register_blueprint(admin_bp, url_prefix='/admin')
 
     return app
+
+def init_admin(app):
+    with app.app_context():
+        # Ensure database tables exist
+        db.create_all()
+
+        admin_email = os.environ.get('ADMIN_EMAIL', 'admin@cylcae.com')
+        admin_password = os.environ.get('ADMIN_PASSWORD')
+
+        if not admin_password:
+            return  # Skip if no password environment variable is set
+
+        admin = User.query.filter_by(email=admin_email).first()
+
+        if not admin:
+            admin = User(
+                email=admin_email,
+                is_admin=True
+            )
+            admin.set_password(admin_password)
+            db.session.add(admin)
+            db.session.commit()
+            print(f"--> Default admin created: {admin_email}")
+        else:
+            # Ensure the account retains admin privileges
+            if not admin.is_admin:
+                admin.is_admin = True
+                db.session.commit()
