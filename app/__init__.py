@@ -1,4 +1,6 @@
 import os
+import logging
+import cloudinary
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
@@ -6,6 +8,7 @@ from flask_migrate import Migrate
 from flask_wtf.csrf import CSRFProtect
 from flask_mail import Mail
 from config import config_by_name
+from logging.handlers import SMTPHandler
 
 db = SQLAlchemy()
 login_manager = LoginManager()
@@ -19,8 +22,13 @@ def create_app(config_name='development'):
     # Load configuration object based on environment name
     app.config.from_object(config_by_name[config_name])
 
-    # Ensure the media upload folder exists on startup
-    os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
+    # Safely ensure local upload folder exists if specified
+    if app.config.get('UPLOAD_FOLDER'):
+        os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
+
+    # Configure Cloudinary for media storage if environment URL exists
+    if os.environ.get('CLOUDINARY_URL'):
+        cloudinary.config(cloudinary_url=os.environ.get('CLOUDINARY_URL'))
 
     # Initialize extensions with the app
     db.init_app(app)
@@ -28,37 +36,46 @@ def create_app(config_name='development'):
     migrate.init_app(app, db)
     csrf.init_app(app)
     mail.init_app(app)
+
     with app.app_context():
         from app import models
 
+    # Set up production logging via SMTPHandler
     if not app.debug and not app.testing:
         if app.config.get('MAIL_SERVER'):
             auth = None
-            if app.config['MAIL_USERNAME'] or app.config['MAIL_PASSWORD']:
-                auth = (app.config['MAIL_USERNAME'], app.config['MAIL_PASSWORD'])
+            mail_user = app.config.get('MAIL_USERNAME')
+            mail_pass = app.config.get('MAIL_PASSWORD')
+            if mail_user and mail_pass:
+                auth = (mail_user, mail_pass)
+
             secure = None
-            if app.config['MAIL_USE_TLS']:
+            if app.config.get('MAIL_USE_TLS'):
                 secure = ()
 
-            mail_handler = SMTPHandler(
-                mailhost=(app.config['MAIL_SERVER'], app.config['MAIL_PORT']),
-                fromaddr=app.config['MAIL_DEFAULT_SENDER'],
-                toaddrs=[app.config['ADMIN_EMAIL']],
-                subject='🚨 Immigration Portal: Application Crash',
-                credentials=auth,
-                secure=secure
-            )
+            # Ensure ADMINS is always formatted as a valid list of recipient email strings
+            admins = app.config.get('ADMINS') or []
+            if isinstance(admins, str):
+                admins = [email.strip() for email in admins.split(',') if email.strip()]
 
-            # Only trigger on ERROR level and above
-            mail_handler.setLevel(logging.ERROR)
+            if admins:
+                mail_handler = SMTPHandler(
+                    mailhost=(app.config.get('MAIL_SERVER'), app.config.get('MAIL_PORT', 587)),
+                    fromaddr=app.config.get('MAIL_DEFAULT_SENDER') or mail_user or 'noreply@cylcae.es',
+                    toaddrs=admins,
+                    subject='🚨 CYLCAE Immigration Portal: Application Crash',
+                    credentials=auth,
+                    secure=secure
+                )
 
-            # Format the email body to show the time, file, and exact error message
-            formatter = logging.Formatter(
-                '[%(asctime)s] %(levelname)s in %(module)s: %(message)s'
-            )
-            mail_handler.setFormatter(formatter)
+                mail_handler.setLevel(logging.ERROR)
 
-            app.logger.addHandler(mail_handler)
+                formatter = logging.Formatter(
+                    '[%(asctime)s] %(levelname)s in %(module)s: %(message)s'
+                )
+                mail_handler.setFormatter(formatter)
+
+                app.logger.addHandler(mail_handler)
 
     login_manager.login_view = 'auth.login'
     login_manager.login_message_category = 'warning'

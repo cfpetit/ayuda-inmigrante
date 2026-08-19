@@ -1,17 +1,17 @@
 {% extends "base.html" %}
 
-{% block title %}Home - Immigration Portal{% endblock %}
+{% block title %}Home - CYLCAE{% endblock %}
 
 {% block content %}
 <div class="row mt-5">
     <div class="col-md-10 mx-auto text-center">
         <div class="p-5 mb-4 bg-body-tertiary rounded-3 shadow-sm border-0">
             <div class="container-fluid py-5">
-                <h1 class="display-5 fw-bold text-primary mb-4">Welcome to the Immigration Assistance Portal</h1>
+                <h1 class="display-5 fw-bold text-cylcae mb-4">Welcome to the Immigration Assistance Portal</h1>
                 <p class="col-md-8 mx-auto fs-5 text-muted mb-5">
                     We provide step-by-step guidance, documentation checklists, and seamless application tracking for your immigration journey.
                 </p>
-                <a href="{{ url_for('public.services') }}" class="btn btn-primary btn-lg px-5 py-3">View Our Services</a>
+                <a href="{{ url_for('public.services') }}" class="btn btn-cylcae btn-lg px-5 py-3">View Our Services</a>
                 <a href="{{ url_for('public.quiz') }}" class="btn btn-outline-secondary btn-lg px-5 py-3 ms-2">Check Eligibility</a>
             </div>
         </div>

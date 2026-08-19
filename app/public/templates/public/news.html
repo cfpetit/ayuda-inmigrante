@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}News & Interviews - CYLCAE{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="text-cylcae fw-bold">News & Interviews</h2>
+    <div>
+        <a href="{{ url_for('public.news_list') }}" class="btn btn-sm {% if not selected_category %}btn-cylcae{% else %}btn-outline-secondary{% endif %}">All</a>
+        <a href="{{ url_for('public.news_list', category='News') }}" class="btn btn-sm {% if selected_category == 'News' %}btn-cylcae{% else %}btn-outline-secondary{% endif %}">News</a>
+        <a href="{{ url_for('public.news_list', category='Interview') }}" class="btn btn-sm {% if selected_category == 'Interview' %}btn-cylcae{% else %}btn-outline-secondary{% endif %}">Interviews</a>
+    </div>
+</div>
+
+<div class="row g-4">
+    {% for post in posts %}
+    <div class="col-md-4">
+        <div class="card h-100 shadow-sm border-0">
+            {% if post.image_url %}
+                <img src="{{ post.image_url }}" class="card-img-top" alt="{{ post.title }}" style="height: 200px; object-fit: cover;">
+            {% endif %}
+            <div class="card-body">
+                <span class="badge bg-secondary mb-2">{{ post.category }}</span>
+                <h5 class="card-title fw-bold">{{ post.title }}</h5>
+                <p class="card-text text-muted small">{{ post.content[:120]|safe }}...</p>
+                {% if post.file_url %}
+                    <a href="{{ post.file_url }}" target="_blank" class="btn btn-sm btn-outline-secondary mb-2 d-inline-block">
+                        📎 PDF Attachment
+                    </a>
+                {% endif %}
+            </div>
+            <div class="card-footer bg-transparent border-0 text-muted small">
+                {{ post.created_at.strftime('%b %d, %Y') }}
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="col-12 text-center py-5">
+        <p class="text-muted">No publications available at this time.</p>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -7,9 +7,9 @@ auth_bp = Blueprint('auth', __name__, template_folder='templates')
 
 @auth_bp.route('/register', methods=['GET', 'POST'])
 def register():
-    # If a user is already logged in, they shouldn't see the register page
+    # If a user is already logged in, redirect them away from register
     if current_user.is_authenticated:
-        return redirect(url_for('admin.dashboard'))
+        return redirect(url_for('admin.dashboard') if current_user.is_admin else url_for('public.dashboard'))
 
     if request.method == 'POST':
         email = request.form.get('email')
@@ -35,7 +35,6 @@ def register():
 
 @auth_bp.route('/login', methods=['GET', 'POST'])
 def login():
-
     if current_user.is_authenticated:
         if current_user.is_admin:
             return redirect(url_for('admin.dashboard'))
@@ -47,17 +46,15 @@ def login():
 
         user = User.query.filter_by(email=email).first()
 
-
         if user and user.check_password(password):
             login_user(user)
             flash('Login successful!', 'success')
-
 
             next_page = request.args.get('next')
             if next_page:
                 return redirect(next_page)
             elif user.is_admin:
-                return redirect(next_page if next_page else url_for('admin.dashboard'))
+                return redirect(url_for('admin.dashboard'))
             else:
                 return redirect(url_for('public.dashboard'))
         else:

@@ -13,9 +13,6 @@ class User(UserMixin, db.Model):
     cases = db.relationship('Case', backref='applicant', lazy=True)
     documents = db.relationship('Document', backref='uploader', lazy=True)
 
-    # Relationship to link users to their immigration cases
-    cases = db.relationship('Case', backref='applicant', lazy=True)
-
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
 
@@ -39,6 +36,28 @@ class Document(db.Model):
 
     case_id = db.Column(db.Integer, db.ForeignKey('case.id'), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+
+# --- NEW SECTIONS ---
+
+class JobPosting(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(200), nullable=False)
+    company = db.Column(db.String(150), nullable=True)
+    location = db.Column(db.String(150), nullable=True)
+    description = db.Column(db.Text, nullable=False)
+    requirements = db.Column(db.Text, nullable=True)
+    file_url = db.Column(db.String(500), nullable=True)  # Cloudinary file/doc URL
+    is_active = db.Column(db.Boolean, default=True)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+class NewsPost(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(200), nullable=False)
+    category = db.Column(db.String(50), default='News')  # 'News' or 'Interview'
+    content = db.Column(db.Text, nullable=False)
+    image_url = db.Column(db.String(500), nullable=True)  # Cloudinary image URL
+    file_url = db.Column(db.String(500), nullable=True)   # Cloudinary PDF/attachment URL
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
 @login_manager.user_loader
 def load_user(user_id):

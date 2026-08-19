@@ -1,15 +1,18 @@
 /* Quiz interactive styling */
 .quiz-container {
-    border-radius: 8px;
-    padding: 2rem;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-top: 4px solid #8b152b;
+    border-radius: 12px;
+    padding: 2.5rem;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08);
     max-width: 650px;
     margin: 0 auto;
 }
 
 .quiz-step {
     display: none;
-    animation: fadeIn 0.4s;
+    animation: fadeIn 0.4s ease-in-out;
 }
 
 .quiz-step.active {
@@ -17,60 +20,42 @@
 }
 
 .quiz-option {
+    display: block;
+    width: 100%;
     text-align: left;
-    transition: all 0.2s ease;
+    padding: 0.85rem 1.25rem;
+    margin-bottom: 0.75rem;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    color: #212529 !important;
+    font-weight: 500;
+    border-radius: 8px;
+    transition: all 0.2s ease-in-out;
 }
 
-/* Base hover effects (movement and border) */
+/* Hover effects with brand accent */
 .quiz-option:hover {
-    border-color: #0d6efd;
-    transform: translateX(5px);
+    background-color: #ffffff;
+    border-color: #8b152b;
+    color: #8b152b !important;
+    transform: translateX(4px);
+    box-shadow: 0 4px 12px rgba(139, 21, 43, 0.12);
 }
 
 .quiz-result-card {
-    border-left: 5px solid #0d6efd;
+    border-left: 5px solid #8b152b;
+    background-color: #fdf2f4;
     padding: 20px;
     border-radius: 6px;
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* =========================================
-   LIGHT MODE COLORS 
-   ========================================= */
-@media (prefers-color-scheme: light) {
-    .quiz-container {
-        background: #ffffff;
+    from { 
+        opacity: 0; 
+        transform: translateY(10px); 
     }
-    
-    .quiz-result-card {
-        background: #e7f3fe;
-    }
-
-    .quiz-option:hover {
-        background: #f8f9fa;
-        color: #212529 !important; /* Force dark text in light mode */
-    }
-}
-
-/* =========================================
-   DARK MODE COLORS 
-   ========================================= */
-@media (prefers-color-scheme: dark) {
-    .quiz-container {
-        background: #212529; 
-        border: 1px solid #343a40;
-    }
-    
-    .quiz-result-card {
-        background: #052c65; 
-    }
-
-    .quiz-option:hover {
-        background: #343a40; /* Darker gray background on hover */
-        color: #ffffff !important; /* Force white text in dark mode */
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
     }
 }

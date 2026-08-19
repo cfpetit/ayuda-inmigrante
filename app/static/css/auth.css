@@ -1,7 +1,9 @@
 /* Specific styling for login and register pages */
 .auth-card {
-    border: none;
+    border: 1px solid #e0e0e0;
     border-radius: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
 }
 
 .auth-card .card-header {

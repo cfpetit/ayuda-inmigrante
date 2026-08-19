@@ -1,25 +1,41 @@
 /* Core overrides that apply site-wide */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    transition: background-color 0.3s ease; /* Smooth transition if they toggle themes */
-}
-
-/* Light mode global background */
-@media (prefers-color-scheme: light) {
-    body {
-        background-color: #f4f7f6; 
-    }
-}
-
-/* Dark mode global background */
-@media (prefers-color-scheme: dark) {
-    body {
-        background-color: #121212; /* A deep, sleek dark background */
-        color: #e0e0e0; /* Ensures general text is light */
-    }
+    background-color: #f4f7f6;
+    color: #212529;
+    transition: background-color 0.3s ease;
 }
 
 .main-container {
     padding-top: 2rem;
     padding-bottom: 4rem;
+}
+
+/* CYLCAE Brand Utilities */
+.text-cylcae {
+    color: #8b152b !important;
+}
+
+.btn-cylcae {
+    background-color: #8b152b;
+    border-color: #8b152b;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.btn-cylcae:hover,
+.btn-cylcae:focus {
+    background-color: #6e1022;
+    border-color: #6e1022;
+    color: #ffffff;
+}
+
+/* Hero / Welcome Card Definition */
+.hero-card {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-top: 4px solid #8b152b;
+    border-radius: 12px;
+    padding: 3rem 2rem;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
 }

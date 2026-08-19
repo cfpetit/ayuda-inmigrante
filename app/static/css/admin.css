@@ -2,9 +2,13 @@
 .stat-card-title {
     font-size: 2.5rem;
     font-weight: 700;
+    color: #8b152b;
 }
 
 .admin-table-container {
     border-radius: 8px;
     overflow: hidden;
+    background-color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e0e0e0;
 }
