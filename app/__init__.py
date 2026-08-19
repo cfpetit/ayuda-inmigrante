@@ -94,6 +94,9 @@ def create_app(config_name='development'):
 
 def init_admin(app):
     with app.app_context():
+        # Import User here inside the app context
+        from app.models import User
+
         # Ensure database tables exist
         db.create_all()
 
@@ -115,7 +118,6 @@ def init_admin(app):
             db.session.commit()
             print(f"--> Default admin created: {admin_email}")
         else:
-            # Ensure the account retains admin privileges
             if not admin.is_admin:
                 admin.is_admin = True
                 db.session.commit()
