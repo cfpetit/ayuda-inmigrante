@@ -1,9 +1,11 @@
 import os
+import cloudinary.uploader
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 from flask_login import login_required, current_user
-from app import db
+from app import db,mail
 from app.models import Case, JobPosting, NewsPost
-import cloudinary.uploader
+from threading import Thread
+from flask_mail import Message
 
 admin_bp = Blueprint('admin', __name__, template_folder='templates')
 
@@ -15,6 +17,13 @@ def admin_required(func):
         return func(*args, **kwargs)
     wrapper.__name__ = func.__name__
     return wrapper
+
+def send_async_email(app, msg):
+    with app.app_context():
+        try:
+            mail.send(msg)
+        except Exception as e:
+            app.logger.error(f"Failed to send email to applicant: {e}")
 
 @admin_bp.route('/')
 @admin_bp.route('/dashboard')
@@ -35,10 +44,29 @@ def review_case(id):
     case = Case.query.get_or_404(id)
     if request.method == 'POST':
         new_status = request.form.get('status')
-        if new_status:
-            case.status = new_status
-            db.session.commit()
-            flash(f"Case #{case.id} status updated to '{new_status}'.", "success")
+        new_notes = request.form.get('notes')
+
+        status_changed = case.status != new_status
+        case.status = new_status or case.status
+        case.admin_notes = new_notes
+        db.session.commit()
+
+        if status_changed or new_notes:
+            app_obj = current_app._get_current_object()
+            sender = current_app.config.get('MAIL_USERNAME') or os.environ.get('MAIL_USERNAME')
+
+            msg = Message(
+                subject=f"Update on your Application #{case.id}",
+                sender=sender,
+                recipients=[case.applicant.email],
+                body=f"Hello,\n\n"
+                     f"Your application #{case.id} ({case.case_type}) has been updated.\n\n"
+                     f"Status: {case.status}\n"
+                     f"Admin Note: {case.admin_notes or 'No structural notes added.'}\n\n"
+                     f"Log in to your portal dashboard for details."
+            )
+            Thread(target=send_async_email, args=(app_obj, msg()).start()
+        flash(f"Application #{case.id} succesfully updated.", "success")
         return redirect(url_for('admin.review_case', id=case.id))
 
     return render_template('public/case_detail.html', case=case)

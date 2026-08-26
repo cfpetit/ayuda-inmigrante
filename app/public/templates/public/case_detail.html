@@ -52,6 +52,33 @@
                         </form>
                     </div>
                 </div>
+                <div class="card shadow-sm border-primary mb-4">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">Admin Controls</h5>
+                    </div>
+                    <div class="card-body">
+                        <form action="{{ url_for('admin.review_case', id=case.id) }}" method="POST">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            
+                            <div class="mb-3">
+                               <label class="form-label fw-bold">Application Status</label>
+                               <select name="status" class="form-select">
+                                   <option value="Pending Review" {% if case.status == 'Pending Review' %}selected{% endif %}>Pending Review</option>
+                                   <option value="Under Review" {% if case.status == 'Under Review' %}selected{% endif %}>Under Review</option>
+                                   <option value="Approved" {% if case.status == 'Approved' %}selected{% endif %}>Approved</option>
+                                   <option value="Rejected" {% if case.status == 'Rejected' %}selected{% endif %}>Rejected</option>
+                               </select>
+                            </div>
+
+                            <div class="mb-3">
+                                 <label class="form-label fw-bold">Admin Comments / Notes</label>
+                                 <textarea name="admin_notes" class="form-control" rows="4" placeholder="Write feedback, missing documents needed, or resolution details...">{{ case.admin_notes or '' }}</textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Save Changes & Notify Applicant</button>
+                        </form>
+                    </div>
+                </div>
                 {% endif %}
 
                 <div class="row mb-2">
@@ -64,6 +91,7 @@
                     <div class="col-sm-4 text-muted">Additional Context / Notes:</div>
                     <div class="col-sm-8 text-dark bg-light p-3 rounded border">{{ case.notes }}</div>
                 </div>
+              
                 {% endif %}
             </div>
         </div>
