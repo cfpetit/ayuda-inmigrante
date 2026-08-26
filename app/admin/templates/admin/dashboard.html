@@ -1,142 +1,177 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
+
 {% block title %}Admin Dashboard - CYLCAE{% endblock %}
 
 {% block content %}
-<div class="d-flex justify-content-between align-items-center mb-4">
-    <h2 class="fw-bold text-cylcae">Admin Control Panel</h2>
-    <div>
-        <a href="{{ url_for('admin.create_job') }}" class="btn btn-outline-danger me-2">+ New Job Posting</a>
-        <a href="{{ url_for('admin.create_news') }}" class="btn btn-cylcae">+ New Article / News</a>
-    </div>
-</div>
-
-<ul class="nav nav-tabs mb-4" id="adminTab" role="tablist">
-    <li class="nav-item">
-        <button class="nav-link active fw-bold" id="cases-tab" data-bs-toggle="tab" data-bs-target="#cases" type="button">
-            Application Cases ({{ cases|length }})
-        </button>
-    </li>
-    <li class="nav-item">
-        <button class="nav-link fw-bold" id="jobs-tab" data-bs-toggle="tab" data-bs-target="#jobs" type="button">
-            Employment Agency ({{ jobs|length }})
-        </button>
-    </li>
-    <li class="nav-item">
-        <button class="nav-link fw-bold" id="news-tab" data-bs-toggle="tab" data-bs-target="#news" type="button">
-            News & Interviews ({{ posts|length }})
-        </button>
-    </li>
-</ul>
-
-<div class="tab-content" id="adminTabContent">
-    <!-- APPLICATIONS TAB -->
-    <div class="tab-pane fade show active" id="cases">
-        <div class="table-responsive bg-white rounded shadow-sm p-3">
-            <table class="table table-hover align-middle">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Applicant Email</th>
-                        <th>Type</th>
-                        <th>Status</th>
-                        <th>Created</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for case in cases %}
-                    <tr>
-                        <td>#{{ case.id }}</td>
-                        <td>{{ case.applicant.email }}</td>
-                        <td>{{ case.case_type }}</td>
-                        <td><span class="badge bg-info text-dark">{{ case.status }}</span></td>
-                        <td>{{ case.created_at.strftime('%Y-%m-%d') }}</td>
-                        <td>
-                            <a href="#" class="btn btn-sm btn-outline-primary">Review</a>
-                        </td>
-                    </tr>
-                    {% else %}
-                    <tr><td colspan="6" class="text-center text-muted">No submitted applications found.</td></tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+<div class="container my-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold text-cylcae mb-0">Admin Dashboard</h2>
+        <div>
+            <a href="{{ url_for('admin.create_job') }}" class="btn btn-sm btn-outline-primary me-2">+ Post Job</a>
+            <a href="{{ url_for('admin.create_news') }}" class="btn btn-sm btn-outline-success">+ Create News Post</a>
         </div>
     </div>
 
-    <!-- JOBS TAB -->
-    <div class="tab-pane fade" id="jobs">
-        <div class="table-responsive bg-white rounded shadow-sm p-3">
-            <table class="table table-hover align-middle">
-                <thead>
-                    <tr>
-                        <th>Title</th>
-                        <th>Company</th>
-                        <th>Location</th>
-                        <th>Status</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for job in jobs %}
-                    <tr>
-                        <td class="fw-bold">{{ job.title }}</td>
-                        <td>{{ job.company or 'N/A' }}</td>
-                        <td>{{ job.location or 'N/A' }}</td>
-                        <td>
-                            {% if job.is_active %}
-                                <span class="badge bg-success">Active</span>
-                            {% else %}
-                                <span class="badge bg-secondary">Inactive</span>
-                            {% endif %}
-                        </td>
-                        <td>
-                            <a href="{{ url_for('admin.edit_job', id=job.id) }}" class="btn btn-sm btn-outline-secondary me-1">Edit</a>
-                            <form action="{{ url_for('admin.delete_job', id=job.id) }}" method="POST" class="d-inline" onsubmit="return confirm('Delete this job?');">
-                                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-                                <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
-                            </form>
-                        </td>
-                    </tr>
-                    {% else %}
-                    <tr><td colspan="5" class="text-center text-muted">No job postings created.</td></tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-    </div>
+    <!-- Navigation Tabs -->
+    <ul class="nav nav-tabs mb-4" id="adminTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active fw-bold" id="cases-tab" data-bs-toggle="tab" data-bs-target="#cases" type="button" role="tab">
+                📋 Cases / Applications <span class="badge bg-secondary ms-1">{{ cases|length }}</span>
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link fw-bold" id="jobs-tab" data-bs-toggle="tab" data-bs-target="#jobs" type="button" role="tab">
+                💼 Job Postings <span class="badge bg-secondary ms-1">{{ jobs|length }}</span>
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link fw-bold" id="news-tab" data-bs-toggle="tab" data-bs-target="#news" type="button" role="tab">
+                📰 News & Articles <span class="badge bg-secondary ms-1">{{ posts|length }}</span>
+            </button>
+        </li>
+    </ul>
 
-    <!-- NEWS TAB -->
-    <div class="tab-pane fade" id="news">
-        <div class="table-responsive bg-white rounded shadow-sm p-3">
-            <table class="table table-hover align-middle">
-                <thead>
-                    <tr>
-                        <th>Title</th>
-                        <th>Category</th>
-                        <th>Published Date</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for post in posts %}
-                    <tr>
-                        <td class="fw-bold">{{ post.title }}</td>
-                        <td><span class="badge bg-secondary">{{ post.category }}</span></td>
-                        <td>{{ post.created_at.strftime('%Y-%m-%d') }}</td>
-                        <td>
-                            <a href="{{ url_for('admin.edit_news', id=post.id) }}" class="btn btn-sm btn-outline-secondary me-1">Edit</a>
-                            <form action="{{ url_for('admin.delete_news', id=post.id) }}" method="POST" class="d-inline" onsubmit="return confirm('Delete this article?');">
-                                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-                                <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
-                            </form>
-                        </td>
-                    </tr>
+    <div class="tab-content" id="adminTabsContent">
+        
+        <!-- CASES / APPLICATIONS TAB -->
+        <div class="tab-pane fade show active" id="cases" role="tabpanel">
+            <div class="card shadow-sm border-0">
+                <div class="card-body p-0">
+                    {% if cases %}
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Applicant Email</th>
+                                    <th>Category</th>
+                                    <th>Status</th>
+                                    <th>Submitted</th>
+                                    <th class="text-end">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for case in cases %}
+                                <tr>
+                                    <td class="fw-bold">#{{ case.id }}</td>
+                                    <td>{{ case.applicant.email }}</td>
+                                    <td>{{ case.case_type }}</td>
+                                    <td>
+                                        <span class="badge 
+                                            {% if case.status == 'Pending Review' %}bg-warning text-dark
+                                            {% elif case.status == 'Under Review' %}bg-info text-dark
+                                            {% elif case.status == 'Approved' %}bg-success
+                                            {% elif case.status == 'Rejected' %}bg-danger
+                                            {% else %}bg-secondary{% endif %}">
+                                            {{ case.status }}
+                                        </span>
+                                    </td>
+                                    <td>{{ case.created_at.strftime('%Y-%m-%d %H:%M') }}</td>
+                                    <td class="text-end">
+                                        <a href="{{ url_for('admin.review_case', id=case.id) }}" class="btn btn-sm btn-primary">
+                                            Review Case &rarr;
+                                        </a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
                     {% else %}
-                    <tr><td colspan="4" class="text-center text-muted">No news articles published.</td></tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+                    <div class="p-4 text-center text-muted">No applications have been submitted yet.</div>
+                    {% endif %}
+                </div>
+            </div>
         </div>
+
+        <!-- JOB POSTINGS TAB -->
+        <div class="tab-pane fade" id="jobs" role="tabpanel">
+            <div class="card shadow-sm border-0">
+                <div class="card-body p-0">
+                    {% if jobs %}
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Company</th>
+                                    <th>Location</th>
+                                    <th>Status</th>
+                                    <th class="text-end">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for job in jobs %}
+                                <tr>
+                                    <td class="fw-bold">{{ job.title }}</td>
+                                    <td>{{ job.company or '-' }}</td>
+                                    <td>{{ job.location or '-' }}</td>
+                                    <td>
+                                        {% if job.is_active %}
+                                            <span class="badge bg-success">Active</span>
+                                        {% else %}
+                                            <span class="badge bg-secondary">Inactive</span>
+                                        {% endif %}
+                                    </td>
+                                    <td class="text-end">
+                                        <a href="{{ url_for('admin.edit_job', id=job.id) }}" class="btn btn-sm btn-outline-secondary">Edit</a>
+                                        <form action="{{ url_for('admin.delete_job', id=job.id) }}" method="POST" class="d-inline" onsubmit="return confirm('Delete this job?');">
+                                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                                            <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% else %}
+                    <div class="p-4 text-center text-muted">No job postings available.</div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- NEWS TAB -->
+        <div class="tab-pane fade" id="news" role="tabpanel">
+            <div class="card shadow-sm border-0">
+                <div class="card-body p-0">
+                    {% if posts %}
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Category</th>
+                                    <th>Date</th>
+                                    <th class="text-end">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for post in posts %}
+                                <tr>
+                                    <td class="fw-bold">{{ post.title }}</td>
+                                    <td><span class="badge bg-info text-dark">{{ post.category }}</span></td>
+                                    <td>{{ post.created_at.strftime('%Y-%m-%d') }}</td>
+                                    <td class="text-end">
+                                        <a href="{{ url_for('admin.edit_news', id=post.id) }}" class="btn btn-sm btn-outline-secondary">Edit</a>
+                                        <form action="{{ url_for('admin.delete_news', id=post.id) }}" method="POST" class="d-inline" onsubmit="return confirm('Delete this post?');">
+                                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                                            <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% else %}
+                    <div class="p-4 text-center text-muted">No news articles published.</div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
 {% endblock %}
