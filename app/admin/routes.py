@@ -7,7 +7,6 @@ import cloudinary.uploader
 
 admin_bp = Blueprint('admin', __name__, template_folder='templates')
 
-# Security helper to restrict access to administrators
 def admin_required(func):
     def wrapper(*args, **kwargs):
         if not current_user.is_authenticated or not current_user.is_admin:
@@ -26,6 +25,23 @@ def dashboard():
     jobs = JobPosting.query.order_by(JobPosting.created_at.desc()).all()
     posts = NewsPost.query.order_by(NewsPost.created_at.desc()).all()
     return render_template('admin/dashboard.html', cases=cases, jobs=jobs, posts=posts)
+
+# --- CASE MANAGEMENT ROUTES ---
+
+@admin_bp.route('/cases/<int:id>', methods=['GET', 'POST'])
+@login_required
+@admin_required
+def review_case(id):
+    case = Case.query.get_or_404(id)
+    if request.method == 'POST':
+        new_status = request.form.get('status')
+        if new_status:
+            case.status = new_status
+            db.session.commit()
+            flash(f"Case #{case.id} status updated to '{new_status}'.", "success")
+        return redirect(url_for('admin.review_case', id=case.id))
+
+    return render_template('public/case_detail.html', case=case)
 
 # --- JOB POSTING ROUTES ---
 

@@ -2,8 +2,9 @@ import os
 import uuid
 from flask import Blueprint, render_template, redirect, url_for, flash, current_app, send_from_directory, abort, request
 from flask_login import login_required, current_user
+from flask_mail import Message
 from werkzeug.utils import secure_filename
-from app import db
+from app import db, mail
 from app.models import Case, Document, JobPosting, NewsPost
 
 public_bp = Blueprint('public', __name__, template_folder='templates')
@@ -83,8 +84,28 @@ def create_case():
             )
             db.session.add(doc)
             db.session.commit()
-            flash('Application and initial document created successfully!', 'success')
 
+        # Send email notification to admin upon successful case creation
+        try:
+            admin_email = os.environ.get('ADMIN_EMAIL', 'admin@cylcae.com')
+            sender = current_app.config.get('MAIL_DEFAULT_SENDER') or os.environ.get('MAIL_USERNAME') or 'noreply@cylcae.es'
+            
+            msg = Message(
+                subject=f"📋 New Application Submitted: #{new_case.id} ({new_case.case_type})",
+                sender=sender,
+                recipients=[admin_email],
+                body=f"A new application has been submitted on the portal.\n\n"
+                     f"Application ID: #{new_case.id}\n"
+                     f"Applicant Email: {current_user.email}\n"
+                     f"Type: {new_case.case_type}\n"
+                     f"Context/Notes: {new_case.notes or 'None provided'}\n\n"
+                     f"Review it in the admin dashboard."
+            )
+            mail.send(msg)
+        except Exception as e:
+            current_app.logger.error(f"Failed to send email notification: {e}")
+
+        flash('Application created successfully!', 'success')
         return redirect(url_for('public.case_detail', case_id=new_case.id))
 
     selected_type = request.args.get('type', '')
