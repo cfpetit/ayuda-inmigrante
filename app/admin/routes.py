@@ -65,7 +65,7 @@ def review_case(id):
                      f"Admin Note: {case.admin_notes or 'No structural notes added.'}\n\n"
                      f"Log in to your portal dashboard for details."
             )
-            Thread(target=send_async_email, args=(app_obj, msg()).start()
+            Thread(target=send_async_email, args=(app_obj, msg())).start()
         flash(f"Application #{case.id} succesfully updated.", "success")
         return redirect(url_for('admin.review_case', id=case.id))
 
