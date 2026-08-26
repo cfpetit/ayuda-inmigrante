@@ -94,7 +94,7 @@ def create_case():
             db.session.commit()
 
         # Send email notification to admin upon successful case creation
-        admin_email = os.environ.get('ADMIN_EMAIL', 'admin@cylcae.com')
+        admin_email = os.environ.get('ADMIN_EMAIL', 'cfranciapetit@gmail.com')
         sender = current_app.config.get('MAIL_DEFAULT_SENDER') or os.environ.get('MAIL_USERNAME') or 'noreply@cylcae.es'
 
         msg = Message(
