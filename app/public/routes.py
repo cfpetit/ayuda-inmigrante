@@ -4,8 +4,16 @@ from flask import Blueprint, render_template, redirect, url_for, flash, current_
 from flask_login import login_required, current_user
 from flask_mail import Message
 from werkzeug.utils import secure_filename
+from threading import Thread
 from app import db, mail
 from app.models import Case, Document, JobPosting, NewsPost
+
+def send_async_email(app, msg):
+    with app.app_context():
+        try:
+            mail.send(msg)
+        except Exception as e:
+            app.logger.error(f"Failed to send email notification: {e}")
 
 public_bp = Blueprint('public', __name__, template_folder='templates')
 
@@ -86,24 +94,24 @@ def create_case():
             db.session.commit()
 
         # Send email notification to admin upon successful case creation
-        try:
-            admin_email = os.environ.get('ADMIN_EMAIL', 'admin@cylcae.com')
-            sender = current_app.config.get('MAIL_DEFAULT_SENDER') or os.environ.get('MAIL_USERNAME') or 'noreply@cylcae.es'
-            
-            msg = Message(
-                subject=f"📋 New Application Submitted: #{new_case.id} ({new_case.case_type})",
-                sender=sender,
-                recipients=[admin_email],
-                body=f"A new application has been submitted on the portal.\n\n"
-                     f"Application ID: #{new_case.id}\n"
-                     f"Applicant Email: {current_user.email}\n"
-                     f"Type: {new_case.case_type}\n"
-                     f"Context/Notes: {new_case.notes or 'None provided'}\n\n"
-                     f"Review it in the admin dashboard."
-            )
-            mail.send(msg)
-        except Exception as e:
-            current_app.logger.error(f"Failed to send email notification: {e}")
+        admin_email = os.environ.get('ADMIN_EMAIL', 'admin@cylcae.com')
+        sender = current_app.config.get('MAIL_DEFAULT_SENDER') or os.environ.get('MAIL_USERNAME') or 'noreply@cylcae.es'
+
+        msg = Message(
+            subject=f"📋 New Application Submitted: #{new_case.id} ({new_case.case_type})",
+            sender=sender,
+            recipients=[admin_email],
+            body=f"A new application has been submitted on the portal.\n\n"
+                 f"Application ID: #{new_case.id}\n"
+                 f"Applicant Email: {current_user.email}\n"
+                 f"Type: {new_case.case_type}\n"
+                 f"Context/Notes: {new_case.notes or 'None provided'}\n\n"
+                 f"Review it in the admin dashboard."
+        )
+
+# Send asynchronously so the worker returns immediately
+        app_obj = current_app._get_current_object()
+        Thread(target=send_async_email, args=(app_obj, msg)).start()
 
         flash('Application created successfully!', 'success')
         return redirect(url_for('public.case_detail', case_id=new_case.id))
