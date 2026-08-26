@@ -42,26 +42,32 @@ def create_app(config_name='development'):
         from app import models
 
     # Set up production logging via SMTPHandler
-    if not app.debug and not app.testing:
-        if app.config.get('MAIL_SERVER'):
+    if not app.debug:
+        mail_server = app.config.get('MAIL_SERVER') or os.environ.get('MAIL_SERVER')
+        
+        if mail_server:
             auth = None
-            mail_user = app.config.get('MAIL_USERNAME')
-            mail_pass = app.config.get('MAIL_PASSWORD')
-            if mail_user and mail_pass:
+            mail_user = app.config.get('MAIL_USERNAME') or os.environ.get('MAIL_USERNAME')
+            mail_pass = app.config.get('MAIL_PASSWORD') or os.environ.get('MAIL_PASSWORD')
+            
+            # Using 'or' so it fails explicitly if one credential is forgotten
+            if mail_user or mail_pass:
                 auth = (mail_user, mail_pass)
 
             secure = None
-            if app.config.get('MAIL_USE_TLS'):
+            if app.config.get('MAIL_USE_TLS') or os.environ.get('MAIL_USE_TLS'):
                 secure = ()
 
             # Ensure ADMINS is always formatted as a valid list of recipient email strings
-            admins = app.config.get('ADMINS') or []
+            admins = app.config.get('ADMINS') or os.environ.get('ADMIN_EMAIL') or []
             if isinstance(admins, str):
                 admins = [email.strip() for email in admins.split(',') if email.strip()]
 
             if admins:
+                mail_port = int(app.config.get('MAIL_PORT') or os.environ.get('MAIL_PORT') or 587)
+                
                 mail_handler = SMTPHandler(
-                    mailhost=(app.config.get('MAIL_SERVER'), app.config.get('MAIL_PORT', 587)),
+                    mailhost=(mail_server, mail_port),
                     fromaddr=app.config.get('MAIL_DEFAULT_SENDER') or mail_user or 'noreply@cylcae.es',
                     toaddrs=admins,
                     subject='🚨 CYLCAE Immigration Portal: Application Crash',
@@ -72,7 +78,8 @@ def create_app(config_name='development'):
                 mail_handler.setLevel(logging.ERROR)
 
                 formatter = logging.Formatter(
-                    '[%(asctime)s] %(levelname)s in %(module)s: %(message)s'
+                    '[%(asctime)s] %(levelname)s in %(module)s: %(message)s\n'
+                    '%(pathname)s:%(lineno)d'
                 )
                 mail_handler.setFormatter(formatter)
 
