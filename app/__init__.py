@@ -23,7 +23,7 @@ def create_app(config_name='development'):
     app.config.from_object(config_by_name[config_name])
 
     app.config['MAIL_SERVER'] = os.environ.get('MAIL_SERVER', app.config.get('MAIL_SERVER'))
-    app.config['MAIL_PORT'] = int(os.environ.get('MAIL_PORT', app.config.get('MAIL_PORT', 587)))
+    app.config['MAIL_PORT'] = int(os.environ.get('MAIL_PORT', app.config.get('MAIL_PORT', 465)))
     app.config['MAIL_USE_TLS'] = str(os.environ.get('MAIL_USE_TLS', app.config.get('MAIL_USE_TLS', 'True'))).lower() in ['true', 'on', '1']
     app.config['MAIL_USE_SSL'] = str(os.environ.get('MAIL_USE_SSL', app.config.get('MAIL_USE_SSL', 'False'))).lower() in ['true', 'on', '1']
     app.config['MAIL_USERNAME'] = os.environ.get('MAIL_USERNAME', app.config.get('MAIL_USERNAME'))
