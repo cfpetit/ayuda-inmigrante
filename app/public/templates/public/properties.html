@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block title %}Properties & Businesses - CYLCAE{% endblock %}
+
+{% block content %}
+<div class="container my-4">
+    <div class="text-center mb-5">
+        <h1 class="fw-bold text-cylcae">Real Estate & Business Opportunities</h1>
+        <p class="text-muted">Explore houses for sale, lease properties, and business opportunities tailored for residents and immigrants.</p>
+
+        <!-- Category Filter Buttons -->
+        <div class="btn-group mt-3" role="group">
+            <a href="{{ url_for('public.properties_list') }}" class="btn btn-outline-secondary {% if not selected_type %}active{% endif %}">All Listings</a>
+            <a href="{{ url_for('public.properties_list', type='Sale') }}" class="btn btn-outline-secondary {% if selected_type == 'Sale' %}active{% endif %}">For Sale</a>
+            <a href="{{ url_for('public.properties_list', type='Lease') }}" class="btn btn-outline-secondary {% if selected_type == 'Lease' %}active{% endif %}">On Lease</a>
+            <a href="{{ url_for('public.properties_list', type='Business') }}" class="btn btn-outline-secondary {% if selected_type == 'Business' %}active{% endif %}">Businesses</a>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        {% for item in properties %}
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm border-0">
+                {% if item.image_url %}
+                    <img src="{{ item.image_url }}" class="card-img-top" alt="{{ item.title }}" style="height: 200px; object-fit: cover;">
+                {% else %}
+                    <div class="bg-secondary text-white text-center py-5" style="height: 200px;">No Image Available</div>
+                {% endif %}
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span class="badge bg-danger">{{ item.listing_type }}</span>
+                        <span class="fw-bold text-cylcae fs-5">€{{ "{:,.0f}".format(item.price) }} <small class="text-muted fs-6">{{ item.price_period }}</small></span>
+                    </div>
+                    <h5 class="card-title fw-bold">{{ item.title }}</h5>
+                    <p class="text-muted small mb-2"><i class="bi bi-geo-alt"></i> {{ item.location }}</p>
+
+                    <div class="d-flex text-muted small gap-3 mb-3">
+                        {% if item.bedrooms %}<span>🛏 {{ item.bedrooms }} Beds</span>{% endif %}
+                        {% if item.bathrooms %}<span>🚿 {{ item.bathrooms }} Baths</span>{% endif %}
+                        {% if item.area_sqm %}<span>📐 {{ item.area_sqm }} m²</span>{% endif %}
+                    </div>
+
+                    <p class="card-text text-truncate">{{ item.description }}</p>
+                </div>
+                <div class="card-footer bg-white border-0 pb-3">
+                    <a href="{{ url_for('public.property_detail', id=item.id) }}" class="btn btn-outline-danger w-100">View Details</a>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="col-12 text-center py-5">
+            <p class="text-muted fs-5">No listings found matching your selection.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

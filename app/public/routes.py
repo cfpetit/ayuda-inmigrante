@@ -6,7 +6,7 @@ from flask_mail import Message
 from werkzeug.utils import secure_filename
 from threading import Thread
 from app import db, mail
-from app.models import Case, Document, JobPosting, NewsPost
+from app.models import Case, Document, JobPosting, NewsPost, PropertyListing
 
 def send_async_email(app, msg):
     with app.app_context():
@@ -26,6 +26,7 @@ def allowed_file(filename):
 def index():
     recent_news = NewsPost.query.order_by(NewsPost.created_at.desc()).limit(3).all()
     recent_jobs = JobPosting.query.filter_by(is_active=True).order_by(JobPosting.created_at.desc()).limit(3).all()
+    recent_properties = PropertyListing.query.filter_by(is_available=True).order_by(PropertyListing.created_at.desc()).limit(3).all()
     return render_template('public/index.html', recent_news=recent_news, recent_jobs=recent_jobs)
 
 @public_bp.route('/services')
@@ -155,3 +156,21 @@ def view_media(filename):
     if doc.user_id != current_user.id and not current_user.is_admin:
         abort(403)
     return send_from_directory(current_app.config['UPLOAD_FOLDER'], filename)
+
+# --- REAL ESTATE & BUSINESSES SECTION ---
+
+@public_bp.route('/properties')
+def properties_list():
+    listing_type = request.args.get('type')
+    query = PropertyListing.query.filter_by(is_available=True)
+
+    if listing_type in ['Sale', 'Lease', 'Business']:
+        query = query.filter_by(listing_type=listing_type)
+
+    properties = query.order_by(PropertyListing.created_at.desc()).all()
+    return render_template('public/properties.html', properties=properties, selected_type=listing_type)
+
+@public_bp.route('/properties/<int:id>')
+def property_detail(id):
+    listing = PropertyListing.query.get_or_404(id)
+    return render_template('public/property_detail.html', listing=listing)

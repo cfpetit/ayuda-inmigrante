@@ -8,7 +8,8 @@
         <h2 class="fw-bold text-cylcae mb-0">Admin Dashboard</h2>
         <div>
             <a href="{{ url_for('admin.create_job') }}" class="btn btn-sm btn-outline-primary me-2">+ Post Job</a>
-            <a href="{{ url_for('admin.create_news') }}" class="btn btn-sm btn-outline-success">+ Create News Post</a>
+            <a href="{{ url_for('admin.create_news') }}" class="btn btn-sm btn-outline-success me-2">+ Create News Post</a>
+            <a href="{{ url_for('admin.create_property') }}" class="btn btn-sm btn-outline-info">+ Add Property</a>
         </div>
     </div>
 
@@ -27,6 +28,11 @@
         <li class="nav-item" role="presentation">
             <button class="nav-link fw-bold" id="news-tab" data-bs-toggle="tab" data-bs-target="#news" type="button" role="tab">
                 📰 News & Articles <span class="badge bg-secondary ms-1">{{ posts|length }}</span>
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link fw-bold" id="properties-tab" data-bs-toggle="tab" data-bs-target="#properties" type="button" role="tab">
+                🏠 Properties <span class="badge bg-secondary ms-1">{{ properties|length }}</span>
             </button>
         </li>
     </ul>
@@ -168,6 +174,62 @@
                     {% else %}
                     <div class="p-4 text-center text-muted">No news articles published.</div>
                     {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- REAL ESTATE & BUSINESSES TAB -->
+        <div class="tab-pane fade" id="properties" role="tabpanel">
+            <div class="card shadow-sm border-0 mb-4">
+                <div class="card-header bg-white d-flex justify-content-between align-items-center py-3">
+                    <h5 class="fw-bold mb-0 text-cylcae">Property & Business Listings</h5>
+                    <a href="{{ url_for('admin.create_property') }}" class="btn btn-primary btn-sm">+ Add New Listing</a>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Type</th>
+                                    <th>Category</th>
+                                    <th>Price</th>
+                                    <th>Location</th>
+                                    <th>Status</th>
+                                    <th class="text-end">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in properties %}
+                                <tr>
+                                    <td class="fw-semibold">{{ item.title }}</td>
+                                    <td><span class="badge bg-secondary">{{ item.listing_type }}</span></td>
+                                    <td>{{ item.property_type }}</td>
+                                    <td>€{{ "{:,.0f}".format(item.price) if item.price else '0' }} {{ item.price_period }}</td>
+                                    <td>{{ item.location }}</td>
+                                    <td>
+                                        {% if item.is_available %}
+                                            <span class="badge bg-success">Available</span>
+                                        {% else %}
+                                            <span class="badge bg-danger">Hidden</span>
+                                        {% endif %}
+                                    </td>
+                                    <td class="text-end">
+                                        <a href="{{ url_for('admin.edit_property', id=item.id) }}" class="btn btn-sm btn-outline-primary me-1">Edit</a>
+                                        <form action="{{ url_for('admin.delete_property', id=item.id) }}" method="POST" class="d-inline" onsubmit="return confirm('Are you sure you want to delete this listing?');">
+                                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                                            <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                {% else %}
+                                <tr>
+                                    <td colspan="7" class="text-center py-4 text-muted">No property listings found. Click "+ Add New Listing" above to create one.</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

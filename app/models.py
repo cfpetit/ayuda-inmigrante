@@ -63,3 +63,21 @@ class NewsPost(db.Model):
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
+
+class PropertyListing(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(200), nullable=False)
+    listing_type = db.Column(db.String(50), nullable=False)   # 'Sale', 'Lease', 'Business'
+    property_type = db.Column(db.String(50), nullable=False)  # 'House', 'Apartment', 'Commercial Space', 'Land'
+    price = db.Column(db.Float, nullable=False)
+    price_period = db.Column(db.String(20), default='Total')  # 'Total', '/month', '/year'
+    location = db.Column(db.String(200), nullable=False)
+    bedrooms = db.Column(db.Integer, nullable=True)
+    bathrooms = db.Column(db.Integer, nullable=True)
+    area_sqm = db.Column(db.Float, nullable=True)
+    description = db.Column(db.Text, nullable=False)
+    image_url = db.Column(db.String(500), nullable=True)     # Cloudinary image URL
+    contact_email = db.Column(db.String(120), nullable=True)
+    contact_phone = db.Column(db.String(50), nullable=True)
+    is_available = db.Column(db.Boolean, default=True)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)

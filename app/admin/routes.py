@@ -3,7 +3,7 @@ import cloudinary.uploader
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 from flask_login import login_required, current_user
 from app import db,mail
-from app.models import Case, JobPosting, NewsPost
+from app.models import Case, JobPosting, NewsPost, PropertyListing
 from threading import Thread
 from flask_mail import Message
 
@@ -33,7 +33,8 @@ def dashboard():
     cases = Case.query.order_by(Case.created_at.desc()).all()
     jobs = JobPosting.query.order_by(JobPosting.created_at.desc()).all()
     posts = NewsPost.query.order_by(NewsPost.created_at.desc()).all()
-    return render_template('admin/dashboard.html', cases=cases, jobs=jobs, posts=posts)
+    properties = PropertyListing.query.order_by(PropertyListing.created_at.desc()).all()
+    return render_template('admin/dashboard.html', cases=cases, jobs=jobs, posts=posts, properties=properties)
 
 # --- CASE MANAGEMENT ROUTES ---
 
@@ -226,4 +227,97 @@ def delete_news(id):
     db.session.delete(post)
     db.session.commit()
     flash("News post deleted.", "info")
+    return redirect(url_for('admin.dashboard'))
+
+# --- REAL ESTATE & PROPERTY ROUTES ---
+
+@admin_bp.route('/properties/new', methods=['GET', 'POST'])
+@login_required
+@admin_required
+def create_property():
+    if request.method == 'POST':
+        title = request.form.get('title')
+        listing_type = request.form.get('listing_type')
+        property_type = request.form.get('property_type')
+        price = request.form.get('price', type=float)
+        price_period = request.form.get('price_period', 'Total')
+        location = request.form.get('location')
+        bedrooms = request.form.get('bedrooms', type=int)
+        bathrooms = request.form.get('bathrooms', type=int)
+        area_sqm = request.form.get('area_sqm', type=float)
+        description = request.form.get('description')
+        contact_email = request.form.get('contact_email')
+        contact_phone = request.form.get('contact_phone')
+
+        image_url = None
+        if 'image' in request.files and request.files['image'].filename:
+            img_result = cloudinary.uploader.upload(
+                request.files['image'],
+                folder="cylcae_properties"
+            )
+            image_url = img_result.get('secure_url')
+
+        listing = PropertyListing(
+            title=title,
+            listing_type=listing_type,
+            property_type=property_type,
+            price=price,
+            price_period=price_period,
+            location=location,
+            bedrooms=bedrooms,
+            bathrooms=bathrooms,
+            area_sqm=area_sqm,
+            description=description,
+            contact_email=contact_email,
+            contact_phone=contact_phone,
+            image_url=image_url
+        )
+        db.session.add(listing)
+        db.session.commit()
+        flash("Property listing created successfully!", "success")
+        return redirect(url_for('admin.dashboard'))
+
+    return render_template('admin/property_form.html', listing=None)
+
+@admin_bp.route('/properties/<int:id>/edit', methods=['GET', 'POST'])
+@login_required
+@admin_required
+def edit_property(id):
+    listing = PropertyListing.query.get_or_404(id)
+    if request.method == 'POST':
+        listing.title = request.form.get('title')
+        listing.listing_type = request.form.get('listing_type')
+        listing.property_type = request.form.get('property_type')
+        listing.price = request.form.get('price', type=float)
+        listing.price_period = request.form.get('price_period', 'Total')
+        listing.location = request.form.get('location')
+        listing.bedrooms = request.form.get('bedrooms', type=int)
+        listing.bathrooms = request.form.get('bathrooms', type=int)
+        listing.area_sqm = request.form.get('area_sqm', type=float)
+        listing.description = request.form.get('description')
+        listing.contact_email = request.form.get('contact_email')
+        listing.contact_phone = request.form.get('contact_phone')
+        listing.is_available = 'is_available' in request.form
+
+        if 'image' in request.files and request.files['image'].filename:
+            img_result = cloudinary.uploader.upload(
+                request.files['image'],
+                folder="cylcae_properties"
+            )
+            listing.image_url = img_result.get('secure_url')
+
+        db.session.commit()
+        flash("Property listing updated successfully!", "success")
+        return redirect(url_for('admin.dashboard'))
+
+    return render_template('admin/property_form.html', listing=listing)
+
+@admin_bp.route('/properties/<int:id>/delete', methods=['POST'])
+@login_required
+@admin_required
+def delete_property(id):
+    listing = PropertyListing.query.get_or_404(id)
+    db.session.delete(listing)
+    db.session.commit()
+    flash("Property listing deleted.", "info")
     return redirect(url_for('admin.dashboard'))
