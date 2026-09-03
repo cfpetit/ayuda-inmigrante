@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ session.get('lang', 'en') }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -79,6 +79,15 @@
                         <li class="nav-item"><a class="nav-link" href="{{ url_for('auth.login') }}">Log In</a></li>
                         <li class="nav-item ms-lg-2"><a class="btn btn-light text-dark btn-sm fw-semibold" href="{{ url_for('auth.register') }}">Register</a></li>
                     {% endif %}
+
+                    <li class="nav-item dropdown ms-lg-3">
+                        <a class="btn btn-sm btn-outline-light dropdown-toggle" href="#" id="langDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            🌐 {{ session.get('lang', 'en')|upper }}
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="langDropdown">
+                            <li><a class="dropdown-menu-item dropdown-item {% if session.get('lang', 'en') == 'en' %}active{% endif %}" href="{{ url_for('public.set_language', lang_code='en') }}">🇬🇧 English</a></li>
+                            <li><a class="dropdown-menu-item dropdown-item {% if session.get('lang') == 'es' %}active{% endif %}" href="{{ url_for('public.set_language', lang_code='es') }}">🇪🇸 Español</a></li>
+                        </ul>
                 </ul>
             </div>
         </div>

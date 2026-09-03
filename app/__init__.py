@@ -1,12 +1,13 @@
 import os
 import logging
 import cloudinary
-from flask import Flask
+from flask import Flask, session, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_migrate import Migrate
 from flask_wtf.csrf import CSRFProtect
 from flask_mail import Mail
+from flask_babel import Babel
 from config import config_by_name
 from logging.handlers import SMTPHandler
 
@@ -15,13 +16,19 @@ login_manager = LoginManager()
 migrate = Migrate()
 csrf = CSRFProtect()
 mail = Mail()
+babel = Babel()
+
+def get_locale():
+    if session.get('lang'):
+        return session['lang']
+    return request.accept_languages.best_match(['en', 'es']) or 'en'
 
 def create_app(config_name='development'):
     app = Flask(__name__)
-
-    # Load configuration object based on environment name
     app.config.from_object(config_by_name[config_name])
 
+    app.config['BABEL_DEFAULT_LOCALE'] = 'en'
+    app.config['BABEL_SUPPORTED_LOCALES'] = ['en', 'es']
     app.config['MAIL_SERVER'] = os.environ.get('MAIL_SERVER', app.config.get('MAIL_SERVER'))
     app.config['MAIL_PORT'] = int(os.environ.get('MAIL_PORT', app.config.get('MAIL_PORT', 465)))
     app.config['MAIL_USE_TLS'] = str(os.environ.get('MAIL_USE_TLS', app.config.get('MAIL_USE_TLS', 'True'))).lower() in ['true', 'on', '1']
@@ -44,6 +51,7 @@ def create_app(config_name='development'):
     migrate.init_app(app, db)
     csrf.init_app(app)
     mail.init_app(app)
+    babel.init_app(app, locale_selector=get_locale)
     init_admin(app)
 
     with app.app_context():

@@ -3,6 +3,7 @@ import uuid
 from flask import Blueprint, render_template, redirect, url_for, flash, current_app, send_from_directory, abort, request
 from flask_login import login_required, current_user
 from flask_mail import Message
+from flask_babel import _
 from werkzeug.utils import secure_filename
 from threading import Thread
 from app import db, mail
@@ -21,6 +22,12 @@ ALLOWED_EXTENSIONS = {'pdf', 'png', 'jpg', 'jpeg', 'doc', 'docx'}
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+@public_bp.route('/set-language/<lang_code>')
+def set_language(lang_code):
+    if lang_code in ['en', 'es']:
+        session['lang'] = lang_code
+    return redirect(request.referrer or url_for('public.index'))
 
 @public_bp.route('/')
 def index():

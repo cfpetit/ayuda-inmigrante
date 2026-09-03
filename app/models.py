@@ -1,6 +1,7 @@
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
+from flask_babel import get_locale
 from app import db, login_manager
 
 class User(UserMixin, db.Model):
@@ -51,6 +52,24 @@ class JobPosting(db.Model):
     is_active = db.Column(db.Boolean, default=True)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
+    @property
+    def title(self):
+        if str(get_locale()) == 'es' and self.title_es:
+            return self.title_es
+        return self.title_en
+
+    @property
+    def description(self):
+        if str(get_locale()) == 'es' and self.description_es:
+            return self.description_es
+        return self.description_en
+
+    @property
+    def requirements(self):
+        if str(get_locale()) == 'es' and self.requirements_es:
+            return self.requirements_es
+        return self.requirements_en
+
 class NewsPost(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(200), nullable=False)
@@ -60,9 +79,17 @@ class NewsPost(db.Model):
     file_url = db.Column(db.String(500), nullable=True)   # Cloudinary PDF/attachment URL
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
-@login_manager.user_loader
-def load_user(user_id):
-    return User.query.get(int(user_id))
+    @property
+    def title(self):
+        if str(get_locale()) == 'es' and self.title_es:
+            return self.title_es
+        return self.title_en
+
+    @property
+    def content(self):
+        if str(get_locale()) == 'es' and self.content_es:
+            return self.content_es
+        return self.content_es
 
 class PropertyListing(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -81,3 +108,20 @@ class PropertyListing(db.Model):
     contact_phone = db.Column(db.String(50), nullable=True)
     is_available = db.Column(db.Boolean, default=True)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+    @property
+    def title(self):
+        if str(get_locale()) == 'es' and self.title_es:
+            return self.title_es
+        return self.content_es
+
+    @property
+    def description(self):
+        if str(get_locale()) == 'es' and self.description_es:
+            return self.description_es
+        return self.description_en
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
+
