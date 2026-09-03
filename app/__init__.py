@@ -122,8 +122,6 @@ def init_admin(app):
         from app.models import User
 
         # Ensure database tables exist
-        db.create_all()
-
         admin_email = os.environ.get('ADMIN_EMAIL', 'admin@cylcae.com')
         admin_password = os.environ.get('ADMIN_PASSWORD')
 
