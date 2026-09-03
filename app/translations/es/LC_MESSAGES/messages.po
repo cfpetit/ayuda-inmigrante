@@ -1,0 +1,66 @@
+# Spanish translations for CYLCAE Portal.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0\n"
+"Report-Msgid-Bugs-To: cfranciapetit@gmail.com\n"
+"POT-Creation-Date: 2026-09-03 12:00+0000\n"
+"PO-Revision-Date: 2026-09-03 12:00+0000\n"
+"Last-Translator: Admin <cfranciapetit@gmail.com>\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: app/templates/base.html:5
+msgid "CYLCAE - Association of Freelancers and Entrepreneurs"
+msgstr "CYLCAE - Asociación de Autónomos y Emprendedores"
+
+#: app/templates/base.html:35
+msgid "Services"
+msgstr "Servicios"
+
+#: app/templates/base.html:38
+msgid "Employment Agency"
+msgstr "Agencia de Empleo"
+
+#: app/templates/base.html:41
+msgid "News & Interviews"
+msgstr "Noticias y Entrevistas"
+
+#: app/templates/base.html:44
+msgid "Properties & Businesses"
+msgstr "Inmuebles y Negocios"
+
+#: app/templates/base.html:49
+msgid "My Dashboard"
+msgstr "Mi Panel"
+
+#: app/templates/base.html:53
+msgid "Admin Panel"
+msgstr "Panel de Administración"
+
+#: app/templates/base.html:57
+msgid "Log Out"
+msgstr "Cerrar Sesión"
+
+#: app/templates/base.html:60
+msgid "Log In"
+msgstr "Iniciar Sesión"
+
+#: app/templates/base.html:61
+msgid "Register"
+msgstr "Registrarse"
+
+#: app/public/routes.py:58
+msgid "Please select a valid application type."
+msgstr "Por favor, seleccione un tipo de solicitud válido."
+
+#: app/public/routes.py:93
+msgid "Application created successfully!"
+msgstr "¡Solicitud creada con éxito!"
+
+#: app/public/routes.py:118
+msgid "Document uploaded successfully!"
+msgstr "¡Documento subido con éxito!"
