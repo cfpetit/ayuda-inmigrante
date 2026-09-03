@@ -1,6 +1,6 @@
 import os
 import uuid
-from flask import Blueprint, render_template, redirect, url_for, flash, current_app, send_from_directory, abort, request
+from flask import Blueprint, render_template, redirect, url_for, flash, current_app, send_from_directory, abort, request, session
 from flask_login import login_required, current_user
 from flask_mail import Message
 from flask_babel import _

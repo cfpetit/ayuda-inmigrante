@@ -89,6 +89,7 @@ def create_app(config_name='development'):
                     subject='🚨 CYLCAE Immigration Portal: Application Crash',
                     credentials=auth,
                     secure=secure
+                    timeout=10.0
                 )
 
                 mail_handler.setLevel(logging.ERROR)
