@@ -88,7 +88,7 @@ def create_app(config_name='development'):
                     toaddrs=admins,
                     subject='🚨 CYLCAE Immigration Portal: Application Crash',
                     credentials=auth,
-                    secure=secure
+                    secure=secure,
                     timeout=10.0
                 )
 
