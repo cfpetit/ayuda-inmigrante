@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-05 17:41+0200\n"
+"POT-Creation-Date: 2026-09-06 09:38+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,459 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.18.0\n"
+
+#: app/admin/templates/admin/case_detail.html:3
+#: app/admin/templates/admin/case_detail.html:10
+#: app/admin/templates/admin/dashboard.html:78
+msgid "Review Case"
+msgstr ""
+
+#: app/admin/templates/admin/case_detail.html:11
+#: app/public/templates/public/case_detail.html:14
+msgid "Back to Dashboard"
+msgstr ""
+
+#: app/admin/templates/admin/case_detail.html:17
+msgid "Applicant:"
+msgstr ""
+
+#: app/admin/templates/admin/case_detail.html:21
+#: app/public/templates/public/case_detail.html:21
+msgid "Category:"
+msgstr ""
+
+#: app/admin/templates/admin/case_detail.html:25
+msgid "Submission Date:"
+msgstr ""
+
+#: app/admin/templates/admin/case_detail.html:33
+msgid "Attached Documentation"
+msgstr ""
+
+#: app/admin/templates/admin/case_detail.html:50
+msgid "No documents attached by applicant."
+msgstr ""
+
+#: app/admin/templates/admin/case_detail.html:57
+msgid "Update Application"
+msgstr ""
+
+#: app/admin/templates/admin/case_detail.html:66
+#: app/public/templates/public/case_detail.html:46
+#: app/public/templates/public/case_detail.html:66
+msgid "Pending Review"
+msgstr ""
+
+#: app/admin/templates/admin/case_detail.html:67
+#: app/public/templates/public/case_detail.html:47
+#: app/public/templates/public/case_detail.html:67
+msgid "Under Review"
+msgstr ""
+
+#: app/admin/templates/admin/case_detail.html:68
+msgid "Action Required"
+msgstr ""
+
+#: app/admin/templates/admin/case_detail.html:69
+#: app/public/templates/public/case_detail.html:48
+#: app/public/templates/public/case_detail.html:68
+msgid "Approved"
+msgstr ""
+
+#: app/admin/templates/admin/case_detail.html:70
+#: app/public/templates/public/case_detail.html:49
+#: app/public/templates/public/case_detail.html:69
+msgid "Rejected"
+msgstr ""
+
+#: app/admin/templates/admin/case_detail.html:75
+msgid "Administrative / Public Notes"
+msgstr ""
+
+#: app/admin/templates/admin/case_detail.html:80
+msgid "Save Status & Notes"
+msgstr ""
+
+#: app/admin/templates/admin/dashboard.html:3
+msgid "Admin Dashboard - CYLCAE"
+msgstr ""
+
+#: app/admin/templates/admin/dashboard.html:8
+msgid "Admin Dashboard"
+msgstr ""
+
+#: app/admin/templates/admin/dashboard.html:10
+msgid "Post Job"
+msgstr ""
+
+#: app/admin/templates/admin/dashboard.html:11
+msgid "Create News Post"
+msgstr ""
+
+#: app/admin/templates/admin/dashboard.html:12
+msgid "Add Property"
+msgstr ""
+
+#: app/admin/templates/admin/dashboard.html:20
+msgid "Cases / Applications"
+msgstr ""
+
+#: app/admin/templates/admin/dashboard.html:25
+msgid "Job Postings"
+msgstr ""
+
+#: app/admin/templates/admin/dashboard.html:30
+msgid "News & Articles"
+msgstr ""
+
+#: app/admin/templates/admin/dashboard.html:35
+msgid "Properties"
+msgstr ""
+
+#: app/admin/templates/admin/dashboard.html:52
+msgid "Applicant Email"
+msgstr ""
+
+#: app/admin/templates/admin/dashboard.html:53
+#: app/admin/templates/admin/dashboard.html:151
+#: app/admin/templates/admin/dashboard.html:195
+#: app/admin/templates/admin/news_form.html:19
+msgid "Category"
+msgstr ""
+
+#: app/admin/templates/admin/dashboard.html:54
+#: app/admin/templates/admin/dashboard.html:105
+#: app/admin/templates/admin/dashboard.html:198
+msgid "Status"
+msgstr ""
+
+#: app/admin/templates/admin/dashboard.html:55
+#: app/public/templates/public/dashboard.html:26
+msgid "Submitted"
+msgstr ""
+
+#: app/admin/templates/admin/dashboard.html:56
+#: app/admin/templates/admin/dashboard.html:106
+#: app/admin/templates/admin/dashboard.html:153
+#: app/admin/templates/admin/dashboard.html:199
+msgid "Actions"
+msgstr ""
+
+#: app/admin/templates/admin/dashboard.html:87
+msgid "No applications have been submitted yet."
+msgstr ""
+
+#: app/admin/templates/admin/dashboard.html:102
+#: app/admin/templates/admin/dashboard.html:150
+#: app/admin/templates/admin/dashboard.html:193
+#: app/admin/templates/admin/news_form.html:14
+#: app/admin/templates/admin/property_form.html:14
+msgid "Title"
+msgstr ""
+
+#: app/admin/templates/admin/dashboard.html:103
+msgid "Company"
+msgstr ""
+
+#: app/admin/templates/admin/dashboard.html:104
+#: app/admin/templates/admin/dashboard.html:197
+#: app/admin/templates/admin/job_form.html:23
+msgid "Location"
+msgstr ""
+
+#: app/admin/templates/admin/dashboard.html:117
+msgid "Active"
+msgstr ""
+
+#: app/admin/templates/admin/dashboard.html:119
+msgid "Inactive"
+msgstr ""
+
+#: app/admin/templates/admin/dashboard.html:123
+#: app/admin/templates/admin/job_form.html:7
+#: app/admin/templates/admin/news_form.html:8
+msgid "Edit"
+msgstr ""
+
+#: app/admin/templates/admin/dashboard.html:126
+#: app/admin/templates/admin/dashboard.html:166
+#: app/admin/templates/admin/dashboard.html:221
+msgid "Delete"
+msgstr ""
+
+#: app/admin/templates/admin/dashboard.html:135
+msgid "No job postings available."
+msgstr ""
+
+#: app/admin/templates/admin/dashboard.html:152
+msgid "Date"
+msgstr ""
+
+#: app/admin/templates/admin/dashboard.html:175
+msgid "No news articles published."
+msgstr ""
+
+#: app/admin/templates/admin/dashboard.html:185
+msgid "Property & Business Listings"
+msgstr ""
+
+#: app/admin/templates/admin/dashboard.html:186
+msgid "Add New Listing"
+msgstr ""
+
+#: app/admin/templates/admin/dashboard.html:194
+#: app/public/templates/public/property_detail.html:30
+msgid "Type"
+msgstr ""
+
+#: app/admin/templates/admin/dashboard.html:196
+#: app/admin/templates/admin/property_form.html:40
+msgid "Price"
+msgstr ""
+
+#: app/admin/templates/admin/dashboard.html:212
+msgid "Available"
+msgstr ""
+
+#: app/admin/templates/admin/dashboard.html:214
+msgid "Hidden"
+msgstr ""
+
+#: app/admin/templates/admin/dashboard.html:227
+msgid ""
+"No property listings found. Click \"+ Add New Listing\" above to create "
+"one."
+msgstr ""
+
+#: app/admin/templates/admin/job_form.html:7
+#: app/admin/templates/admin/news_form.html:8
+msgid "New"
+msgstr ""
+
+#: app/admin/templates/admin/job_form.html:7
+msgid "Job Opportunity"
+msgstr ""
+
+#: app/admin/templates/admin/job_form.html:13
+msgid "Job Title"
+msgstr ""
+
+#: app/admin/templates/admin/job_form.html:19
+msgid "Company Name"
+msgstr ""
+
+#: app/admin/templates/admin/job_form.html:33
+#: app/admin/templates/admin/property_form.html:74
+#: app/public/templates/public/property_detail.html:14
+msgid "Description"
+msgstr ""
+
+#: app/admin/templates/admin/job_form.html:40
+msgid "Requirements"
+msgstr ""
+
+#: app/admin/templates/admin/job_form.html:47
+msgid "Attachment / Brochure PDF (Optional)"
+msgstr ""
+
+#: app/admin/templates/admin/job_form.html:54
+msgid "Active Listing"
+msgstr ""
+
+#: app/admin/templates/admin/job_form.html:58
+msgid "Save Job Listing"
+msgstr ""
+
+#: app/admin/templates/admin/news_form.html:8
+msgid "Article / News"
+msgstr ""
+
+#: app/admin/templates/admin/news_form.html:21
+#: app/public/templates/public/news.html:9
+msgid "News"
+msgstr ""
+
+#: app/admin/templates/admin/news_form.html:22
+msgid "Interview"
+msgstr ""
+
+#: app/admin/templates/admin/news_form.html:30
+msgid "Content"
+msgstr ""
+
+#: app/admin/templates/admin/news_form.html:37
+msgid "Featured Image"
+msgstr ""
+
+#: app/admin/templates/admin/news_form.html:42
+msgid "Attachment / PDF Document (Optional)"
+msgstr ""
+
+#: app/admin/templates/admin/news_form.html:46
+msgid "Publish Article"
+msgstr ""
+
+#: app/admin/templates/admin/property_form.html:8
+msgid "Edit Listing"
+msgstr ""
+
+#: app/admin/templates/admin/property_form.html:8
+msgid "Add New Property / Business Listing"
+msgstr ""
+
+#: app/admin/templates/admin/property_form.html:20
+msgid "Listing Category"
+msgstr ""
+
+#: app/admin/templates/admin/property_form.html:22
+#: app/public/templates/public/properties.html:13
+msgid "For Sale"
+msgstr ""
+
+#: app/admin/templates/admin/property_form.html:23
+msgid "On Lease / Rent"
+msgstr ""
+
+#: app/admin/templates/admin/property_form.html:24
+msgid "Business Opportunity"
+msgstr ""
+
+#: app/admin/templates/admin/property_form.html:28
+msgid "Property Type"
+msgstr ""
+
+#: app/admin/templates/admin/property_form.html:30
+msgid "House"
+msgstr ""
+
+#: app/admin/templates/admin/property_form.html:31
+msgid "Apartment"
+msgstr ""
+
+#: app/admin/templates/admin/property_form.html:32
+msgid "Commercial Space"
+msgstr ""
+
+#: app/admin/templates/admin/property_form.html:33
+msgid "Land"
+msgstr ""
+
+#: app/admin/templates/admin/property_form.html:44
+msgid "Price Breakdown"
+msgstr ""
+
+#: app/admin/templates/admin/property_form.html:46
+msgid "Total Price"
+msgstr ""
+
+#: app/admin/templates/admin/property_form.html:47
+msgid "Per Month"
+msgstr ""
+
+#: app/admin/templates/admin/property_form.html:48
+msgid "Per Year"
+msgstr ""
+
+#: app/admin/templates/admin/property_form.html:54
+msgid "Location / Address"
+msgstr ""
+
+#: app/admin/templates/admin/property_form.html:60
+#: app/public/templates/public/property_detail.html:35
+msgid "Bedrooms"
+msgstr ""
+
+#: app/admin/templates/admin/property_form.html:64
+#: app/public/templates/public/property_detail.html:41
+msgid "Bathrooms"
+msgstr ""
+
+#: app/admin/templates/admin/property_form.html:68
+#: app/public/templates/public/property_detail.html:47
+msgid "Area"
+msgstr ""
+
+#: app/admin/templates/admin/property_form.html:82
+msgid "Contact Email"
+msgstr ""
+
+#: app/admin/templates/admin/property_form.html:86
+msgid "Contact Phone"
+msgstr ""
+
+#: app/admin/templates/admin/property_form.html:92
+msgid "Property Image"
+msgstr ""
+
+#: app/admin/templates/admin/property_form.html:104
+msgid "Available for public viewing"
+msgstr ""
+
+#: app/admin/templates/admin/property_form.html:109
+msgid "Cancel"
+msgstr ""
+
+#: app/admin/templates/admin/property_form.html:110
+msgid "Save Listing"
+msgstr ""
+
+#: app/auth/templates/auth/login.html:3
+msgid "Log In - Immigration Portal"
+msgstr ""
+
+#: app/auth/templates/auth/login.html:10
+msgid "Welcome Back"
+msgstr ""
+
+#: app/auth/templates/auth/login.html:17
+msgid "Email address"
+msgstr ""
+
+#: app/auth/templates/auth/login.html:22
+#: app/auth/templates/auth/register.html:24
+msgid "Password"
+msgstr ""
+
+#: app/auth/templates/auth/login.html:26 app/templates/base.html:79
+msgid "Log In"
+msgstr ""
+
+#: app/auth/templates/auth/login.html:30
+msgid "Don't have an account?"
+msgstr ""
+
+#: app/auth/templates/auth/login.html:30
+#: app/auth/templates/auth/register.html:31 app/templates/base.html:80
+msgid "Register"
+msgstr ""
+
+#: app/auth/templates/auth/register.html:3
+msgid "Register - Immigration Portal"
+msgstr ""
+
+#: app/auth/templates/auth/register.html:9
+msgid "Create an Account"
+msgstr ""
+
+#: app/auth/templates/auth/register.html:10
+msgid "Sign up to track your immigration cases and upload documents."
+msgstr ""
+
+#: app/auth/templates/auth/register.html:19
+msgid "Email Address"
+msgstr ""
+
+#: app/auth/templates/auth/register.html:27
+msgid "Show"
+msgstr ""
+
+#: app/auth/templates/auth/register.html:35
+msgid "Already have an account?"
+msgstr ""
+
+#: app/auth/templates/auth/register.html:35
+msgid "Log in here"
+msgstr ""
 
 #: app/public/templates/public/case_detail.html:10
 msgid "Application"
@@ -25,40 +478,12 @@ msgstr ""
 msgid "Back to Admin Dashboard"
 msgstr ""
 
-#: app/public/templates/public/case_detail.html:14
-msgid "Back to Dashboard"
-msgstr ""
-
-#: app/public/templates/public/case_detail.html:21
-msgid "Category:"
-msgstr ""
-
 #: app/public/templates/public/case_detail.html:25
 msgid "Status:"
 msgstr ""
 
 #: app/public/templates/public/case_detail.html:41
 msgid "Update Status:"
-msgstr ""
-
-#: app/public/templates/public/case_detail.html:46
-#: app/public/templates/public/case_detail.html:66
-msgid "Pending Review"
-msgstr ""
-
-#: app/public/templates/public/case_detail.html:47
-#: app/public/templates/public/case_detail.html:67
-msgid "Under Review"
-msgstr ""
-
-#: app/public/templates/public/case_detail.html:48
-#: app/public/templates/public/case_detail.html:68
-msgid "Approved"
-msgstr ""
-
-#: app/public/templates/public/case_detail.html:49
-#: app/public/templates/public/case_detail.html:69
-msgid "Rejected"
 msgstr ""
 
 #: app/public/templates/public/case_detail.html:51
@@ -179,10 +604,6 @@ msgstr ""
 msgid "file(s) attached"
 msgstr ""
 
-#: app/public/templates/public/dashboard.html:26
-msgid "Submitted"
-msgstr ""
-
 #: app/public/templates/public/dashboard.html:41
 msgid "You have not submitted any immigration applications yet."
 msgstr ""
@@ -249,10 +670,6 @@ msgstr ""
 msgid "All"
 msgstr ""
 
-#: app/public/templates/public/news.html:9
-msgid "News"
-msgstr ""
-
 #: app/public/templates/public/news.html:10
 msgid "Interviews"
 msgstr ""
@@ -281,10 +698,6 @@ msgstr ""
 
 #: app/public/templates/public/properties.html:12
 msgid "All Listings"
-msgstr ""
-
-#: app/public/templates/public/properties.html:13
-msgid "For Sale"
 msgstr ""
 
 #: app/public/templates/public/properties.html:14
@@ -317,26 +730,6 @@ msgstr ""
 
 #: app/public/templates/public/property_detail.html:6
 msgid "Back to Listings"
-msgstr ""
-
-#: app/public/templates/public/property_detail.html:14
-msgid "Description"
-msgstr ""
-
-#: app/public/templates/public/property_detail.html:30
-msgid "Type"
-msgstr ""
-
-#: app/public/templates/public/property_detail.html:35
-msgid "Bedrooms"
-msgstr ""
-
-#: app/public/templates/public/property_detail.html:41
-msgid "Bathrooms"
-msgstr ""
-
-#: app/public/templates/public/property_detail.html:47
-msgid "Area"
 msgstr ""
 
 #: app/public/templates/public/property_detail.html:53
@@ -485,13 +878,5 @@ msgstr ""
 
 #: app/templates/base.html:76
 msgid "Log Out"
-msgstr ""
-
-#: app/templates/base.html:79
-msgid "Log In"
-msgstr ""
-
-#: app/templates/base.html:80
-msgid "Register"
 msgstr ""
 

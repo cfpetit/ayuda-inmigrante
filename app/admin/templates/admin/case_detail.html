@@ -1,28 +1,28 @@
 {% extends "base.html" %}
 
-{% block title %}Review Case #{{ case.id }}{% endblock %}
+{% block title %}{{ _('Review Case') }} #{{ case.id }}{% endblock %}
 
 {% block content %}
 <div class="row">
     <div class="col-lg-8 mx-auto">
         
         <div class="d-flex justify-content-between align-items-center mb-3">
-            <h2 class="mb-0 fw-bold">Review Case #{{ case.id }}</h2>
-            <a href="{{ url_for('admin.dashboard') }}" class="btn btn-outline-secondary btn-sm">&larr; Back to Dashboard</a>
+            <h2 class="mb-0 fw-bold">{{ _('Review Case') }} #{{ case.id }}</h2>
+            <a href="{{ url_for('admin.dashboard') }}" class="btn btn-outline-secondary btn-sm">&larr; {{ _('Back to Dashboard') }}</a>
         </div>
 
         <div class="card shadow-sm border-0 mb-4">
             <div class="card-body">
                 <div class="row mb-3">
-                    <div class="col-sm-4 text-muted">Applicant:</div>
+                    <div class="col-sm-4 text-muted">{{ _('Applicant:') }}</div>
                     <div class="col-sm-8 fw-bold">{{ case.applicant.email }}</div>
                 </div>
                 <div class="row mb-3">
-                    <div class="col-sm-4 text-muted">Category:</div>
+                    <div class="col-sm-4 text-muted">{{ _('Category:') }}</div>
                     <div class="col-sm-8">{{ case.case_type }}</div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-4 text-muted">Submission Date:</div>
+                    <div class="col-sm-4 text-muted">{{ _('Submission Date:') }}</div>
                     <div class="col-sm-8">{{ case.created_at.strftime('%Y-%m-%d %H:%M') }}</div>
                 </div>
             </div>
@@ -30,7 +30,7 @@
 
         <div class="card shadow-sm border-0 mb-4">
             <div class="card-header bg-body-tertiary">
-                <h5 class="mb-0 pt-1 pb-1">Attached Documentation</h5>
+                <h5 class="mb-0 pt-1 pb-1">{{ _('Attached Documentation') }}</h5>
             </div>
             <div class="card-body p-0">
                 {% if case.documents %}
@@ -47,14 +47,14 @@
                         {% endfor %}
                     </ul>
                 {% else %}
-                    <div class="p-4 text-muted text-center">No documents attached by applicant.</div>
+                    <div class="p-4 text-muted text-center">{{ _('No documents attached by applicant.') }}</div>
                 {% endif %}
             </div>
         </div>
 
         <div class="card shadow-sm border-0">
             <div class="card-header bg-body-tertiary">
-                <h5 class="mb-0 pt-1 pb-1">Update Application</h5>
+                <h5 class="mb-0 pt-1 pb-1">{{ _('Update Application') }}</h5>
             </div>
             <div class="card-body p-4">
                 <form action="{{ url_for('admin.review_case', case_id=case.id) }}" method="POST">
@@ -63,21 +63,21 @@
                     <div class="mb-3">
                         <label for="status" class="form-label fw-bold">Case Status</label>
                         <select class="form-select" name="status" id="status" required>
-                            <option value="Pending Review" {% if case.status == 'Pending Review' %}selected{% endif %}>Pending Review</option>
-                            <option value="Under Review" {% if case.status == 'Under Review' %}selected{% endif %}>Under Review</option>
-                            <option value="Action Required" {% if case.status == 'Action Required' %}selected{% endif %}>Action Required</option>
-                            <option value="Approved" {%if case.status == 'Approved' %}selected{% endif %}>Approved</option>
-                            <option value="Rejected" {%if case.status == 'Rejected' %}selected{% endif %}>Rejected</option>
+                            <option value="Pending Review" {% if case.status == 'Pending Review' %}selected{% endif %}>{{ _('Pending Review') }}</option>
+                            <option value="Under Review" {% if case.status == 'Under Review' %}selected{% endif %}>{{ _('Under Review') }}</option>
+                            <option value="Action Required" {% if case.status == 'Action Required' %}selected{% endif %}>{{ _('Action Required') }}</option>
+                            <option value="Approved" {%if case.status == 'Approved' %}selected{% endif %}>{{ _('Approved') }}</option>
+                            <option value="Rejected" {%if case.status == 'Rejected' %}selected{% endif %}>{{ _('Rejected') }}</option>
                         </select>
                     </div>
 
                     <div class="mb-4">
-                        <label for="notes" class="form-label fw-bold">Administrative / Public Notes</label>
+                        <label for="notes" class="form-label fw-bold">{{ _('Administrative / Public Notes') }}</label>
                         <textarea class="form-control" name="notes" id="notes" rows="5" placeholder="Add notes for the applicant...">{{ case.notes if case.notes else '' }}</textarea>
                     </div>
 
                     <button type="submit" class="btn btn-success px-4">
-                        Save Status & Notes
+                        {{ _('Save Status & Notes') }}
                     </button>
                 </form>
             </div>

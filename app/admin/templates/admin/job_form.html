@@ -4,23 +4,23 @@
 <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet">
 
 <div class="col-md-8 mx-auto card shadow-sm p-4 my-4">
-    <h3 class="text-cylcae fw-bold mb-3">{% if job %}Edit{% else %}New{% endif %} Job Opportunity</h3>
+    <h3 class="text-cylcae fw-bold mb-3">{% if job %}{{ _('Edit') }}{% else %}{{ _('New') }}{% endif %} {{ _('Job Opportunity') }}</h3>
     
     <form method="POST" enctype="multipart/form-data" id="jobForm">
         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
 
         <div class="mb-3">
-            <label class="form-label">Job Title</label>
+            <label class="form-label">{{ _('Job Title') }}</label>
             <input type="text" name="title" class="form-control" value="{{ job.title if job else '' }}" required>
         </div>
 
         <div class="row">
             <div class="col-md-6 mb-3">
-                <label class="form-label">Company Name</label>
+                <label class="form-label">{{ _('Company Name') }}</label>
                 <input type="text" name="company" class="form-control" value="{{ job.company if job else '' }}">
             </div>
             <div class="col-md-6 mb-3">
-                <label class="form-label">Location</label>
+                <label class="form-label">{{ _('Location') }}</label>
                 <input type="text" name="location" class="form-control" value="{{ job.location if job else '' }}">
             </div>
         </div>
@@ -30,32 +30,32 @@
         <input type="hidden" name="requirements" id="hiddenRequirements">
 
         <div class="mb-3">
-            <label class="form-label">Description</label>
+            <label class="form-label">{{ _('Description') }}</label>
             <div id="descEditor" style="min-height: 150px; background: #fff;">
                 {% if job %}{{ job.description|safe }}{% endif %}
             </div>
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Requirements</label>
+            <label class="form-label">{{ _('Requirements') }}</label>
             <div id="reqEditor" style="min-height: 100px; background: #fff;">
                 {% if job %}{{ job.requirements|safe }}{% endif %}
             </div>
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Attachment / Brochure PDF (Optional)</label>
+            <label class="form-label">{{ _('Attachment / Brochure PDF (Optional)') }}</label>
             <input type="file" name="attachment" class="form-control">
         </div>
 
         {% if job %}
         <div class="form-check mb-3">
             <input type="checkbox" name="is_active" class="form-check-input" id="activeCheck" {% if job.is_active %}checked{% endif %}>
-            <label class="form-check-label" for="activeCheck">Active Listing</label>
+            <label class="form-check-label" for="activeCheck">{{ _('Active Listing') }}</label>
         </div>
         {% endif %}
 
-        <button type="submit" class="btn btn-cylcae w-100 mt-2">Save Job Listing</button>
+        <button type="submit" class="btn btn-cylcae w-100 mt-2">{{ _('Save Job Listing') }}</button>
     </form>
 </div>
 

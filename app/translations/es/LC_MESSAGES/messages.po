@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  1.0\n"
 "Report-Msgid-Bugs-To: cfranciapetit@gmail.com\n"
-"POT-Creation-Date: 2026-09-05 17:41+0200\n"
+"POT-Creation-Date: 2026-09-06 09:38+0200\n"
 "PO-Revision-Date: 2026-09-03 12:00+0000\n"
 "Last-Translator: Admin <cfranciapetit@gmail.com>\n"
 "Language: es\n"
@@ -15,6 +15,461 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.18.0\n"
 
+#: app/admin/templates/admin/case_detail.html:3
+#: app/admin/templates/admin/case_detail.html:10
+#: app/admin/templates/admin/dashboard.html:78
+msgid "Review Case"
+msgstr "Revisar Caso"
+
+#: app/admin/templates/admin/case_detail.html:11
+#: app/public/templates/public/case_detail.html:14
+msgid "Back to Dashboard"
+msgstr "Volver a Mi Panel"
+
+#: app/admin/templates/admin/case_detail.html:17
+msgid "Applicant:"
+msgstr "Solicitante:"
+
+#: app/admin/templates/admin/case_detail.html:21
+#: app/public/templates/public/case_detail.html:21
+msgid "Category:"
+msgstr "Categoría: "
+
+#: app/admin/templates/admin/case_detail.html:25
+msgid "Submission Date:"
+msgstr "Fecha de Subida:"
+
+#: app/admin/templates/admin/case_detail.html:33
+msgid "Attached Documentation"
+msgstr "Documentos Adjuntos"
+
+#: app/admin/templates/admin/case_detail.html:50
+msgid "No documents attached by applicant."
+msgstr "No hay documentos adjuntos para este caso aún."
+
+#: app/admin/templates/admin/case_detail.html:57
+msgid "Update Application"
+msgstr "Actualizar Solicitud"
+
+#: app/admin/templates/admin/case_detail.html:66
+#: app/public/templates/public/case_detail.html:46
+#: app/public/templates/public/case_detail.html:66
+msgid "Pending Review"
+msgstr "Pendiente de Revisión"
+
+#: app/admin/templates/admin/case_detail.html:67
+#: app/public/templates/public/case_detail.html:47
+#: app/public/templates/public/case_detail.html:67
+msgid "Under Review"
+msgstr "Bajo Revisión"
+
+#: app/admin/templates/admin/case_detail.html:68
+msgid "Action Required"
+msgstr "Acción Necesaria"
+
+#: app/admin/templates/admin/case_detail.html:69
+#: app/public/templates/public/case_detail.html:48
+#: app/public/templates/public/case_detail.html:68
+msgid "Approved"
+msgstr "Aprobada"
+
+#: app/admin/templates/admin/case_detail.html:70
+#: app/public/templates/public/case_detail.html:49
+#: app/public/templates/public/case_detail.html:69
+msgid "Rejected"
+msgstr "Rechazada"
+
+#: app/admin/templates/admin/case_detail.html:75
+msgid "Administrative / Public Notes"
+msgstr "Notas Públicas / Administrativas"
+
+#: app/admin/templates/admin/case_detail.html:80
+msgid "Save Status & Notes"
+msgstr "Guardar Estado y Notas"
+
+#: app/admin/templates/admin/dashboard.html:3
+msgid "Admin Dashboard - CYLCAE"
+msgstr "Panel de Administrador - CYLCAE"
+
+#: app/admin/templates/admin/dashboard.html:8
+msgid "Admin Dashboard"
+msgstr "Panel de Administrador"
+
+#: app/admin/templates/admin/dashboard.html:10
+msgid "Post Job"
+msgstr "Subir Oferta de Trabajo"
+
+#: app/admin/templates/admin/dashboard.html:11
+msgid "Create News Post"
+msgstr "Crear Artículo"
+
+#: app/admin/templates/admin/dashboard.html:12
+msgid "Add Property"
+msgstr "Añadir una Propiedad"
+
+#: app/admin/templates/admin/dashboard.html:20
+msgid "Cases / Applications"
+msgstr "Casos / Solicitudes"
+
+#: app/admin/templates/admin/dashboard.html:25
+msgid "Job Postings"
+msgstr "Ofertas de Trabajo"
+
+#: app/admin/templates/admin/dashboard.html:30
+msgid "News & Articles"
+msgstr "Noticias y Entrevistas"
+
+#: app/admin/templates/admin/dashboard.html:35
+msgid "Properties"
+msgstr "Propiedades"
+
+#: app/admin/templates/admin/dashboard.html:52
+msgid "Applicant Email"
+msgstr "Email del Solicitante"
+
+#: app/admin/templates/admin/dashboard.html:53
+#: app/admin/templates/admin/dashboard.html:151
+#: app/admin/templates/admin/dashboard.html:195
+#: app/admin/templates/admin/news_form.html:19
+msgid "Category"
+msgstr "Categoría: "
+
+#: app/admin/templates/admin/dashboard.html:54
+#: app/admin/templates/admin/dashboard.html:105
+#: app/admin/templates/admin/dashboard.html:198
+msgid "Status"
+msgstr "Estado:"
+
+#: app/admin/templates/admin/dashboard.html:55
+#: app/public/templates/public/dashboard.html:26
+msgid "Submitted"
+msgstr "Entregado"
+
+#: app/admin/templates/admin/dashboard.html:56
+#: app/admin/templates/admin/dashboard.html:106
+#: app/admin/templates/admin/dashboard.html:153
+#: app/admin/templates/admin/dashboard.html:199
+msgid "Actions"
+msgstr "Acciones"
+
+#: app/admin/templates/admin/dashboard.html:87
+msgid "No applications have been submitted yet."
+msgstr "No hay solicitudes aún."
+
+#: app/admin/templates/admin/dashboard.html:102
+#: app/admin/templates/admin/dashboard.html:150
+#: app/admin/templates/admin/dashboard.html:193
+#: app/admin/templates/admin/news_form.html:14
+#: app/admin/templates/admin/property_form.html:14
+msgid "Title"
+msgstr "Título"
+
+#: app/admin/templates/admin/dashboard.html:103
+msgid "Company"
+msgstr "Compañía"
+
+#: app/admin/templates/admin/dashboard.html:104
+#: app/admin/templates/admin/dashboard.html:197
+#: app/admin/templates/admin/job_form.html:23
+msgid "Location"
+msgstr "Ubicación"
+
+#: app/admin/templates/admin/dashboard.html:117
+msgid "Active"
+msgstr "Activa"
+
+#: app/admin/templates/admin/dashboard.html:119
+msgid "Inactive"
+msgstr "Inactiva"
+
+#: app/admin/templates/admin/dashboard.html:123
+#: app/admin/templates/admin/job_form.html:7
+#: app/admin/templates/admin/news_form.html:8
+msgid "Edit"
+msgstr "Editar"
+
+#: app/admin/templates/admin/dashboard.html:126
+#: app/admin/templates/admin/dashboard.html:166
+#: app/admin/templates/admin/dashboard.html:221
+msgid "Delete"
+msgstr "Eliminar"
+
+#: app/admin/templates/admin/dashboard.html:135
+msgid "No job postings available."
+msgstr "No hay ofertas de trabajo disponibles."
+
+#: app/admin/templates/admin/dashboard.html:152
+msgid "Date"
+msgstr "Fecha"
+
+#: app/admin/templates/admin/dashboard.html:175
+msgid "No news articles published."
+msgstr "No hay artículos publicados."
+
+#: app/admin/templates/admin/dashboard.html:185
+msgid "Property & Business Listings"
+msgstr "Inmuebles y Negocios"
+
+#: app/admin/templates/admin/dashboard.html:186
+msgid "Add New Listing"
+msgstr "Añadir nueva propiedad"
+
+#: app/admin/templates/admin/dashboard.html:194
+#: app/public/templates/public/property_detail.html:30
+msgid "Type"
+msgstr "Tipo"
+
+#: app/admin/templates/admin/dashboard.html:196
+#: app/admin/templates/admin/property_form.html:40
+msgid "Price"
+msgstr "Precio"
+
+#: app/admin/templates/admin/dashboard.html:212
+msgid "Available"
+msgstr "Disponible"
+
+#: app/admin/templates/admin/dashboard.html:214
+msgid "Hidden"
+msgstr "Oculta"
+
+#: app/admin/templates/admin/dashboard.html:227
+msgid ""
+"No property listings found. Click \"+ Add New Listing\" above to create "
+"one."
+msgstr ""
+"No se han encontrado propiedades Pulse \"+ Añadir Nueva Propiedad\" "
+"arriba para crear una."
+
+#: app/admin/templates/admin/job_form.html:7
+#: app/admin/templates/admin/news_form.html:8
+msgid "New"
+msgstr "Nuevo"
+
+#: app/admin/templates/admin/job_form.html:7
+msgid "Job Opportunity"
+msgstr "Opportunidades de Empleo"
+
+#: app/admin/templates/admin/job_form.html:13
+msgid "Job Title"
+msgstr ""
+
+#: app/admin/templates/admin/job_form.html:19
+msgid "Company Name"
+msgstr "Nombre de la Compañía"
+
+#: app/admin/templates/admin/job_form.html:33
+#: app/admin/templates/admin/property_form.html:74
+#: app/public/templates/public/property_detail.html:14
+msgid "Description"
+msgstr "Descripción"
+
+#: app/admin/templates/admin/job_form.html:40
+msgid "Requirements"
+msgstr "Requisitos"
+
+#: app/admin/templates/admin/job_form.html:47
+msgid "Attachment / Brochure PDF (Optional)"
+msgstr "PDF Adjunto / Folleto (Opcional)"
+
+#: app/admin/templates/admin/job_form.html:54
+msgid "Active Listing"
+msgstr "Propiedades activas"
+
+#: app/admin/templates/admin/job_form.html:58
+msgid "Save Job Listing"
+msgstr "Guardar propidades"
+
+#: app/admin/templates/admin/news_form.html:8
+msgid "Article / News"
+msgstr "Artículos"
+
+#: app/admin/templates/admin/news_form.html:21
+#: app/public/templates/public/news.html:9
+msgid "News"
+msgstr "Noticias"
+
+#: app/admin/templates/admin/news_form.html:22
+msgid "Interview"
+msgstr "Entrevistas"
+
+#: app/admin/templates/admin/news_form.html:30
+msgid "Content"
+msgstr "Contenido"
+
+#: app/admin/templates/admin/news_form.html:37
+msgid "Featured Image"
+msgstr "Imagen destacada"
+
+#: app/admin/templates/admin/news_form.html:42
+msgid "Attachment / PDF Document (Optional)"
+msgstr "Archivos Adjuntos (Opcional)"
+
+#: app/admin/templates/admin/news_form.html:46
+msgid "Publish Article"
+msgstr "Publicar Artículo"
+
+#: app/admin/templates/admin/property_form.html:8
+msgid "Edit Listing"
+msgstr "Editar propidad"
+
+#: app/admin/templates/admin/property_form.html:8
+msgid "Add New Property / Business Listing"
+msgstr "Añadir Inmueble / Negocio"
+
+#: app/admin/templates/admin/property_form.html:20
+msgid "Listing Category"
+msgstr "Categoría de la Propiedad"
+
+#: app/admin/templates/admin/property_form.html:22
+#: app/public/templates/public/properties.html:13
+msgid "For Sale"
+msgstr "A la venta"
+
+#: app/admin/templates/admin/property_form.html:23
+msgid "On Lease / Rent"
+msgstr "Para Alquilar"
+
+#: app/admin/templates/admin/property_form.html:24
+msgid "Business Opportunity"
+msgstr "Opportunidad de Negocio"
+
+#: app/admin/templates/admin/property_form.html:28
+msgid "Property Type"
+msgstr "Tipo de la Propiedad"
+
+#: app/admin/templates/admin/property_form.html:30
+msgid "House"
+msgstr "Casa"
+
+#: app/admin/templates/admin/property_form.html:31
+msgid "Apartment"
+msgstr "Apartamento"
+
+#: app/admin/templates/admin/property_form.html:32
+msgid "Commercial Space"
+msgstr "Espacio Comercial"
+
+#: app/admin/templates/admin/property_form.html:33
+msgid "Land"
+msgstr "Terreno"
+
+#: app/admin/templates/admin/property_form.html:44
+msgid "Price Breakdown"
+msgstr "Desglos del precio"
+
+#: app/admin/templates/admin/property_form.html:46
+msgid "Total Price"
+msgstr "Precio Total"
+
+#: app/admin/templates/admin/property_form.html:47
+msgid "Per Month"
+msgstr "Precio al Mes"
+
+#: app/admin/templates/admin/property_form.html:48
+msgid "Per Year"
+msgstr "Precio al año"
+
+#: app/admin/templates/admin/property_form.html:54
+msgid "Location / Address"
+msgstr "Ubicación / Dirección"
+
+#: app/admin/templates/admin/property_form.html:60
+#: app/public/templates/public/property_detail.html:35
+msgid "Bedrooms"
+msgstr "Habitaciones"
+
+#: app/admin/templates/admin/property_form.html:64
+#: app/public/templates/public/property_detail.html:41
+msgid "Bathrooms"
+msgstr "Baños"
+
+#: app/admin/templates/admin/property_form.html:68
+#: app/public/templates/public/property_detail.html:47
+msgid "Area"
+msgstr "Área"
+
+#: app/admin/templates/admin/property_form.html:82
+msgid "Contact Email"
+msgstr "Email de Contacto"
+
+#: app/admin/templates/admin/property_form.html:86
+msgid "Contact Phone"
+msgstr "Teléfono de Contacto"
+
+#: app/admin/templates/admin/property_form.html:92
+msgid "Property Image"
+msgstr "Imagen de la propiedad"
+
+#: app/admin/templates/admin/property_form.html:104
+msgid "Available for public viewing"
+msgstr "Disponible para el público"
+
+#: app/admin/templates/admin/property_form.html:109
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: app/admin/templates/admin/property_form.html:110
+msgid "Save Listing"
+msgstr "Guardar propiedad"
+
+#: app/auth/templates/auth/login.html:3
+msgid "Log In - Immigration Portal"
+msgstr "Registrarse - Portal de Inmigración"
+
+#: app/auth/templates/auth/login.html:10
+msgid "Welcome Back"
+msgstr "Bienvenid@ de nuevo,"
+
+#: app/auth/templates/auth/login.html:17
+msgid "Email address"
+msgstr "Dirección de Correo"
+
+#: app/auth/templates/auth/login.html:22
+#: app/auth/templates/auth/register.html:24
+msgid "Password"
+msgstr "Contraseña"
+
+#: app/auth/templates/auth/login.html:26 app/templates/base.html:79
+msgid "Log In"
+msgstr "Iniciar Sesión"
+
+#: app/auth/templates/auth/login.html:30
+msgid "Don't have an account?"
+msgstr "¿Tiene ya una cuenta?"
+
+#: app/auth/templates/auth/login.html:30
+#: app/auth/templates/auth/register.html:31 app/templates/base.html:80
+msgid "Register"
+msgstr "Registrarse"
+
+#: app/auth/templates/auth/register.html:3
+msgid "Register - Immigration Portal"
+msgstr "Registrarse - Portal de Inmigración"
+
+#: app/auth/templates/auth/register.html:9
+msgid "Create an Account"
+msgstr "Crear una Cuenta"
+
+#: app/auth/templates/auth/register.html:10
+msgid "Sign up to track your immigration cases and upload documents."
+msgstr "Regístrese para seguir sus solicitudes activas y subir documentos."
+
+#: app/auth/templates/auth/register.html:19
+msgid "Email Address"
+msgstr "Dirección de Correo"
+
+#: app/auth/templates/auth/register.html:27
+msgid "Show"
+msgstr "Mostrar"
+
+#: app/auth/templates/auth/register.html:35
+msgid "Already have an account?"
+msgstr "¿Tiene ya una cuenta?"
+
+#: app/auth/templates/auth/register.html:35
+msgid "Log in here"
+msgstr "Inicie Sesión Aquí"
+
 #: app/public/templates/public/case_detail.html:10
 msgid "Application"
 msgstr "Solicitud"
@@ -23,14 +478,6 @@ msgstr "Solicitud"
 msgid "Back to Admin Dashboard"
 msgstr "Volver a Panel de Administrador"
 
-#: app/public/templates/public/case_detail.html:14
-msgid "Back to Dashboard"
-msgstr "Volver a Mi Panel"
-
-#: app/public/templates/public/case_detail.html:21
-msgid "Category:"
-msgstr "Categoría: "
-
 #: app/public/templates/public/case_detail.html:25
 msgid "Status:"
 msgstr "Estado:"
@@ -38,26 +485,6 @@ msgstr "Estado:"
 #: app/public/templates/public/case_detail.html:41
 msgid "Update Status:"
 msgstr "Actualizar Estado:"
-
-#: app/public/templates/public/case_detail.html:46
-#: app/public/templates/public/case_detail.html:66
-msgid "Pending Review"
-msgstr "Pendiente de Revisión"
-
-#: app/public/templates/public/case_detail.html:47
-#: app/public/templates/public/case_detail.html:67
-msgid "Under Review"
-msgstr "Bajo Revisión"
-
-#: app/public/templates/public/case_detail.html:48
-#: app/public/templates/public/case_detail.html:68
-msgid "Approved"
-msgstr "Aprobada"
-
-#: app/public/templates/public/case_detail.html:49
-#: app/public/templates/public/case_detail.html:69
-msgid "Rejected"
-msgstr "Rechazada"
 
 #: app/public/templates/public/case_detail.html:51
 msgid "Save"
@@ -111,9 +538,7 @@ msgstr "Empezar una Solicitud de Inmigración"
 msgid ""
 "Select your visa or residency category and upload initial supporting "
 "documentation."
-msgstr "" 
-"Elije tu visa o categoría de residencia y sube la documentación "
-"necesaria."
+msgstr "Elije tu visa o categoría de residencia y sube la documentación necesaria."
 
 #: app/public/templates/public/create_case.html:19
 msgid "Application Type"
@@ -159,14 +584,14 @@ msgstr "Mi Panel - CYLCAE"
 
 #: app/public/templates/public/dashboard.html:8
 msgid "Welcome back,"
-msgstr "Bienvenido de nuevo,"
+msgstr "Bienvenid@ de nuevo,"
 
 #: app/public/templates/public/dashboard.html:9
 msgid ""
 "This is your personal portal to track active applications and upload "
 "documents."
 msgstr ""
-"Este es tu portal personal para seguir tus solicitudes activas y subir "
+"Este es su portal personal para seguir sus solicitudes activas y subir "
 "documentos."
 
 #: app/public/templates/public/dashboard.html:12
@@ -181,13 +606,9 @@ msgstr "Mis solicitudes activas"
 msgid "file(s) attached"
 msgstr "documento(s) adjuntos"
 
-#: app/public/templates/public/dashboard.html:26
-msgid "Submitted"
-msgstr "Entregado"
-
 #: app/public/templates/public/dashboard.html:41
 msgid "You have not submitted any immigration applications yet."
-msgstr "No has entregado ninga solicitud aún"
+msgstr "No ha realizado ninguna solicitud aún"
 
 #: app/public/templates/public/employment.html:2
 msgid "Employment Agency - CYLCAE"
@@ -199,7 +620,7 @@ msgstr "Opportunidades de Empleo"
 
 #: app/public/templates/public/employment.html:8
 msgid "Explore available job openings and employment resources."
-msgstr "Explora trabajos disponibles y recursos para empleo"
+msgstr "Explore trabajos disponibles y recursos para empleo"
 
 #: app/public/templates/public/employment.html:21
 msgid "Requirements:"
@@ -226,8 +647,8 @@ msgid ""
 "We provide step-by-step guidance, documentation checklists, and seamless "
 "application tracking for your immigration journey."
 msgstr ""
-"Ofrecemos guía de los pasos a seguir, comprobación de la documentación, y "
-"seguimiento fluido de tus solicitudes."
+"Ofrecemos apoyo en cada paso, seguimiento de la documentación requerida, "
+"y seguimiento fluido de sus solicitudes."
 
 #: app/public/templates/public/index.html:14
 msgid "View Our Services"
@@ -252,10 +673,6 @@ msgstr "Noticias y Entrevistas"
 #: app/public/templates/public/news.html:8
 msgid "All"
 msgstr "Todas"
-
-#: app/public/templates/public/news.html:9
-msgid "News"
-msgstr "Noticias"
 
 #: app/public/templates/public/news.html:10
 msgid "Interviews"
@@ -282,16 +699,12 @@ msgid ""
 "Explore houses for sale, lease properties, and business opportunities "
 "tailored for residents and immigrants."
 msgstr ""
-"Explora casas a la venta, alquileres y oportunidades de negocio "
-"escogidas a mano para residentes e inmigrantes"
+"Explore casas a la venta, alquileres y oportunidades de negocio escogidas"
+" a mano para residentes e inmigrantes"
 
 #: app/public/templates/public/properties.html:12
 msgid "All Listings"
 msgstr "Todas las propidades"
-
-#: app/public/templates/public/properties.html:13
-msgid "For Sale"
-msgstr "A la venta"
 
 #: app/public/templates/public/properties.html:14
 msgid "On Lease"
@@ -325,26 +738,6 @@ msgstr "No hay propiedades que se ajusten a su búsqueda."
 msgid "Back to Listings"
 msgstr "Volver a las propiedades"
 
-#: app/public/templates/public/property_detail.html:14
-msgid "Description"
-msgstr "Descripción"
-
-#: app/public/templates/public/property_detail.html:30
-msgid "Type"
-msgstr "Tipo"
-
-#: app/public/templates/public/property_detail.html:35
-msgid "Bedrooms"
-msgstr "Habitaciones"
-
-#: app/public/templates/public/property_detail.html:41
-msgid "Bathrooms"
-msgstr "Baños"
-
-#: app/public/templates/public/property_detail.html:47
-msgid "Area"
-msgstr "Área"
-
 #: app/public/templates/public/property_detail.html:53
 msgid "Contact Information"
 msgstr "Información de Contacto"
@@ -367,11 +760,11 @@ msgstr "Responde a unas preguntas para encontrar el mejor camino para ti."
 
 #: app/public/templates/public/quiz.html:19
 msgid "Step 1: What is your primary purpose for moving?"
-msgstr "Pregunta 1: ¿Cuál es tu principal motivo para mudarte?"
+msgstr "Pregunta 1: ¿Cuál es su principal motivo para mudarse?"
 
 #: app/public/templates/public/quiz.html:20
 msgid "Employment / Work"
-msgstr "Agencia de Empleo"
+msgstr "Trabajo"
 
 #: app/public/templates/public/quiz.html:21
 msgid "Higher Education / Study"
@@ -415,7 +808,7 @@ msgstr "Camino recomendado"
 
 #: app/public/templates/public/quiz.html:44
 msgid "Processing..."
-msgstr "Procesando"
+msgstr "Procesando..."
 
 #: app/public/templates/public/quiz.html:49
 msgid "Apply Now with This Pathway"
@@ -434,7 +827,7 @@ msgid ""
 "Explore the primary pathways we handle to assist with your residency and "
 "legal status."
 msgstr ""
-"Explora los caminos que ofrecemos para asistirle con su residencia y "
+"Explore los caminos que ofrecemos para asistirle con su residencia y "
 "estado legal."
 
 #: app/public/templates/public/services.html:15
@@ -446,16 +839,16 @@ msgid ""
 "For skilled professionals, sponsored employees, and specialized workers "
 "seeking employment authorization."
 msgstr ""
-"Para profesionales cualificados, trabajadores subvencionados, y trabajadores especializados "
-"que busquen autorización para trabajar."
+"Para profesionales cualificados, trabajadores subvencionados, y "
+"trabajadores especializados que busquen autorización para trabajar."
 
 #: app/public/templates/public/services.html:26
 msgid ""
 "For international students admitted into higher education institutions or"
 " language programs."
 msgstr ""
-"Para estudientes internacionales que han sido admitidos en instituciones de educación superior o"
-" programas de idioma."
+"Para estudientes internacionales que han sido admitidos en instituciones "
+"de educación superior o programas de idioma."
 
 #: app/public/templates/public/services.html:36
 msgid "For immediate family members and spouses of legal residents or citizens."
@@ -500,12 +893,4 @@ msgstr "Panel de Administración"
 #: app/templates/base.html:76
 msgid "Log Out"
 msgstr "Cerrar Sesión"
-
-#: app/templates/base.html:79
-msgid "Log In"
-msgstr "Iniciar Sesión"
-
-#: app/templates/base.html:80
-msgid "Register"
-msgstr "Registrarse"
 

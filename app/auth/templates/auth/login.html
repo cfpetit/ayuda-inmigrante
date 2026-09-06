@@ -1,33 +1,33 @@
 {% extends "base.html" %}
 
-{% block title %}Log In - Immigration Portal{% endblock %}
+{% block title %}{{ _('Log In - Immigration Portal') }}{% endblock %}
 
 {% block content %}
 <div class="row justify-content-center">
     <div class="col-md-5 col-lg-4">
         <div class="card shadow-sm auth-card mt-4">
             <div class="card-header text-center pt-4 pb-2">
-                <h3 class="mb-0 fw-bold">Welcome Back</h3>
+                <h3 class="mb-0 fw-bold">{{ _('Welcome Back') }}</h3>
             </div>
             <div class="card-body p-4">
                 <form action="{{ url_for('auth.login') }}" method="POST">
                     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                     
                     <div class="mb-3">
-                        <label for="email" class="form-label text-muted">Email address</label>
+                        <label for="email" class="form-label text-muted">{{ _('Email address') }}</label>
                         <input type="email" class="form-control" name="email" id="email" required>
                     </div>
                     
                     <div class="mb-4">
-                        <label for="password" class="form-label text-muted">Password</label>
+                        <label for="password" class="form-label text-muted">{{ _('Password') }}</label>
                         <input type="password" class="form-control" name="password" id="password" required>
                     </div>
                     
-                    <button type="submit" class="btn btn-cylcae w-100 py-2">Log In</button>
+                    <button type="submit" class="btn btn-cylcae w-100 py-2">{{ _('Log In') }}</button>
                 </form>
             </div>
         </div>
-        <p class="text-center mt-3 text-muted">Don't have an account? <a href="{{ url_for('auth.register') }}" class="text-decoration-none">Register</a></p>
+        <p class="text-center mt-3 text-muted">{{ _('Don\'t have an account?') }} <a href="{{ url_for('auth.register') }}" class="text-decoration-none">{{ _('Register') }}</a></p>
     </div>
 </div>
 {% endblock %}

@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 
-{% block title %}Register - Immigration Portal{% endblock %}
+{% block title %}{{ _('Register - Immigration Portal') }}{% endblock %}
 
 {% block content %}
 <div class="row justify-content-center">
     <div class="col-md-6 col-lg-5">
         <div class="text-center mb-4">
-            <h2 class="fw-bold">Create an Account</h2>
-            <p class="text-muted">Sign up to track your immigration cases and upload documents.</p>
+            <h2 class="fw-bold">{{ _('Create an Account') }}</h2>
+            <p class="text-muted">{{ _('Sign up to track your immigration cases and upload documents.') }}</p>
         </div>
 
         <div class="card shadow-sm auth-card">
@@ -16,23 +16,23 @@
                     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
 
                     <div class="mb-3">
-                        <label for="email" class="form-label text-muted">Email Address</label>
+                        <label for="email" class="form-label text-muted">{{ _('Email Address') }}</label>
                         <input type="email" class="form-control" id="email" name="email" required>
                     </div>
                     
                     <div class="mb-4">
-                        <label for="password" class="form-label text-muted">Password</label>
+                        <label for="password" class="form-label text-muted">{{ _('Password') }}</label>
                         <div class="input-group">
                             <input type="password" class="form-control" id="password" name="password" required>
-                            <button class="btn btn-outline-secondary" type="button" id="regToggleBtn" onclick="togglePasswordVisibility('password', 'regToggleBtn')">Show</button>
+                            <button class="btn btn-outline-secondary" type="button" id="regToggleBtn" onclick="togglePasswordVisibility('password', 'regToggleBtn')">{{ _('Show') }}</button>
                         </div>
                     </div>
                     
-                    <button type="submit" class="btn btn-cylcae w-100 py-2">Register</button>
+                    <button type="submit" class="btn btn-cylcae w-100 py-2">{{ _('Register') }}</button>
                 </form>
             </div>
         </div>
-        <p class="text-center mt-3 text-muted">Already have an account? <a href="{{ url_for('auth.login') }}" class="text-decoration-none">Log in here</a>.</p>
+        <p class="text-center mt-3 text-muted">{{ _('Already have an account?') }}' <a href="{{ url_for('auth.login') }}" class="text-decoration-none">{{ _('Log in here') }}</a>.</p>
     </div>
 </div>
 {% endblock %}
