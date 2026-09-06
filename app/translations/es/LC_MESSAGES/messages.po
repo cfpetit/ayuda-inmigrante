@@ -2,65 +2,510 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.0\n"
+"Project-Id-Version:  1.0\n"
 "Report-Msgid-Bugs-To: cfranciapetit@gmail.com\n"
-"POT-Creation-Date: 2026-09-03 12:00+0000\n"
+"POT-Creation-Date: 2026-09-05 17:41+0200\n"
 "PO-Revision-Date: 2026-09-03 12:00+0000\n"
 "Last-Translator: Admin <cfranciapetit@gmail.com>\n"
 "Language: es\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Language-Team: es <LL@li.org>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
 
-#: app/templates/base.html:5
-msgid "CYLCAE - Association of Freelancers and Entrepreneurs"
-msgstr "CYLCAE - Asociación de Autónomos y Emprendedores"
+#: app/public/templates/public/case_detail.html:10
+msgid "Application"
+msgstr "Solicitud"
 
-#: app/templates/base.html:35
-msgid "Services"
-msgstr "Servicios"
+#: app/public/templates/public/case_detail.html:12
+msgid "Back to Admin Dashboard"
+msgstr "Volver a Panel de Administrador"
 
-#: app/templates/base.html:38
-msgid "Employment Agency"
-msgstr "Agencia de Empleo"
+#: app/public/templates/public/case_detail.html:14
+msgid "Back to Dashboard"
+msgstr "Volver a Mi Panel"
 
-#: app/templates/base.html:41
+#: app/public/templates/public/case_detail.html:21
+msgid "Category:"
+msgstr "Categoría: "
+
+#: app/public/templates/public/case_detail.html:25
+msgid "Status:"
+msgstr "Estado:"
+
+#: app/public/templates/public/case_detail.html:41
+msgid "Update Status:"
+msgstr "Actualizar Estado:"
+
+#: app/public/templates/public/case_detail.html:46
+#: app/public/templates/public/case_detail.html:66
+msgid "Pending Review"
+msgstr "Pendiente de Revisión"
+
+#: app/public/templates/public/case_detail.html:47
+#: app/public/templates/public/case_detail.html:67
+msgid "Under Review"
+msgstr "Bajo Revisión"
+
+#: app/public/templates/public/case_detail.html:48
+#: app/public/templates/public/case_detail.html:68
+msgid "Approved"
+msgstr "Aprobada"
+
+#: app/public/templates/public/case_detail.html:49
+#: app/public/templates/public/case_detail.html:69
+msgid "Rejected"
+msgstr "Rechazada"
+
+#: app/public/templates/public/case_detail.html:51
+msgid "Save"
+msgstr "Guardar"
+
+#: app/public/templates/public/case_detail.html:57
+msgid "Admin Controls"
+msgstr "Controles de Administración"
+
+#: app/public/templates/public/case_detail.html:64
+msgid "Application Status"
+msgstr "Estado de la Solicitud"
+
+#: app/public/templates/public/case_detail.html:74
+msgid "Admin Comments / Notes"
+msgstr "Comentarios del Administrador / Notas"
+
+#: app/public/templates/public/case_detail.html:78
+msgid "Save Changes & Notify Applicant"
+msgstr "Guardar Cambios y Notificar al Solicitante"
+
+#: app/public/templates/public/case_detail.html:85
+msgid "Submitted on:"
+msgstr "Subido el:"
+
+#: app/public/templates/public/case_detail.html:91
+msgid "Additional Context / Notes:"
+msgstr "Contexto adicional / Notas:"
+
+#: app/public/templates/public/case_detail.html:101
+msgid "Uploaded Documents"
+msgstr "Documentos Subidos"
+
+#: app/public/templates/public/case_detail.html:118
+msgid "No documents uploaded for this case yet."
+msgstr "No hay documentos subidos para este caso aún."
+
+#: app/public/templates/public/case_detail.html:125
+msgid "Upload Additional Document"
+msgstr "Subir Documento Adicional"
+
+#: app/public/templates/public/case_detail.html:133
+msgid "Upload File"
+msgstr "Subir Archivo"
+
+#: app/public/templates/public/create_case.html:9
+msgid "Start an Immigration Application"
+msgstr "Empezar una Solicitud de Inmigración"
+
+#: app/public/templates/public/create_case.html:10
+msgid ""
+"Select your visa or residency category and upload initial supporting "
+"documentation."
+msgstr "" 
+"Elije tu visa o categoría de residencia y sube la documentación "
+"necesaria."
+
+#: app/public/templates/public/create_case.html:19
+msgid "Application Type"
+msgstr "Tipo de Solicitud"
+
+#: app/public/templates/public/create_case.html:22
+msgid "Work Visa"
+msgstr "Visa de Trabajo"
+
+#: app/public/templates/public/create_case.html:23
+#: app/public/templates/public/services.html:25
+msgid "Student Residency"
+msgstr "Residencia Estudiantil"
+
+#: app/public/templates/public/create_case.html:24
+#: app/public/templates/public/services.html:35
+msgid "Family Reunification"
+msgstr "Reunificación Familiar"
+
+#: app/public/templates/public/create_case.html:25
+msgid "Asylum / Protection"
+msgstr "Asilo / Protección"
+
+#: app/public/templates/public/create_case.html:30
+msgid "Additional Information / Personal Details"
+msgstr "Información Adicional / Detalles Personales"
+
+#: app/public/templates/public/create_case.html:35
+msgid "Upload Supporting Document"
+msgstr "Subir Documento Adicional"
+
+#: app/public/templates/public/create_case.html:37
+msgid "Accepted formats:"
+msgstr "Formatos aceptados:"
+
+#: app/public/templates/public/create_case.html:41
+msgid "Submit Application"
+msgstr "Entregar Solicitud"
+
+#: app/public/templates/public/dashboard.html:3
+msgid "My Dashboard - CYLCAE"
+msgstr "Mi Panel - CYLCAE"
+
+#: app/public/templates/public/dashboard.html:8
+msgid "Welcome back,"
+msgstr "Bienvenido de nuevo,"
+
+#: app/public/templates/public/dashboard.html:9
+msgid ""
+"This is your personal portal to track active applications and upload "
+"documents."
+msgstr ""
+"Este es tu portal personal para seguir tus solicitudes activas y subir "
+"documentos."
+
+#: app/public/templates/public/dashboard.html:12
+msgid "Start New Application"
+msgstr "Empezar nueva solicitud"
+
+#: app/public/templates/public/dashboard.html:16
+msgid "My Active Applications"
+msgstr "Mis solicitudes activas"
+
+#: app/public/templates/public/dashboard.html:26
+msgid "file(s) attached"
+msgstr "documento(s) adjuntos"
+
+#: app/public/templates/public/dashboard.html:26
+msgid "Submitted"
+msgstr "Entregado"
+
+#: app/public/templates/public/dashboard.html:41
+msgid "You have not submitted any immigration applications yet."
+msgstr "No has entregado ninga solicitud aún"
+
+#: app/public/templates/public/employment.html:2
+msgid "Employment Agency - CYLCAE"
+msgstr "Agencia de Empleo - CYLCAE"
+
+#: app/public/templates/public/employment.html:7
+msgid "Employment Opportunities"
+msgstr "Opportunidades de Empleo"
+
+#: app/public/templates/public/employment.html:8
+msgid "Explore available job openings and employment resources."
+msgstr "Explora trabajos disponibles y recursos para empleo"
+
+#: app/public/templates/public/employment.html:21
+msgid "Requirements:"
+msgstr "Requisitos:"
+
+#: app/public/templates/public/employment.html:25
+msgid "Download Information"
+msgstr "Descargar Información"
+
+#: app/public/templates/public/employment.html:33
+msgid "No active job postings available at this time."
+msgstr "No hay ofertas de trabajo disponibles en este momento."
+
+#: app/public/templates/public/index.html:3
+msgid "Home - CYLCAE"
+msgstr "Página Principal - CYLCAE"
+
+#: app/public/templates/public/index.html:10
+msgid "Welcome to the Immigration Assistance Portal"
+msgstr "Bienvenid@ al Portal de Asistencia a la Inmigración"
+
+#: app/public/templates/public/index.html:12
+msgid ""
+"We provide step-by-step guidance, documentation checklists, and seamless "
+"application tracking for your immigration journey."
+msgstr ""
+"Ofrecemos guía de los pasos a seguir, comprobación de la documentación, y "
+"seguimiento fluido de tus solicitudes."
+
+#: app/public/templates/public/index.html:14
+msgid "View Our Services"
+msgstr "Compruebe nuestros Servicios"
+
+#: app/public/templates/public/index.html:15
+#: app/public/templates/public/services.html:17
+#: app/public/templates/public/services.html:27
+#: app/public/templates/public/services.html:37
+#: app/public/templates/public/services.html:47
+msgid "Check Eligibility"
+msgstr "Comprobar Admisibilidad"
+
+#: app/public/templates/public/news.html:2
+msgid "News & Interviews - CYLCAE"
+msgstr "Noticias y Entrevistas - CYLCAE"
+
+#: app/public/templates/public/news.html:6 app/templates/base.html:60
 msgid "News & Interviews"
 msgstr "Noticias y Entrevistas"
 
-#: app/templates/base.html:44
+#: app/public/templates/public/news.html:8
+msgid "All"
+msgstr "Todas"
+
+#: app/public/templates/public/news.html:9
+msgid "News"
+msgstr "Noticias"
+
+#: app/public/templates/public/news.html:10
+msgid "Interviews"
+msgstr "Entrevistas"
+
+#: app/public/templates/public/news.html:27
+msgid "PDF Attachment"
+msgstr "PDF Adjunto"
+
+#: app/public/templates/public/news.html:38
+msgid "No publications available at this time."
+msgstr "No hay publicaciones disponibles en este momento."
+
+#: app/public/templates/public/properties.html:2
+msgid "Properties & Businesses - CYLCAE"
+msgstr "Inmuebles y Negocios - CYLCAE"
+
+#: app/public/templates/public/properties.html:7
+msgid "Real Estate & Business Opportunities"
+msgstr "Propiedades y Opportunidades de Negocio"
+
+#: app/public/templates/public/properties.html:8
+msgid ""
+"Explore houses for sale, lease properties, and business opportunities "
+"tailored for residents and immigrants."
+msgstr ""
+"Explora casas a la venta, alquileres y oportunidades de negocio "
+"escogidas a mano para residentes e inmigrantes"
+
+#: app/public/templates/public/properties.html:12
+msgid "All Listings"
+msgstr "Todas las propidades"
+
+#: app/public/templates/public/properties.html:13
+msgid "For Sale"
+msgstr "A la venta"
+
+#: app/public/templates/public/properties.html:14
+msgid "On Lease"
+msgstr "Para Alquilar"
+
+#: app/public/templates/public/properties.html:15
+msgid "Businesses"
+msgstr "Negocios"
+
+#: app/public/templates/public/properties.html:26
+msgid "No Image Available"
+msgstr "No hay imagen disponible"
+
+#: app/public/templates/public/properties.html:37
+msgid "Beds"
+msgstr "Camas"
+
+#: app/public/templates/public/properties.html:38
+msgid "Baths"
+msgstr "Baños"
+
+#: app/public/templates/public/properties.html:45
+msgid "View Details"
+msgstr "Ver Detalles"
+
+#: app/public/templates/public/properties.html:51
+msgid "No listings found matching your selection."
+msgstr "No hay propiedades que se ajusten a su búsqueda."
+
+#: app/public/templates/public/property_detail.html:6
+msgid "Back to Listings"
+msgstr "Volver a las propiedades"
+
+#: app/public/templates/public/property_detail.html:14
+msgid "Description"
+msgstr "Descripción"
+
+#: app/public/templates/public/property_detail.html:30
+msgid "Type"
+msgstr "Tipo"
+
+#: app/public/templates/public/property_detail.html:35
+msgid "Bedrooms"
+msgstr "Habitaciones"
+
+#: app/public/templates/public/property_detail.html:41
+msgid "Bathrooms"
+msgstr "Baños"
+
+#: app/public/templates/public/property_detail.html:47
+msgid "Area"
+msgstr "Área"
+
+#: app/public/templates/public/property_detail.html:53
+msgid "Contact Information"
+msgstr "Información de Contacto"
+
+#: app/public/templates/public/property_detail.html:57
+msgid "Inquire About This Property"
+msgstr "Preguntar sobre Esta Propiedad"
+
+#: app/public/templates/public/quiz.html:3
+msgid "Eligibility Quiz - CYLCAE"
+msgstr "Test de Admisibilidad"
+
+#: app/public/templates/public/quiz.html:8
+msgid "Immigration Eligibility Checker"
+msgstr "Comprobador de Admisibilidad"
+
+#: app/public/templates/public/quiz.html:9
+msgid "Answer a few quick questions to find the right pathway for you."
+msgstr "Responde a unas preguntas para encontrar el mejor camino para ti."
+
+#: app/public/templates/public/quiz.html:19
+msgid "Step 1: What is your primary purpose for moving?"
+msgstr "Pregunta 1: ¿Cuál es tu principal motivo para mudarte?"
+
+#: app/public/templates/public/quiz.html:20
+msgid "Employment / Work"
+msgstr "Agencia de Empleo"
+
+#: app/public/templates/public/quiz.html:21
+msgid "Higher Education / Study"
+msgstr "Educación superior / Estudios"
+
+#: app/public/templates/public/quiz.html:22
+msgid "Join Family Member"
+msgstr "Reunirse con Familiares"
+
+#: app/public/templates/public/quiz.html:23
+msgid "Humanitarian Protection / Asylum"
+msgstr "Protección Humanitaria / Asilo"
+
+#: app/public/templates/public/quiz.html:28
+msgid "Step 2: Do you currently have an official job offer or school acceptance?"
+msgstr "Pregunta 2: ¿Actualmente, tiene ofertas oficiales de trabajo o  estudio?"
+
+#: app/public/templates/public/quiz.html:29
+msgid "Yes, I have an official offer/enrollment"
+msgstr "Sí, tengo ofertas"
+
+#: app/public/templates/public/quiz.html:30
+msgid "No, not yet"
+msgstr "No, aún no."
+
+#: app/public/templates/public/quiz.html:35
+msgid "Step 3: What is your planned duration of stay?"
+msgstr "Pregunta 3: ¿Cuánto planea quedarse?"
+
+#: app/public/templates/public/quiz.html:36
+msgid "Short-term (Under 1 year)"
+msgstr "Menos de un año"
+
+#: app/public/templates/public/quiz.html:37
+msgid "Long-term / Permanent Residency"
+msgstr "Más de un año / Permanentemente"
+
+#: app/public/templates/public/quiz.html:42
+msgid "Recommended Pathway"
+msgstr "Camino recomendado"
+
+#: app/public/templates/public/quiz.html:44
+msgid "Processing..."
+msgstr "Procesando"
+
+#: app/public/templates/public/quiz.html:49
+msgid "Apply Now with This Pathway"
+msgstr "Solicitar ahora con este camino"
+
+#: app/public/templates/public/services.html:3
+msgid "Our Services - CYLCAE"
+msgstr "Nuestros Servicios - CYLCAE"
+
+#: app/public/templates/public/services.html:7
+msgid "Immigration & Visa Services"
+msgstr "Inmigración y Servicios de Visa"
+
+#: app/public/templates/public/services.html:8
+msgid ""
+"Explore the primary pathways we handle to assist with your residency and "
+"legal status."
+msgstr ""
+"Explora los caminos que ofrecemos para asistirle con su residencia y "
+"estado legal."
+
+#: app/public/templates/public/services.html:15
+msgid "Work Visas"
+msgstr "Visas de trabajo"
+
+#: app/public/templates/public/services.html:16
+msgid ""
+"For skilled professionals, sponsored employees, and specialized workers "
+"seeking employment authorization."
+msgstr ""
+"Para profesionales cualificados, trabajadores subvencionados, y trabajadores especializados "
+"que busquen autorización para trabajar."
+
+#: app/public/templates/public/services.html:26
+msgid ""
+"For international students admitted into higher education institutions or"
+" language programs."
+msgstr ""
+"Para estudientes internacionales que han sido admitidos en instituciones de educación superior o"
+" programas de idioma."
+
+#: app/public/templates/public/services.html:36
+msgid "For immediate family members and spouses of legal residents or citizens."
+msgstr "Para familia inmediata y cónyuges de residentes legales o ciudadanos."
+
+#: app/public/templates/public/services.html:45
+msgid "Asylum & Protection"
+msgstr "Asilo y protección"
+
+#: app/public/templates/public/services.html:46
+msgid ""
+"Humanitarian aid and legal assistance for individuals seeking "
+"international protection."
+msgstr ""
+"Ayuda humanitaria y asistencia legal para individuos que busquen "
+"protección internacional."
+
+#: app/templates/base.html:6
+msgid "CYLCAE - Association of Freelancers and Entrepreneurs"
+msgstr "CYLCAE - Asociación de Autónomos y Emprendedores"
+
+#: app/templates/base.html:54
+msgid "Services"
+msgstr "Servicios"
+
+#: app/templates/base.html:57
+msgid "Employment Agency"
+msgstr "Agencia de Empleo"
+
+#: app/templates/base.html:63
 msgid "Properties & Businesses"
 msgstr "Inmuebles y Negocios"
 
-#: app/templates/base.html:49
+#: app/templates/base.html:68
 msgid "My Dashboard"
 msgstr "Mi Panel"
 
-#: app/templates/base.html:53
+#: app/templates/base.html:72
 msgid "Admin Panel"
 msgstr "Panel de Administración"
 
-#: app/templates/base.html:57
+#: app/templates/base.html:76
 msgid "Log Out"
 msgstr "Cerrar Sesión"
 
-#: app/templates/base.html:60
+#: app/templates/base.html:79
 msgid "Log In"
 msgstr "Iniciar Sesión"
 
-#: app/templates/base.html:61
+#: app/templates/base.html:80
 msgid "Register"
 msgstr "Registrarse"
 
-#: app/public/routes.py:58
-msgid "Please select a valid application type."
-msgstr "Por favor, seleccione un tipo de solicitud válido."
-
-#: app/public/routes.py:93
-msgid "Application created successfully!"
-msgstr "¡Solicitud creada con éxito!"
-
-#: app/public/routes.py:118
-msgid "Document uploaded successfully!"
-msgstr "¡Documento subido con éxito!"

@@ -7,22 +7,22 @@
     <div class="col-lg-8 mx-auto">
         
         <div class="d-flex justify-content-between align-items-center mb-3 mt-2">
-            <h2 class="mb-0 fw-bold text-cylcae">Application #{{ case.id }}</h2>
+            <h2 class="mb-0 fw-bold text-cylcae">{{ _('Application') }} #{{ case.id }}</h2>
             {% if current_user.is_admin %}
-                <a href="{{ url_for('admin.dashboard') }}" class="btn btn-outline-secondary btn-sm">&larr; Back to Admin Dashboard</a>
+                <a href="{{ url_for('admin.dashboard') }}" class="btn btn-outline-secondary btn-sm">&larr; {{ _('Back to Admin Dashboard') }}</a>
             {% else %}
-                <a href="{{ url_for('public.dashboard') }}" class="btn btn-outline-secondary btn-sm">&larr; Back to Dashboard</a>
+                <a href="{{ url_for('public.dashboard') }}" class="btn btn-outline-secondary btn-sm">&larr; {{ _('Back to Dashboard') }}</a>
             {% endif %}
         </div>
 
         <div class="card shadow-sm border-0 mb-4">
             <div class="card-body">
                 <div class="row mb-2">
-                    <div class="col-sm-4 text-muted">Category:</div>
+                    <div class="col-sm-4 text-muted">{{ _('Category:') }}</div>
                     <div class="col-sm-8 fw-bold">{{ case.case_type }}</div>
                 </div>
                 <div class="row mb-2 align-items-center">
-                    <div class="col-sm-4 text-muted">Status:</div>
+                    <div class="col-sm-4 text-muted">{{ _('Status:') }}</div>
                     <div class="col-sm-8">
                         <span class="badge 
                             {% if case.status == 'Pending Review' %}bg-warning text-dark
@@ -38,57 +38,57 @@
                 {% if current_user.is_admin %}
                 <!-- Admin-only Status Management Control -->
                 <div class="row mb-2 mt-3 pt-3 border-top">
-                    <div class="col-sm-4 text-muted fw-bold">Update Status:</div>
+                    <div class="col-sm-4 text-muted fw-bold">{{ _('Update Status:') }}</div>
                     <div class="col-sm-8">
                         <form action="{{ url_for('admin.review_case', id=case.id) }}" method="POST" class="d-flex gap-2">
                             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                             <select name="status" class="form-select form-select-sm">
-                                <option value="Pending Review" {% if case.status == 'Pending Review' %}selected{% endif %}>Pending Review</option>
-                                <option value="Under Review" {% if case.status == 'Under Review' %}selected{% endif %}>Under Review</option>
-                                <option value="Approved" {% if case.status == 'Approved' %}selected{% endif %}>Approved</option>
-                                <option value="Rejected" {% if case.status == 'Rejected' %}selected{% endif %}>Rejected</option>
+                                <option value="Pending Review" {% if case.status == 'Pending Review' %}selected{% endif %}>{{ _('Pending Review') }}</option>
+                                <option value="Under Review" {% if case.status == 'Under Review' %}selected{% endif %}>{{ _('Under Review') }}</option>
+                                <option value="Approved" {% if case.status == 'Approved' %}selected{% endif %}>{{ _('Approved') }}</option>
+                                <option value="Rejected" {% if case.status == 'Rejected' %}selected{% endif %}>{{ _('Rejected') }}</option>
                             </select>
-                            <button type="submit" class="btn btn-sm btn-primary">Save</button>
+                            <button type="submit" class="btn btn-sm btn-primary">{{ _('Save') }}</button>
                         </form>
                     </div>
                 </div>
                 <div class="card shadow-sm border-primary mb-4">
                     <div class="card-header bg-primary text-white">
-                        <h5 class="mb-0">Admin Controls</h5>
+                        <h5 class="mb-0">{{ _('Admin Controls') }}</h5>
                     </div>
                     <div class="card-body">
                         <form action="{{ url_for('admin.review_case', id=case.id) }}" method="POST">
                             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
             
                             <div class="mb-3">
-                               <label class="form-label fw-bold">Application Status</label>
+                               <label class="form-label fw-bold">{{ _('Application Status') }}</label>
                                <select name="status" class="form-select">
-                                   <option value="Pending Review" {% if case.status == 'Pending Review' %}selected{% endif %}>Pending Review</option>
-                                   <option value="Under Review" {% if case.status == 'Under Review' %}selected{% endif %}>Under Review</option>
-                                   <option value="Approved" {% if case.status == 'Approved' %}selected{% endif %}>Approved</option>
-                                   <option value="Rejected" {% if case.status == 'Rejected' %}selected{% endif %}>Rejected</option>
+                                   <option value="Pending Review" {% if case.status == 'Pending Review' %}selected{% endif %}>{{ _('Pending Review') }}</option>
+                                   <option value="Under Review" {% if case.status == 'Under Review' %}selected{% endif %}>{{ _('Under Review') }}</option>
+                                   <option value="Approved" {% if case.status == 'Approved' %}selected{% endif %}>{{ _('Approved') }}</option>
+                                   <option value="Rejected" {% if case.status == 'Rejected' %}selected{% endif %}>{{ _('Rejected') }}</option>
                                </select>
                             </div>
 
                             <div class="mb-3">
-                                 <label class="form-label fw-bold">Admin Comments / Notes</label>
+                                 <label class="form-label fw-bold">{{ _('Admin Comments / Notes') }}</label>
                                  <textarea name="admin_notes" class="form-control" rows="4" placeholder="Write feedback, missing documents needed, or resolution details...">{{ case.admin_notes or '' }}</textarea>
                             </div>
 
-                            <button type="submit" class="btn btn-primary">Save Changes & Notify Applicant</button>
+                            <button type="submit" class="btn btn-primary">{{ _('Save Changes & Notify Applicant') }}</button>
                         </form>
                     </div>
                 </div>
                 {% endif %}
 
                 <div class="row mb-2">
-                    <div class="col-sm-4 text-muted">Submitted on:</div>
+                    <div class="col-sm-4 text-muted">{{ _('Submitted on:') }}</div>
                     <div class="col-sm-8">{{ case.created_at.strftime('%Y-%m-%d') }}</div>
                 </div>
                 {% if case.notes %}
                 <hr class="text-muted">
                 <div class="row">
-                    <div class="col-sm-4 text-muted">Additional Context / Notes:</div>
+                    <div class="col-sm-4 text-muted">{{ _('Additional Context / Notes:') }}</div>
                     <div class="col-sm-8 text-dark bg-light p-3 rounded border">{{ case.notes }}</div>
                 </div>
               
@@ -98,7 +98,7 @@
 
         <div class="card shadow-sm border-0 mb-4">
             <div class="card-header bg-body-tertiary">
-                <h5 class="mb-0 pt-1 pb-1">Uploaded Documents</h5>
+                <h5 class="mb-0 pt-1 pb-1">{{ _('Uploaded Documents') }}</h5>
             </div>
             <div class="card-body p-0">
                 {% if case.documents %}
@@ -115,14 +115,14 @@
                         {% endfor %}
                     </ul>
                 {% else %}
-                    <div class="p-4 text-center text-muted">No documents uploaded for this case yet.</div>
+                    <div class="p-4 text-center text-muted">{{ _('No documents uploaded for this case yet.') }}</div>
                 {% endif %}
             </div>
         </div>
 
         <div class="card shadow-sm border-0">
             <div class="card-header bg-body-tertiary">
-                <h5 class="mb-0 pt-1 pb-1">Upload Additional Document</h5>
+                <h5 class="mb-0 pt-1 pb-1">{{ _('Upload Additional Document') }}</h5>
             </div>
             <div class="card-body p-4">
                 <form action="{{ url_for('public.case_detail', case_id=case.id) }}" method="POST" enctype="multipart/form-data">
@@ -130,7 +130,7 @@
                     
                     <div class="input-group">
                         <input type="file" class="form-control" name="document" required>
-                        <button class="btn btn-cylcae" type="submit">Upload File</button>
+                        <button class="btn btn-cylcae" type="submit">{{ _('Upload File') }}</button>
                     </div>
                 </form>
             </div>

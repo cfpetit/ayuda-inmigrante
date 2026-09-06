@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 
-{% block title %}Eligibility Quiz - CYLCAE{% endblock %}
+{% block title %}{{ _('Eligibility Quiz - CYLCAE') }}{% endblock %}
 
 {% block content %}
 <div class="quiz-container mt-4">
     <div class="text-center mb-4">
-        <h2 class="fw-bold text-cylcae">Immigration Eligibility Checker</h2>
-        <p class="text-muted">Answer a few quick questions to find the right pathway for you.</p>
+        <h2 class="fw-bold text-cylcae">{{ _('Immigration Eligibility Checker') }}</h2>
+        <p class="text-muted">{{ _('Answer a few quick questions to find the right pathway for you.') }}</p>
     </div>
 
     <!-- Bootstrap Progress Bar -->
@@ -16,37 +16,37 @@
 
     <!-- Step 1 -->
     <div class="quiz-step active" id="step-1">
-        <h4 class="mb-3">Step 1: What is your primary purpose for moving?</h4>
-        <button class="btn btn-outline-secondary quiz-option form-control" data-step="1" data-key="reason" data-value="work">Employment / Work</button>
-        <button class="btn btn-outline-secondary quiz-option form-control" data-step="1" data-key="reason" data-value="study">Higher Education / Study</button>
-        <button class="btn btn-outline-secondary quiz-option form-control" data-step="1" data-key="reason" data-value="family">Join Family Member</button>
-        <button class="btn btn-outline-secondary quiz-option form-control" data-step="1" data-key="reason" data-value="protection">Humanitarian Protection / Asylum</button>
+        <h4 class="mb-3">{{ _('Step 1: What is your primary purpose for moving?') }}</h4>
+        <button class="btn btn-outline-secondary quiz-option form-control" data-step="1" data-key="reason" data-value="work">{{ _('Employment / Work') }}</button>
+        <button class="btn btn-outline-secondary quiz-option form-control" data-step="1" data-key="reason" data-value="study">{{ _('Higher Education / Study') }}</button>
+        <button class="btn btn-outline-secondary quiz-option form-control" data-step="1" data-key="reason" data-value="family">{{ _('Join Family Member') }}</button>
+        <button class="btn btn-outline-secondary quiz-option form-control" data-step="1" data-key="reason" data-value="protection">{{ _('Humanitarian Protection / Asylum') }}</button>
     </div>
 
     <!-- Step 2 -->
     <div class="quiz-step" id="step-2">
-        <h4 class="mb-3">Step 2: Do you currently have an official job offer or school acceptance?</h4>
-        <button class="btn btn-outline-secondary quiz-option form-control" data-step="2" data-key="hasOffer" data-value="yes">Yes, I have an official offer/enrollment</button>
-        <button class="btn btn-outline-secondary quiz-option form-control" data-step="2" data-key="hasOffer" data-value="no">No, not yet</button>
+        <h4 class="mb-3">{{ _('Step 2: Do you currently have an official job offer or school acceptance?') }}</h4>
+        <button class="btn btn-outline-secondary quiz-option form-control" data-step="2" data-key="hasOffer" data-value="yes">{{ _('Yes, I have an official offer/enrollment') }}</button>
+        <button class="btn btn-outline-secondary quiz-option form-control" data-step="2" data-key="hasOffer" data-value="no">{{ _('No, not yet') }}</button>
     </div>
 
     <!-- Step 3 -->
     <div class="quiz-step" id="step-3">
-        <h4 class="mb-3">Step 3: What is your planned duration of stay?</h4>
-        <button class="btn btn-outline-secondary quiz-option form-control" data-step="3" data-key="duration" data-value="temporary">Short-term (Under 1 year)</button>
-        <button class="btn btn-outline-secondary quiz-option form-control" data-step="3" data-key="duration" data-value="permanent">Long-term / Permanent Residency</button>
+        <h4 class="mb-3">{{ _('Step 3: What is your planned duration of stay?') }}</h4>
+        <button class="btn btn-outline-secondary quiz-option form-control" data-step="3" data-key="duration" data-value="temporary">{{ _('Short-term (Under 1 year)') }}</button>
+        <button class="btn btn-outline-secondary quiz-option form-control" data-step="3" data-key="duration" data-value="permanent">{{ _('Long-term / Permanent Residency') }}</button>
     </div>
 
     <!-- Result Screen -->
     <div class="quiz-step" id="quiz-result">
-        <h3 class="fw-bold mb-3">Recommended Pathway</h3>
+        <h3 class="fw-bold mb-3">{{ _('Recommended Pathway') }}</h3>
         <div class="quiz-result-card mb-4">
-            <h4 id="recommendedTitle" class="text-cylcae fw-bold">Processing...</h4>
+            <h4 id="recommendedTitle" class="text-cylcae fw-bold">{{ _('Processing...') }}</h4>
             <p id="recommendedDesc" class="mb-0 text-dark"></p>
         </div>
         <div class="d-grid">
             <a id="applyBtn" href="#" class="btn btn-cylcae btn-lg shadow-sm">
-                Apply Now with This Pathway
+                {{ _('Apply Now with This Pathway') }}
             </a>
         </div>
     </div>

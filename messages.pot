@@ -8,12 +8,490 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-03 12:55+0200\n"
+"POT-Creation-Date: 2026-09-05 17:41+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.10.3\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: app/public/templates/public/case_detail.html:10
+msgid "Application"
+msgstr ""
+
+#: app/public/templates/public/case_detail.html:12
+msgid "Back to Admin Dashboard"
+msgstr ""
+
+#: app/public/templates/public/case_detail.html:14
+msgid "Back to Dashboard"
+msgstr ""
+
+#: app/public/templates/public/case_detail.html:21
+msgid "Category:"
+msgstr ""
+
+#: app/public/templates/public/case_detail.html:25
+msgid "Status:"
+msgstr ""
+
+#: app/public/templates/public/case_detail.html:41
+msgid "Update Status:"
+msgstr ""
+
+#: app/public/templates/public/case_detail.html:46
+#: app/public/templates/public/case_detail.html:66
+msgid "Pending Review"
+msgstr ""
+
+#: app/public/templates/public/case_detail.html:47
+#: app/public/templates/public/case_detail.html:67
+msgid "Under Review"
+msgstr ""
+
+#: app/public/templates/public/case_detail.html:48
+#: app/public/templates/public/case_detail.html:68
+msgid "Approved"
+msgstr ""
+
+#: app/public/templates/public/case_detail.html:49
+#: app/public/templates/public/case_detail.html:69
+msgid "Rejected"
+msgstr ""
+
+#: app/public/templates/public/case_detail.html:51
+msgid "Save"
+msgstr ""
+
+#: app/public/templates/public/case_detail.html:57
+msgid "Admin Controls"
+msgstr ""
+
+#: app/public/templates/public/case_detail.html:64
+msgid "Application Status"
+msgstr ""
+
+#: app/public/templates/public/case_detail.html:74
+msgid "Admin Comments / Notes"
+msgstr ""
+
+#: app/public/templates/public/case_detail.html:78
+msgid "Save Changes & Notify Applicant"
+msgstr ""
+
+#: app/public/templates/public/case_detail.html:85
+msgid "Submitted on:"
+msgstr ""
+
+#: app/public/templates/public/case_detail.html:91
+msgid "Additional Context / Notes:"
+msgstr ""
+
+#: app/public/templates/public/case_detail.html:101
+msgid "Uploaded Documents"
+msgstr ""
+
+#: app/public/templates/public/case_detail.html:118
+msgid "No documents uploaded for this case yet."
+msgstr ""
+
+#: app/public/templates/public/case_detail.html:125
+msgid "Upload Additional Document"
+msgstr ""
+
+#: app/public/templates/public/case_detail.html:133
+msgid "Upload File"
+msgstr ""
+
+#: app/public/templates/public/create_case.html:9
+msgid "Start an Immigration Application"
+msgstr ""
+
+#: app/public/templates/public/create_case.html:10
+msgid ""
+"Select your visa or residency category and upload initial supporting "
+"documentation."
+msgstr ""
+
+#: app/public/templates/public/create_case.html:19
+msgid "Application Type"
+msgstr ""
+
+#: app/public/templates/public/create_case.html:22
+msgid "Work Visa"
+msgstr ""
+
+#: app/public/templates/public/create_case.html:23
+#: app/public/templates/public/services.html:25
+msgid "Student Residency"
+msgstr ""
+
+#: app/public/templates/public/create_case.html:24
+#: app/public/templates/public/services.html:35
+msgid "Family Reunification"
+msgstr ""
+
+#: app/public/templates/public/create_case.html:25
+msgid "Asylum / Protection"
+msgstr ""
+
+#: app/public/templates/public/create_case.html:30
+msgid "Additional Information / Personal Details"
+msgstr ""
+
+#: app/public/templates/public/create_case.html:35
+msgid "Upload Supporting Document"
+msgstr ""
+
+#: app/public/templates/public/create_case.html:37
+msgid "Accepted formats:"
+msgstr ""
+
+#: app/public/templates/public/create_case.html:41
+msgid "Submit Application"
+msgstr ""
+
+#: app/public/templates/public/dashboard.html:3
+msgid "My Dashboard - CYLCAE"
+msgstr ""
+
+#: app/public/templates/public/dashboard.html:8
+msgid "Welcome back,"
+msgstr ""
+
+#: app/public/templates/public/dashboard.html:9
+msgid ""
+"This is your personal portal to track active applications and upload "
+"documents."
+msgstr ""
+
+#: app/public/templates/public/dashboard.html:12
+msgid "Start New Application"
+msgstr ""
+
+#: app/public/templates/public/dashboard.html:16
+msgid "My Active Applications"
+msgstr ""
+
+#: app/public/templates/public/dashboard.html:26
+msgid "file(s) attached"
+msgstr ""
+
+#: app/public/templates/public/dashboard.html:26
+msgid "Submitted"
+msgstr ""
+
+#: app/public/templates/public/dashboard.html:41
+msgid "You have not submitted any immigration applications yet."
+msgstr ""
+
+#: app/public/templates/public/employment.html:2
+msgid "Employment Agency - CYLCAE"
+msgstr ""
+
+#: app/public/templates/public/employment.html:7
+msgid "Employment Opportunities"
+msgstr ""
+
+#: app/public/templates/public/employment.html:8
+msgid "Explore available job openings and employment resources."
+msgstr ""
+
+#: app/public/templates/public/employment.html:21
+msgid "Requirements:"
+msgstr ""
+
+#: app/public/templates/public/employment.html:25
+msgid "Download Information"
+msgstr ""
+
+#: app/public/templates/public/employment.html:33
+msgid "No active job postings available at this time."
+msgstr ""
+
+#: app/public/templates/public/index.html:3
+msgid "Home - CYLCAE"
+msgstr ""
+
+#: app/public/templates/public/index.html:10
+msgid "Welcome to the Immigration Assistance Portal"
+msgstr ""
+
+#: app/public/templates/public/index.html:12
+msgid ""
+"We provide step-by-step guidance, documentation checklists, and seamless "
+"application tracking for your immigration journey."
+msgstr ""
+
+#: app/public/templates/public/index.html:14
+msgid "View Our Services"
+msgstr ""
+
+#: app/public/templates/public/index.html:15
+#: app/public/templates/public/services.html:17
+#: app/public/templates/public/services.html:27
+#: app/public/templates/public/services.html:37
+#: app/public/templates/public/services.html:47
+msgid "Check Eligibility"
+msgstr ""
+
+#: app/public/templates/public/news.html:2
+msgid "News & Interviews - CYLCAE"
+msgstr ""
+
+#: app/public/templates/public/news.html:6 app/templates/base.html:60
+msgid "News & Interviews"
+msgstr ""
+
+#: app/public/templates/public/news.html:8
+msgid "All"
+msgstr ""
+
+#: app/public/templates/public/news.html:9
+msgid "News"
+msgstr ""
+
+#: app/public/templates/public/news.html:10
+msgid "Interviews"
+msgstr ""
+
+#: app/public/templates/public/news.html:27
+msgid "PDF Attachment"
+msgstr ""
+
+#: app/public/templates/public/news.html:38
+msgid "No publications available at this time."
+msgstr ""
+
+#: app/public/templates/public/properties.html:2
+msgid "Properties & Businesses - CYLCAE"
+msgstr ""
+
+#: app/public/templates/public/properties.html:7
+msgid "Real Estate & Business Opportunities"
+msgstr ""
+
+#: app/public/templates/public/properties.html:8
+msgid ""
+"Explore houses for sale, lease properties, and business opportunities "
+"tailored for residents and immigrants."
+msgstr ""
+
+#: app/public/templates/public/properties.html:12
+msgid "All Listings"
+msgstr ""
+
+#: app/public/templates/public/properties.html:13
+msgid "For Sale"
+msgstr ""
+
+#: app/public/templates/public/properties.html:14
+msgid "On Lease"
+msgstr ""
+
+#: app/public/templates/public/properties.html:15
+msgid "Businesses"
+msgstr ""
+
+#: app/public/templates/public/properties.html:26
+msgid "No Image Available"
+msgstr ""
+
+#: app/public/templates/public/properties.html:37
+msgid "Beds"
+msgstr ""
+
+#: app/public/templates/public/properties.html:38
+msgid "Baths"
+msgstr ""
+
+#: app/public/templates/public/properties.html:45
+msgid "View Details"
+msgstr ""
+
+#: app/public/templates/public/properties.html:51
+msgid "No listings found matching your selection."
+msgstr ""
+
+#: app/public/templates/public/property_detail.html:6
+msgid "Back to Listings"
+msgstr ""
+
+#: app/public/templates/public/property_detail.html:14
+msgid "Description"
+msgstr ""
+
+#: app/public/templates/public/property_detail.html:30
+msgid "Type"
+msgstr ""
+
+#: app/public/templates/public/property_detail.html:35
+msgid "Bedrooms"
+msgstr ""
+
+#: app/public/templates/public/property_detail.html:41
+msgid "Bathrooms"
+msgstr ""
+
+#: app/public/templates/public/property_detail.html:47
+msgid "Area"
+msgstr ""
+
+#: app/public/templates/public/property_detail.html:53
+msgid "Contact Information"
+msgstr ""
+
+#: app/public/templates/public/property_detail.html:57
+msgid "Inquire About This Property"
+msgstr ""
+
+#: app/public/templates/public/quiz.html:3
+msgid "Eligibility Quiz - CYLCAE"
+msgstr ""
+
+#: app/public/templates/public/quiz.html:8
+msgid "Immigration Eligibility Checker"
+msgstr ""
+
+#: app/public/templates/public/quiz.html:9
+msgid "Answer a few quick questions to find the right pathway for you."
+msgstr ""
+
+#: app/public/templates/public/quiz.html:19
+msgid "Step 1: What is your primary purpose for moving?"
+msgstr ""
+
+#: app/public/templates/public/quiz.html:20
+msgid "Employment / Work"
+msgstr ""
+
+#: app/public/templates/public/quiz.html:21
+msgid "Higher Education / Study"
+msgstr ""
+
+#: app/public/templates/public/quiz.html:22
+msgid "Join Family Member"
+msgstr ""
+
+#: app/public/templates/public/quiz.html:23
+msgid "Humanitarian Protection / Asylum"
+msgstr ""
+
+#: app/public/templates/public/quiz.html:28
+msgid "Step 2: Do you currently have an official job offer or school acceptance?"
+msgstr ""
+
+#: app/public/templates/public/quiz.html:29
+msgid "Yes, I have an official offer/enrollment"
+msgstr ""
+
+#: app/public/templates/public/quiz.html:30
+msgid "No, not yet"
+msgstr ""
+
+#: app/public/templates/public/quiz.html:35
+msgid "Step 3: What is your planned duration of stay?"
+msgstr ""
+
+#: app/public/templates/public/quiz.html:36
+msgid "Short-term (Under 1 year)"
+msgstr ""
+
+#: app/public/templates/public/quiz.html:37
+msgid "Long-term / Permanent Residency"
+msgstr ""
+
+#: app/public/templates/public/quiz.html:42
+msgid "Recommended Pathway"
+msgstr ""
+
+#: app/public/templates/public/quiz.html:44
+msgid "Processing..."
+msgstr ""
+
+#: app/public/templates/public/quiz.html:49
+msgid "Apply Now with This Pathway"
+msgstr ""
+
+#: app/public/templates/public/services.html:3
+msgid "Our Services - CYLCAE"
+msgstr ""
+
+#: app/public/templates/public/services.html:7
+msgid "Immigration & Visa Services"
+msgstr ""
+
+#: app/public/templates/public/services.html:8
+msgid ""
+"Explore the primary pathways we handle to assist with your residency and "
+"legal status."
+msgstr ""
+
+#: app/public/templates/public/services.html:15
+msgid "Work Visas"
+msgstr ""
+
+#: app/public/templates/public/services.html:16
+msgid ""
+"For skilled professionals, sponsored employees, and specialized workers "
+"seeking employment authorization."
+msgstr ""
+
+#: app/public/templates/public/services.html:26
+msgid ""
+"For international students admitted into higher education institutions or"
+" language programs."
+msgstr ""
+
+#: app/public/templates/public/services.html:36
+msgid "For immediate family members and spouses of legal residents or citizens."
+msgstr ""
+
+#: app/public/templates/public/services.html:45
+msgid "Asylum & Protection"
+msgstr ""
+
+#: app/public/templates/public/services.html:46
+msgid ""
+"Humanitarian aid and legal assistance for individuals seeking "
+"international protection."
+msgstr ""
+
+#: app/templates/base.html:6
+msgid "CYLCAE - Association of Freelancers and Entrepreneurs"
+msgstr ""
+
+#: app/templates/base.html:54
+msgid "Services"
+msgstr ""
+
+#: app/templates/base.html:57
+msgid "Employment Agency"
+msgstr ""
+
+#: app/templates/base.html:63
+msgid "Properties & Businesses"
+msgstr ""
+
+#: app/templates/base.html:68
+msgid "My Dashboard"
+msgstr ""
+
+#: app/templates/base.html:72
+msgid "Admin Panel"
+msgstr ""
+
+#: app/templates/base.html:76
+msgid "Log Out"
+msgstr ""
+
+#: app/templates/base.html:79
+msgid "Log In"
+msgstr ""
+
+#: app/templates/base.html:80
+msgid "Register"
+msgstr ""
 

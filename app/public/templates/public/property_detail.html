@@ -3,7 +3,7 @@
 
 {% block content %}
 <div class="container my-5">
-    <a href="{{ url_for('public.properties_list') }}" class="btn btn-sm btn-outline-secondary mb-4">&larr; Back to Listings</a>
+    <a href="{{ url_for('public.properties_list') }}" class="btn btn-sm btn-outline-secondary mb-4">&larr; {{ _('Back to Listings') }}</a>
 
     <div class="row g-4">
         <div class="col-md-7">
@@ -11,7 +11,7 @@
                 <img src="{{ listing.image_url }}" class="img-fluid rounded shadow-sm w-100" style="max-height: 450px; object-fit: cover;" alt="{{ listing.title }}">
             {% endif %}
             <div class="mt-4">
-                <h3 class="fw-bold">Description</h3>
+                <h3 class="fw-bold">{{ _('Description') }}</h3>
                 <p class="text-secondary" style="white-space: pre-line;">{{ listing.description }}</p>
             </div>
         </div>
@@ -27,34 +27,34 @@
 
                 <div class="row text-center py-2 bg-light rounded my-3 mx-0">
                     <div class="col">
-                        <small class="text-muted d-block">Type</small>
+                        <small class="text-muted d-block">{{ _('Type') }}</small>
                         <strong>{{ listing.property_type }}</strong>
                     </div>
                     {% if listing.bedrooms %}
                     <div class="col">
-                        <small class="text-muted d-block">Bedrooms</small>
+                        <small class="text-muted d-block">{{ _('Bedrooms') }}</small>
                         <strong>{{ listing.bedrooms }}</strong>
                     </div>
                     {% endif %}
                     {% if listing.bathrooms %}
                     <div class="col">
-                        <small class="text-muted d-block">Bathrooms</small>
+                        <small class="text-muted d-block">{{ _('Bathrooms') }}</small>
                         <strong>{{ listing.bathrooms }}</strong>
                     </div>
                     {% endif %}
                     {% if listing.area_sqm %}
                     <div class="col">
-                        <small class="text-muted d-block">Area</small>
+                        <small class="text-muted d-block">{{ _('Area') }}</small>
                         <strong>{{ listing.area_sqm }} m²</strong>
                     </div>
                     {% endif %}
                 </div>
 
-                <h5 class="fw-bold mt-3">Contact Information</h5>
+                <h5 class="fw-bold mt-3">{{ _('Contact Information') }}</h5>
                 {% if listing.contact_email %}<p class="mb-1">📧 {{ listing.contact_email }}</p>{% endif %}
                 {% if listing.contact_phone %}<p class="mb-3">📞 {{ listing.contact_phone }}</p>{% endif %}
 
-                <a href="mailto:{{ listing.contact_email or 'info@cylcae.es' }}?subject=Inquiry regarding: {{ listing.title }}" class="btn btn-cylcae w-100 py-2 mt-2">Inquire About This Property</a>
+                <a href="mailto:{{ listing.contact_email or 'info@cylcae.es' }}?subject=Inquiry regarding: {{ listing.title }}" class="btn btn-cylcae w-100 py-2 mt-2">{{ _('Inquire About This Property') }}</a>
             </div>
         </div>
     </div>

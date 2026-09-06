@@ -6,8 +6,8 @@
 <div class="row">
     <div class="col-lg-8 mx-auto">
         <div class="text-center mb-4 mt-2">
-            <h2 class="fw-bold text-cylcae">Start an Immigration Application</h2>
-            <p class="text-muted">Select your visa or residency category and upload initial supporting documentation.</p>
+            <h2 class="fw-bold text-cylcae">{{ _('Start an Immigration Application') }}</h2>
+            <p class="text-muted">{{ _('Select your visa or residency category and upload initial supporting documentation.') }}</p>
         </div>
 
         <div class="card shadow-sm border-0">
@@ -16,29 +16,29 @@
                     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
 
                     <div class="mb-4">
-                        <label for="case_type" class="form-label fw-bold">Application Type</label>
+                        <label for="case_type" class="form-label fw-bold">{{ _('Application Type') }}</label>
                         <select class="form-select form-select-lg" name="case_type" id="case_type" required>
                             <option value="">-- Select Type --</option>
-                            <option value="Work Visa" {% if selected_type == "Work Visa" %} selected{% endif %}>Work Visa</option>
-                            <option value="Student Residency" {% if selected_type == 'Student Residency' %}selected{% endif %}>Student Residency</option>
-                            <option value="Family Reunification"{% if selected_type == 'Family Reunification' %}selected{% endif %}>Family Reunification</option>
-                            <option value="Asylum / Protection"{% if selected_type == 'Asylum / Protection' %}selected{% endif %}>Asylum / Protection</option>
+                            <option value="Work Visa" {% if selected_type == "Work Visa" %} selected{% endif %}>{{ _('Work Visa') }}</option>
+                            <option value="Student Residency" {% if selected_type == 'Student Residency' %}selected{% endif %}>{{ _('Student Residency') }}</option>
+                            <option value="Family Reunification"{% if selected_type == 'Family Reunification' %}selected{% endif %}>{{ _('Family Reunification') }}</option>
+                            <option value="Asylum / Protection"{% if selected_type == 'Asylum / Protection' %}selected{% endif %}>{{ _('Asylum / Protection') }}</option>
                         </select>
                     </div>
 
                     <div class="mb-4">
-                        <label for="notes" class="form-label fw-bold">Additional Information / Personal Details</label>
+                        <label for="notes" class="form-label fw-bold">{{ _('Additional Information / Personal Details') }}</label>
                         <textarea class="form-control" name="notes" id="notes" rows="4" placeholder="Provide any details relevant to your situation..."></textarea>
                     </div>
 
                     <div class="mb-5">
-                        <label for="document" class="form-label fw-bold">Upload Supporting Document</label>
+                        <label for="document" class="form-label fw-bold">{{ _('Upload Supporting Document') }}</label>
                         <input class="form-control" type="file" name="document" id="document">
-                        <div class="form-text">Accepted formats: PDF, Images (JPG/PNG), Word (DOCX).</div>
+                        <div class="form-text">{{ _('Accepted formats:') }}' PDF, Images (JPG/PNG), Word (DOCX).</div>
                     </div>
 
                     <div class="d-grid">
-                        <button type="submit" class="btn btn-cylcae btn-lg">Submit Application</button>
+                        <button type="submit" class="btn btn-cylcae btn-lg">{{ _('Submit Application') }}</button>
                     </div>
                 </form>
             </div>
