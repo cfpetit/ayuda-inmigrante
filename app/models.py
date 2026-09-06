@@ -1,8 +1,17 @@
+from flask import session, has_request_context
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
-from datetime import datetime
 from flask_babel import get_locale
+from datetime import datetime
 from app import db, login_manager
+
+def get_current_lang():
+    if has_request_context() and session.get('lang'):
+        return session.get('lang')
+    try:
+        return str(get_locale())
+    except Exception:
+        return 'es'
 
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -25,10 +34,10 @@ class Case(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     case_type = db.Column(db.String(100), nullable=False)
     status = db.Column(db.String(50), default='Pending Review')
-    notes = db.Column(db.Text, nullable=True)
+    notes_ = db.Column(db.Text, nullable=True)
+    admin_notes = db.Column(db.Text, nullable=True)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     documents = db.relationship('Document', backref='case', lazy=True, cascade="all, delete-orphan")
-    admin_notes = db.Column(db.Text, nullable=True)
 
 class Document(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -39,89 +48,46 @@ class Document(db.Model):
     case_id = db.Column(db.Integer, db.ForeignKey('case.id'), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
-# --- NEW SECTIONS ---
+# --- PUBLIC SECTIONS ---
 
 class JobPosting(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(200), nullable=False)
+    title = db.Column(db.String(200), nullable=True)
     company = db.Column(db.String(150), nullable=True)
     location = db.Column(db.String(150), nullable=True)
-    description = db.Column(db.Text, nullable=False)
+    description = db.Column(db.Text, nullable=True)
     requirements = db.Column(db.Text, nullable=True)
-    file_url = db.Column(db.String(500), nullable=True)  # Cloudinary file/doc URL
+    file_url = db.Column(db.String(500), nullable=True)
     is_active = db.Column(db.Boolean, default=True)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
-    @property
-    def title(self):
-        if str(get_locale()) == 'es' and self.title_es:
-            return self.title_es
-        return self.title_en
-
-    @property
-    def description(self):
-        if str(get_locale()) == 'es' and self.description_es:
-            return self.description_es
-        return self.description_en
-
-    @property
-    def requirements(self):
-        if str(get_locale()) == 'es' and self.requirements_es:
-            return self.requirements_es
-        return self.requirements_en
-
 class NewsPost(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(200), nullable=False)
-    category = db.Column(db.String(50), default='News')  # 'News' or 'Interview'
-    content = db.Column(db.Text, nullable=False)
-    image_url = db.Column(db.String(500), nullable=True)  # Cloudinary image URL
-    file_url = db.Column(db.String(500), nullable=True)   # Cloudinary PDF/attachment URL
+    title = db.Column(db.String(200), nullable=True)
+    category = db.Column(db.String(50), default='News')
+    content = db.Column(db.Text, nullable=True)
+    image_url = db.Column(db.String(500), nullable=True)
+    file_url = db.Column(db.String(500), nullable=True)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
-
-    @property
-    def title(self):
-        if str(get_locale()) == 'es' and self.title_es:
-            return self.title_es
-        return self.title_en
-
-    @property
-    def content(self):
-        if str(get_locale()) == 'es' and self.content_es:
-            return self.content_es
-        return self.content_es
 
 class PropertyListing(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(200), nullable=False)
-    listing_type = db.Column(db.String(50), nullable=False)   # 'Sale', 'Lease', 'Business'
-    property_type = db.Column(db.String(50), nullable=False)  # 'House', 'Apartment', 'Commercial Space', 'Land'
+    title = db.Column(db.String(200), nullable=True)
+    listing_type = db.Column(db.String(50), nullable=False)
+    property_type = db.Column(db.String(50), nullable=False)
     price = db.Column(db.Float, nullable=False)
-    price_period = db.Column(db.String(20), default='Total')  # 'Total', '/month', '/year'
+    price_period = db.Column(db.String(20), default='Total')
     location = db.Column(db.String(200), nullable=False)
     bedrooms = db.Column(db.Integer, nullable=True)
     bathrooms = db.Column(db.Integer, nullable=True)
     area_sqm = db.Column(db.Float, nullable=True)
-    description = db.Column(db.Text, nullable=False)
-    image_url = db.Column(db.String(500), nullable=True)     # Cloudinary image URL
+    description = db.Column(db.Text, nullable=True)
+    image_url = db.Column(db.String(500), nullable=True)
     contact_email = db.Column(db.String(120), nullable=True)
     contact_phone = db.Column(db.String(50), nullable=True)
     is_available = db.Column(db.Boolean, default=True)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
-    @property
-    def title(self):
-        if str(get_locale()) == 'es' and self.title_es:
-            return self.title_es
-        return self.content_es
-
-    @property
-    def description(self):
-        if str(get_locale()) == 'es' and self.description_es:
-            return self.description_es
-        return self.description_en
-
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
-

@@ -10,6 +10,7 @@ from flask_mail import Mail
 from flask_babel import Babel
 from config import config_by_name
 from logging.handlers import SMTPHandler
+from app.utils.translator import translate_dynamic
 
 db = SQLAlchemy()
 login_manager = LoginManager()
@@ -113,6 +114,8 @@ def create_app(config_name='development'):
     app.register_blueprint(public_bp)
     app.register_blueprint(auth_bp, url_prefix='/auth')
     app.register_blueprint(admin_bp, url_prefix='/admin')
+
+    app.jinja_env.filters['translate_dynamic'] = translate_dynamic
 
     return app
 

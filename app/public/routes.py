@@ -34,7 +34,12 @@ def index():
     recent_news = NewsPost.query.order_by(NewsPost.created_at.desc()).limit(3).all()
     recent_jobs = JobPosting.query.filter_by(is_active=True).order_by(JobPosting.created_at.desc()).limit(3).all()
     recent_properties = PropertyListing.query.filter_by(is_available=True).order_by(PropertyListing.created_at.desc()).limit(3).all()
-    return render_template('public/index.html', recent_news=recent_news, recent_jobs=recent_jobs)
+    return render_template(
+        'public/index.html', 
+        recent_news=recent_news, 
+        recent_jobs=recent_jobs, 
+        recent_properties=recent_properties
+    )
 
 @public_bp.route('/services')
 def services():
@@ -75,13 +80,21 @@ def quiz():
 def create_case():
     if request.method == 'POST':
         case_type = request.form.get('case_type')
-        notes = request.form.get('notes')
+        notes_input = request.form.get('notes')
 
         if not case_type:
-            flash('Please select a valid application type.', 'error')
+            flash(_('Please select a valid application type.'), 'error')
             return redirect(url_for('public.create_case'))
 
-        new_case = Case(case_type=case_type, notes=notes, applicant=current_user)
+        # Auto-translate applicant notes to English if submitted in Spanish (or vice versa)
+        notes_ = notes_input
+
+        new_case = Case(
+            case_type=case_type, 
+            notes_es=notes_es,
+            notes_en=notes_en, 
+            applicant=current_user
+        )
         db.session.add(new_case)
         db.session.commit()
 
@@ -113,15 +126,16 @@ def create_case():
                  f"Application ID: #{new_case.id}\n"
                  f"Applicant Email: {current_user.email}\n"
                  f"Type: {new_case.case_type}\n"
-                 f"Context/Notes: {new_case.notes or 'None provided'}\n\n"
+                 f"Context/Notes (ES): {new_case.notes_es or 'None provided'}\n"
+                 f"Context/Notes (EN): {new_case.notes_en or 'None provided'}\n\n"
                  f"Review it in the admin dashboard."
         )
 
-# Send asynchronously so the worker returns immediately
+        # Send asynchronously so worker returns immediately
         app_obj = current_app._get_current_object()
         Thread(target=send_async_email, args=(app_obj, msg)).start()
 
-        flash('Application created successfully!', 'success')
+        flash(_('Application created successfully!'), 'success')
         return redirect(url_for('public.case_detail', case_id=new_case.id))
 
     selected_type = request.args.get('type', '')
@@ -150,7 +164,7 @@ def case_detail(case_id):
             )
             db.session.add(doc)
             db.session.commit()
-            flash('Document uploaded successfully!', 'success')
+            flash(_('Document uploaded successfully!'), 'success')
 
         return redirect(url_for('public.case_detail', case_id=case.id))
 

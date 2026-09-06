@@ -14,11 +14,11 @@
     <div class="col-md-6">
         <div class="card h-100 shadow-sm border-0">
             <div class="card-body">
-                <h5 class="card-title fw-bold text-cylcae">{{ job.title }}</h5>
+                <h5 class="card-title fw-bold text-cylcae">{{ job.title | translate_dynamic  }}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">{{ job.company }} — {{ job.location }}</h6>
-                <p class="card-text">{{ job.description|safe }}</p>
+                <p class="card-text">{{ job.description|safe | translate_dynamic }}</p>
                 {% if job.requirements %}
-                    <small class="d-block text-muted mb-3"><strong>{{ _('Requirements:') }}</strong> {{ job.requirements|safe }}</small>
+                    <small class="d-block text-muted mb-3"><strong>{{ _('Requirements:') }}</strong> {{ job.requirements|safe | translate_dynamic }}</small>
                 {% endif %}
                 {% if job.file_url %}
                     <a href="{{ job.file_url }}" target="_blank" class="btn btn-sm btn-outline-danger">

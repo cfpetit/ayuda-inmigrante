@@ -143,7 +143,7 @@ msgstr "Estado:"
 #: app/admin/templates/admin/dashboard.html:55
 #: app/public/templates/public/dashboard.html:26
 msgid "Submitted"
-msgstr "Entregado"
+msgstr "Subido"
 
 #: app/admin/templates/admin/dashboard.html:56
 #: app/admin/templates/admin/dashboard.html:106
@@ -247,11 +247,11 @@ msgstr "Nuevo"
 
 #: app/admin/templates/admin/job_form.html:7
 msgid "Job Opportunity"
-msgstr "Opportunidades de Empleo"
+msgstr "Oportunidades de Empleo"
 
 #: app/admin/templates/admin/job_form.html:13
 msgid "Job Title"
-msgstr ""
+msgstr "Nombre de Trabajo"
 
 #: app/admin/templates/admin/job_form.html:19
 msgid "Company Name"
@@ -277,7 +277,7 @@ msgstr "Propiedades activas"
 
 #: app/admin/templates/admin/job_form.html:58
 msgid "Save Job Listing"
-msgstr "Guardar propidades"
+msgstr "Guardar propiedades"
 
 #: app/admin/templates/admin/news_form.html:8
 msgid "Article / News"
@@ -310,7 +310,7 @@ msgstr "Publicar Artículo"
 
 #: app/admin/templates/admin/property_form.html:8
 msgid "Edit Listing"
-msgstr "Editar propidad"
+msgstr "Editar propiedad"
 
 #: app/admin/templates/admin/property_form.html:8
 msgid "Add New Property / Business Listing"
@@ -331,7 +331,7 @@ msgstr "Para Alquilar"
 
 #: app/admin/templates/admin/property_form.html:24
 msgid "Business Opportunity"
-msgstr "Opportunidad de Negocio"
+msgstr "Oportunidad de Negocio"
 
 #: app/admin/templates/admin/property_form.html:28
 msgid "Property Type"
@@ -551,7 +551,7 @@ msgstr "Visa de Trabajo"
 #: app/public/templates/public/create_case.html:23
 #: app/public/templates/public/services.html:25
 msgid "Student Residency"
-msgstr "Residencia Estudiantil"
+msgstr "Permiso de Estudiante"
 
 #: app/public/templates/public/create_case.html:24
 #: app/public/templates/public/services.html:35
@@ -616,11 +616,11 @@ msgstr "Agencia de Empleo - CYLCAE"
 
 #: app/public/templates/public/employment.html:7
 msgid "Employment Opportunities"
-msgstr "Opportunidades de Empleo"
+msgstr "Oportunidades de Empleo"
 
 #: app/public/templates/public/employment.html:8
 msgid "Explore available job openings and employment resources."
-msgstr "Explore trabajos disponibles y recursos para empleo"
+msgstr "Explore ofertas de trabajo y recursos laborales."
 
 #: app/public/templates/public/employment.html:21
 msgid "Requirements:"
@@ -647,12 +647,12 @@ msgid ""
 "We provide step-by-step guidance, documentation checklists, and seamless "
 "application tracking for your immigration journey."
 msgstr ""
-"Ofrecemos apoyo en cada paso, seguimiento de la documentación requerida, "
-"y seguimiento fluido de sus solicitudes."
+"En esta página le ofrecemos información sobre la documentación requerida "
+"y segimiento en cada paso de su proceso."
 
 #: app/public/templates/public/index.html:14
 msgid "View Our Services"
-msgstr "Compruebe nuestros Servicios"
+msgstr "Nuestros Servicios"
 
 #: app/public/templates/public/index.html:15
 #: app/public/templates/public/services.html:17
@@ -672,7 +672,7 @@ msgstr "Noticias y Entrevistas"
 
 #: app/public/templates/public/news.html:8
 msgid "All"
-msgstr "Todas"
+msgstr "Todo"
 
 #: app/public/templates/public/news.html:10
 msgid "Interviews"
@@ -692,7 +692,7 @@ msgstr "Inmuebles y Negocios - CYLCAE"
 
 #: app/public/templates/public/properties.html:7
 msgid "Real Estate & Business Opportunities"
-msgstr "Propiedades y Opportunidades de Negocio"
+msgstr "Inmuebles y Oportunidades de Negocio"
 
 #: app/public/templates/public/properties.html:8
 msgid ""
@@ -704,7 +704,7 @@ msgstr ""
 
 #: app/public/templates/public/properties.html:12
 msgid "All Listings"
-msgstr "Todas las propidades"
+msgstr "Todas las propieWdades"
 
 #: app/public/templates/public/properties.html:14
 msgid "On Lease"
@@ -732,7 +732,7 @@ msgstr "Ver Detalles"
 
 #: app/public/templates/public/properties.html:51
 msgid "No listings found matching your selection."
-msgstr "No hay propiedades que se ajusten a su búsqueda."
+msgstr "No hay propiedades de este tipo."
 
 #: app/public/templates/public/property_detail.html:6
 msgid "Back to Listings"
@@ -863,7 +863,7 @@ msgid ""
 "Humanitarian aid and legal assistance for individuals seeking "
 "international protection."
 msgstr ""
-"Ayuda humanitaria y asistencia legal para individuos que busquen "
+"Ayuda humanitaria y asistencia legal para personas que busquen "
 "protección internacional."
 
 #: app/templates/base.html:6
@@ -884,7 +884,7 @@ msgstr "Inmuebles y Negocios"
 
 #: app/templates/base.html:68
 msgid "My Dashboard"
-msgstr "Mi Panel"
+msgstr "Mis Solicitudes"
 
 #: app/templates/base.html:72
 msgid "Admin Panel"

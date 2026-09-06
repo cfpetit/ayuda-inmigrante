@@ -1,8 +1,8 @@
 import os
 import cloudinary.uploader
-from flask import Blueprint, render_template, request, redirect, url_for, flash
+from flask import Blueprint, render_template, request, redirect, url_for, flash, current_app
 from flask_login import login_required, current_user
-from app import db,mail
+from app import db, mail
 from app.models import Case, JobPosting, NewsPost, PropertyListing
 from threading import Thread
 from flask_mail import Message
@@ -66,8 +66,8 @@ def review_case(id):
                      f"Admin Note: {case.admin_notes or 'No structural notes added.'}\n\n"
                      f"Log in to your portal dashboard for details."
             )
-            Thread(target=send_async_email, args=(app_obj, msg())).start()
-        flash(f"Application #{case.id} succesfully updated.", "success")
+            Thread(target=send_async_email, args=(app_obj, msg)).start()
+        flash(f"Application #{case.id} successfully updated.", "success")
         return redirect(url_for('admin.review_case', id=case.id))
 
     return render_template('public/case_detail.html', case=case)
@@ -84,12 +84,12 @@ def create_job():
         location = request.form.get('location')
         description = request.form.get('description')
         requirements = request.form.get('requirements')
-        
+
         file_url = None
         if 'attachment' in request.files and request.files['attachment'].filename:
             upload_result = cloudinary.uploader.upload(
-                request.files['attachment'], 
-                resource_type="auto", 
+                request.files['attachment'],
+                resource_type="auto",
                 folder="cylcae_jobs"
             )
             file_url = upload_result.get('secure_url')
@@ -104,9 +104,9 @@ def create_job():
         )
         db.session.add(job)
         db.session.commit()
-        flash("Job posting created successfully!", "success")
+        flash("Job posting created and auto-translated successfully!", "success")
         return redirect(url_for('admin.dashboard'))
-        
+
     return render_template('admin/job_form.html', job=None)
 
 @admin_bp.route('/jobs/<int:id>/edit', methods=['GET', 'POST'])
@@ -115,23 +115,27 @@ def create_job():
 def edit_job(id):
     job = JobPosting.query.get_or_404(id)
     if request.method == 'POST':
-        job.title = request.form.get('title')
+        title = request.form.get('title')
+        description = request.form.get('description')
+        requirements = request.form.get('requirements')
+
+        job.title = title
         job.company = request.form.get('company')
         job.location = request.form.get('location')
-        job.description = request.form.get('description')
-        job.requirements = request.form.get('requirements')
+        job.description = description
+        job.requirements = requirements
         job.is_active = 'is_active' in request.form
 
         if 'attachment' in request.files and request.files['attachment'].filename:
             upload_result = cloudinary.uploader.upload(
-                request.files['attachment'], 
-                resource_type="auto", 
+                request.files['attachment'],
+                resource_type="auto",
                 folder="cylcae_jobs"
             )
             job.file_url = upload_result.get('secure_url')
 
         db.session.commit()
-        flash("Job posting updated successfully!", "success")
+        flash("Job posting updated and re-translated successfully!", "success")
         return redirect(url_for('admin.dashboard'))
 
     return render_template('admin/job_form.html', job=job)
@@ -156,11 +160,11 @@ def create_news():
         title = request.form.get('title')
         category = request.form.get('category')
         content = request.form.get('content')
-        
+
         image_url = None
         if 'image' in request.files and request.files['image'].filename:
             img_result = cloudinary.uploader.upload(
-                request.files['image'], 
+                request.files['image'],
                 folder="cylcae_news_images"
             )
             image_url = img_result.get('secure_url')
@@ -168,8 +172,8 @@ def create_news():
         file_url = None
         if 'document' in request.files and request.files['document'].filename:
             doc_result = cloudinary.uploader.upload(
-                request.files['document'], 
-                resource_type="auto", 
+                request.files['document'],
+                resource_type="auto",
                 folder="cylcae_news_docs"
             )
             file_url = doc_result.get('secure_url')
@@ -183,7 +187,7 @@ def create_news():
         )
         db.session.add(post)
         db.session.commit()
-        flash("News post created successfully!", "success")
+        flash("News post created and auto-translated successfully!", "success")
         return redirect(url_for('admin.dashboard'))
 
     return render_template('admin/news_form.html', post=None)
@@ -194,27 +198,30 @@ def create_news():
 def edit_news(id):
     post = NewsPost.query.get_or_404(id)
     if request.method == 'POST':
-        post.title = request.form.get('title')
+        title = request.form.get('title')
+        content = request.form.get('content')
+
+        post.title = title
         post.category = request.form.get('category')
-        post.content = request.form.get('content')
+        post.content_es = content
 
         if 'image' in request.files and request.files['image'].filename:
             img_result = cloudinary.uploader.upload(
-                request.files['image'], 
+                request.files['image'],
                 folder="cylcae_news_images"
             )
             post.image_url = img_result.get('secure_url')
 
         if 'document' in request.files and request.files['document'].filename:
             doc_result = cloudinary.uploader.upload(
-                request.files['document'], 
-                resource_type="auto", 
+                request.files['document'],
+                resource_type="auto",
                 folder="cylcae_news_docs"
             )
             post.file_url = doc_result.get('secure_url')
 
         db.session.commit()
-        flash("News post updated successfully!", "success")
+        flash("News post updated and re-translated successfully!", "success")
         return redirect(url_for('admin.dashboard'))
 
     return render_template('admin/news_form.html', post=post)
@@ -274,7 +281,7 @@ def create_property():
         )
         db.session.add(listing)
         db.session.commit()
-        flash("Property listing created successfully!", "success")
+        flash("Property listing created and auto-translated successfully!", "success")
         return redirect(url_for('admin.dashboard'))
 
     return render_template('admin/property_form.html', listing=None)
@@ -285,7 +292,10 @@ def create_property():
 def edit_property(id):
     listing = PropertyListing.query.get_or_404(id)
     if request.method == 'POST':
-        listing.title = request.form.get('title')
+        title = request.form.get('title')
+        description = request.form.get('description')
+
+        listing.title = title
         listing.listing_type = request.form.get('listing_type')
         listing.property_type = request.form.get('property_type')
         listing.price = request.form.get('price', type=float)
@@ -294,7 +304,7 @@ def edit_property(id):
         listing.bedrooms = request.form.get('bedrooms', type=int)
         listing.bathrooms = request.form.get('bathrooms', type=int)
         listing.area_sqm = request.form.get('area_sqm', type=float)
-        listing.description = request.form.get('description')
+        listing.description = description
         listing.contact_email = request.form.get('contact_email')
         listing.contact_phone = request.form.get('contact_phone')
         listing.is_available = 'is_available' in request.form
@@ -307,7 +317,7 @@ def edit_property(id):
             listing.image_url = img_result.get('secure_url')
 
         db.session.commit()
-        flash("Property listing updated successfully!", "success")
+        flash("Property listing updated and re-translated successfully!", "success")
         return redirect(url_for('admin.dashboard'))
 
     return render_template('admin/property_form.html', listing=listing)
