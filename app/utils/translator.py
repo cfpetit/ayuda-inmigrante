@@ -2,8 +2,6 @@
 from functools import lru_cache
 from flask import session, has_request_context
 from flask_babel import get_locale
-import argostranslate.package
-import argostranslate.translate
 
 def ensure_language_installed():
     """
